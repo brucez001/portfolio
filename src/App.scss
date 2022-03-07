@@ -1,6 +1,12 @@
 .app {
     background-color: var(--primary-color);
     font-family: var(--font-base);
+    
+    .edge {
+      margin-right: 10%;
+      margin-left: 10%;
+    }
+    
 }
   
   .app__whitebg {
