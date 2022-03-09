@@ -24,7 +24,7 @@ const NavbarComp = () => {
 
         // </nav>
 
-        <Navbar className="app__navbar" expand="lg">
+        <Navbar className="app__navbar" sticky="top" expand="lg">
             
                 <Navbar.Brand href="#home" className="app__navbar-logo">
                     <img src={images.logo} alt="logo" />

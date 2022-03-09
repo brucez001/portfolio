@@ -6,18 +6,25 @@ import { blueIcons } from "../../constants";
 
 const home = () => {
     return (
-        <div className="home">
+        <div id="home">
             <div className="content left">
                 <div className="intro">
-                    <p className="hello">Hello, I'm</p>
-                    <img className="line" src={blueIcons.line} alt="------" />
-                    <h1>Bruce Zhu</h1>
+                    <div className="hello">
+                        <p className="hello-text">
+                            Hello, I'm
+                            <div className="line">
+                                <img src={blueIcons.line} alt="------" />
+                            </div>
+                        </p>
+                    </div>
+
+                    <h1 className="name">Bruce Zhu</h1>
                     <p className="intro-text">Software Engineering Student</p>
                     <div className="media">
-                        <a href="https://github.com/Bruce-zzhu">
+                        <a href="">
                             <img src={blueIcons.github} alt="github_link" />
                         </a>
-                        <a href="https://www.linkedin.com/in/bruce-zhu-01/">
+                        <a href="">
                             <img src={blueIcons.linkedin} alt="linkedin_link" />
                         </a>
                     </div>
@@ -44,7 +51,7 @@ const home = () => {
                             <b>Yicong Zhu</b>”;
                         </pre>
                         <pre>
-                            5 &nbsp;&nbsp;&nbsp;&nbsp;this.interests = ["
+                            5 &nbsp;&nbsp;&nbsp;&nbsp;this.traits = ["
                             <b>Dev</b>", “<b>Programming</b>”];
                         </pre>
                         <pre>6 &nbsp;&nbsp;{"}"}</pre>

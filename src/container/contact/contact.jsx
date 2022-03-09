@@ -4,7 +4,7 @@ import './contact.scss'
 
 const contact = () => {
   return (
-    <div>contact</div>
+    <div id="contact">contact</div>
   )
 }
 

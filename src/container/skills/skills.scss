@@ -1,0 +1,183 @@
+#skill {
+    img {
+        position: absolute;
+    }
+}
+
+#skillset {
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    font-weight: bolder;
+}
+
+.col {
+    display: inline-block;
+}
+
+.row {
+    padding-bottom: 10rem;
+}
+
+.skill-text {
+    color: var(--gray-color);
+    font-weight: bolder;
+}
+
+.languages-box {
+    padding-left: 0;
+    width: 500px;
+    height: 500px;
+
+    .java {
+        img {
+            width: 100px;
+        }
+    }
+
+    .c {
+        padding-left: 16rem;
+        padding-top: 4rem;
+        img {
+            width: 40px;
+        }
+    }
+    .languages-text {
+        padding-top: 4rem;
+        padding-left: 4rem;
+    }
+    .python {
+        padding-top: 1rem;
+        padding-left: 8rem;
+    }
+
+    .matlab {
+        padding-top: 2rem;
+        img {
+            width: 50px;
+        }
+    }
+
+    .javascript {
+        padding-top: 10rem;
+        padding-left: 4rem;
+        img {
+            width: 45px;
+        }
+    }
+}
+
+.development-box {
+    padding-left: 15rem;
+
+    .flutter {
+        padding-top: 1.5rem;
+        padding-left: 1rem;
+        img {
+            width: 40px;
+        }
+    }
+    .html5 {
+        padding-top: 2rem;
+        padding-left: 13rem;
+        img {
+            width: 45px;
+        }
+    }
+    .react {
+        padding-top: 2rem;
+        padding-left: 22rem;
+        img {
+            width: 55px;
+        }
+    }
+    .development-text {
+        padding-top: 2.5rem;
+        padding-left: 7rem;
+    }
+    .css3 {
+        img {
+            width: 45px;
+        }
+    }
+    .nodejs {
+        padding-left: 10rem;
+        padding-top: 1rem;
+    }
+    .express {
+        padding-top: 3rem;
+        padding-left: 21.5rem;
+        img {
+            width: 50px;
+        }
+    }
+    .mongodb {
+        padding-top: 6rem;
+        padding-left: 6.5rem;
+        img {
+            width: 75px;
+        }
+    }
+    .mysql {
+        padding-left: 24rem;
+        img {
+            width: 80px;
+        }
+    }
+    .xd {
+        padding-left: 23rem;
+        padding-top: 3rem;
+    }
+    .postgresql {
+        padding-top: 5rem;
+        img {
+            width: 65px;
+        }
+    }
+    .bootstrap {
+        padding-top: 3rem;
+        padding-left: 20rem;
+        img {
+            width: 43px;
+        }
+    }
+}
+
+.tools-box {
+    .jupyter {
+        padding-top: 1.5rem;
+        padding-left: 5rem;
+        img {
+            width: 60px;
+        }
+    }
+    .figma {
+        padding-top: 5rem;
+        padding-left: 19rem;
+        img {
+            width: 50px;
+        }
+    }
+    .tools-text {
+        padding-top: 1.6rem;
+        padding-left: 10rem;
+    }
+    .vs {
+        padding-left: 4rem;
+        padding-top: 1rem;
+    }
+    .intellij {
+        padding-top: 10rem;
+        padding-left: 18rem;
+        img {
+            width: 50px;
+        }
+    }
+    .xd {
+        padding-left: 6rem;
+        padding-top: 4rem;
+        img {
+            width: 45px;
+        }
+    }
+}

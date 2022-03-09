@@ -8,30 +8,49 @@
     float: right;
 }
 
-.hello {
-    position: absolute;
+.hello {    
+
+
+    @media screen and (max-width: 450px) {
+        text-align: center;
+    }
 } 
 
-.line {
-    padding-top: 2rem;
-}
 
-h1 {
-    padding-top: 1.5rem;
+
+.name {
     font-size: 90px !important;
-    font-weight: bolder !important;
+    font-weight: bolder;
+
+    @media screen and (max-width: 1024px) {
+        font-size: 70px;
+    }
+
+    @media screen and (max-width: 450px) {
+        text-align: center;
+        font-size: 50px;
+    }
 }
 
-p {
-    color: var(--gray-color);
+.hello-text, .intro-text {
+    color: var(--gray-color) !important;
 }
 
 .intro-text {
     font-size: xx-large;
+
+    @media screen and (max-width: 1024px) {
+        font-size: x-large;
+    }
+
+    @media screen and (max-width: 450px) {
+        text-align: center;
+        font-size: large;
+    }
 }
 
 .media {
-    width: 15ch;
+    width: 12ch;
     justify-content: space-between;
     display: flex;
     margin-left: 0 !important;
@@ -40,10 +59,17 @@ p {
 
 
 .button {
+    display: flex;
     padding-left: 20rem;
+
+    @media screen and (max-width: 450px) {
+        padding: 0;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
-button {
+.btn {
     color: #ffffff;
     font-size: 25px !important;
     font-weight: 400 !important;
@@ -63,6 +89,8 @@ button {
         color: var(--secondary-color);
         margin: 2rem;
     }
+
+    
     
 }
 
@@ -77,14 +105,14 @@ pre {
     width: 100%;
 }
 
-.home {
+#home {
     flex-direction: row;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1024px) {
         flex-direction: column;
         .button {
-            padding-left: 0;
             padding-top: 2rem;
+            text-align: center;
         }
 
         .media {
