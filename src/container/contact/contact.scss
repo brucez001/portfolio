@@ -1,3 +1,52 @@
 #contact {
-    padding-top: 100px;
+
+    padding-bottom: 10rem;
+    
+    h1 {
+        text-align: center;
+        font-weight: bolder;
+        padding-top: 6rem;
+        padding-bottom: 9rem;
+    }
+
+    .images, .contact-form {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .contact-computer {
+        padding-left: 1rem;
+        
+    }
+
+    .media {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 2rem;
+        align-items: center;
+        
+        div {
+            text-align: center;
+        }
+        img {
+            width: 40px;
+            margin: auto;
+        }
+        
+    }
+
+    .contact-form {
+        float: right;
+        margin-left: 5rem;
+        margin-top: -1rem;
+        width: 100vh;
+
+        .email-field, .name-field {
+            display: inline-block;
+        }
+
+        
+    }
+
+
 }

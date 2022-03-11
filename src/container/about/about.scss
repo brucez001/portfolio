@@ -1,0 +1,79 @@
+#about {
+    padding-bottom: 13rem;
+
+    h1 {
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        text-align: center;
+        font-weight: bolder;
+        color: var(--blue-color);
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items:flex-start;
+    }
+
+    .about-left,
+    .about-right {
+        position: absolute;
+    }
+    .about-left {
+        width: 100px;
+        padding-top: 6rem;
+    }
+    .about-right {
+        right: 0;
+        padding-top: 20rem;
+        width: 200px;
+    }
+
+    .about-images, .space
+    .bio {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .about-images {
+        .headshot {
+            img {
+                width: 250px;
+            }
+        }
+        .about-btns {
+            padding-top: 2rem;
+            //width: 250px;
+            display: flex;
+            justify-content: space-between;
+            //margin-left: 25px;
+            img {
+                width: 50px;
+
+                &:hover {
+                    transform: scale(1.1);
+                    transition: all 0.2s ease 0s;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .space {
+        width: 80px;
+    }
+
+    .bio {
+        //float: right;
+        width: 60%;
+
+        .bio-card {
+            p {
+                font-size: larger;
+                span {
+                    color: var(--blue-color);
+                }
+            }
+        }
+    }
+}

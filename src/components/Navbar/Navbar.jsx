@@ -45,7 +45,7 @@ const NavbarComp = () => {
                         <Nav.Link className="nav-link" href="#projects">
                             Projects
                         </Nav.Link>
-                        <Nav.Link className="nav-link" href="#tontact">
+                        <Nav.Link className="nav-link" href="#contact">
                             Contact
                         </Nav.Link>
                         <NavDropdown title="Language" id="basic-nav-dropdown">

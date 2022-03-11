@@ -1,4 +1,4 @@
-#skill {
+#skills {
     img {
         position: absolute;
     }
@@ -6,7 +6,7 @@
 
 #skillset {
     text-align: center;
-    padding-top: 5rem;
+    padding-top: 6rem;
     padding-bottom: 2rem;
     font-weight: bolder;
 }
@@ -15,7 +15,9 @@
     display: inline-block;
 }
 
-.row {
+.skills-row {
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 10rem;
 }
 
@@ -68,7 +70,6 @@
 }
 
 .development-box {
-    padding-left: 15rem;
 
     .flutter {
         padding-top: 1.5rem;
@@ -144,6 +145,7 @@
 }
 
 .tools-box {
+    padding-left: 3rem;
     .jupyter {
         padding-top: 1.5rem;
         padding-left: 5rem;

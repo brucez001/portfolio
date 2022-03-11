@@ -9,14 +9,14 @@ const App = () => {
   return (
     <div className='app'>
       <Navbar />
-      <div className="edge">
-        <Home />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </div>
-      
+
+      <Home />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+
+
     </div>
   )
 };

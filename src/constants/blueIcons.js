@@ -22,6 +22,15 @@ import python from '../assets/icons_blue/python.svg';
 import react from '../assets/icons_blue/react.svg';
 import visualstudio from '../assets/icons_blue/visualstudio.svg';
 import xd from '../assets/icons_blue/xd.svg';
+import email from '../assets/icons_blue/email.svg';
+import facebook from '../assets/icons_blue/facebook.svg';
+import github2 from '../assets/icons_blue/github2.svg';
+import instagram from '../assets/icons_blue/instagram.svg';
+import linkedin2 from '../assets/icons_blue/linkedin2.svg';
+import wechat from '../assets/icons_blue/wechat.svg';
+import about_left from '../assets/icons_blue/about_left.svg';
+import about_right from '../assets/icons_blue/about_right.svg';
+
 
 
 export default {
@@ -48,6 +57,14 @@ export default {
     python,
     react,
     visualstudio,
-    xd
+    xd,
+    email,
+    facebook,
+    github2,
+    linkedin2,
+    instagram,
+    wechat,
+    about_left,
+    about_right
 }
 
