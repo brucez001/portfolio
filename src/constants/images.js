@@ -4,6 +4,13 @@ import about_btn2 from '../assets/images/about_btn2.png';
 import about_btn3 from '../assets/images/about_btn3.png';
 import about_btn4 from '../assets/images/about_btn4.png';
 import circle from '../assets/images/circle.png';
+import yelpcamp from '../assets/images/yelpcamp.png';
+import planner from '../assets/images/planner.png';
+import candy from '../assets/images/candy.png';
+import ellipse1 from '../assets/images/ellipse1.png';
+import ellipse2 from '../assets/images/ellipse2.png';
+
+
 
 export default {
     logo,
@@ -11,5 +18,11 @@ export default {
     about_btn2,
     about_btn3,
     about_btn4,
-    circle
+    circle,
+    yelpcamp,
+    planner,
+    candy,
+    ellipse1,
+    ellipse2,
+
 }
