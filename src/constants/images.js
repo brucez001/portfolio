@@ -8,7 +8,8 @@ import yelpcamp from '../assets/images/yelpcamp.png';
 import planner from '../assets/images/planner.png';
 import candy from '../assets/images/candy.png';
 import ellipse1 from '../assets/images/ellipse1.png';
-import ellipse2 from '../assets/images/ellipse2.png';
+import ellipse2 from '../assets/images/ellipse2.png'; 
+import photo from '../assets/images/photo.png'; 
 
 
 
@@ -24,5 +25,6 @@ export default {
     candy,
     ellipse1,
     ellipse2,
+    photo,
 
 }
