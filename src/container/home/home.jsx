@@ -1,45 +1,69 @@
 import React from "react";
 
 import "./home.scss";
-import { Button, Card } from "react-bootstrap";
-import { blueIcons } from "../../constants";
+import { Button } from "react-bootstrap";
+import { blueIcons, originalIcons } from "../../constants";
+import cv from "../../assets/cv.pdf"
+import HoverImage from "react-hover-image";
 
 const home = () => {
+    // function hover(e) {
+    //     e.setAttribute("src", "../../assets/icons_original/github.svg");
+    //     //element.src = {img};
+    // }
+
+    // function unhover(element) {
+    //     element.setAttribute("src", "../../assets/blueIcons/github.svg");
+    // }
+
     return (
         <div id="home">
-            <div className="edge">
+            <div className="home-container">
                 <div className="content left">
-                    <div className="intro">
+                    
                         <div className="hello">
-                            <p className="hello-text">
-                                Hello, I'm
-                                <div className="line">
-                                    <img src={blueIcons.line} alt="------" />
-                                </div>
-                            </p>
+                            <p className="hello-text">Hello, I'm</p>
+
+                            <img
+                                className="line"
+                                src={blueIcons.line}
+                                alt="------"
+                            />
                         </div>
 
                         <h1 className="name">Bruce Zhu</h1>
                         <p className="intro-text">
                             Software Engineering Student
                         </p>
+
                         <div className="home-media">
-                            <a href="">
-                                <img src={blueIcons.github} alt="github_link" />
-                            </a>
-                            <a href="">
+                            <a
+                                href="https://github.com/Bruce-zzhu"
+                                target="_blank"
+                            >
                                 <img
+                                    className="github"
+                                    src={blueIcons.github}
+                                    alt=""
+                                />
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/bruce-zhu-01/"
+                                target="_blank"
+                            >
+                                <img
+                                    className="linkedin"
                                     src={blueIcons.linkedin}
-                                    alt="linkedin_link"
+                                    alt=""
                                 />
                             </a>
                         </div>
-                    </div>
-                    <div className="button">
-                        <Button variant="primary">Download CV</Button>
-                    </div>
+                        <div className="button">
+                            <Button href={cv} target="_blank">Download CV</Button>
+                        </div>
+                    
                 </div>
-
                 <div className="content right">
                     <div className="hero-card">
                         <div className="text">
@@ -65,9 +89,8 @@ const home = () => {
                         </div>
                     </div>
                 </div>
-
-                <img className="waves" src={blueIcons.waves} alt="waves" />
             </div>
+            <img className="waves" src={blueIcons.waves} alt="waves" />
         </div>
     );
 };

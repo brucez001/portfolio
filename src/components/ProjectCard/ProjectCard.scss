@@ -1,89 +1,316 @@
 .card-container {
     overflow: hidden;
-    display: inline-block;
-}
+    display: flex;
+    align-items: center;
 
-.image-container, .text-container {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.image-container {
-    border-radius: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    img {
-        border-radius: 20px;
-        width: 500px;
-        height: 300px;
-        overflow: hidden;
-        object-fit: cover;
+    .image-container,
+    .text-container {
+        display: inline-block;
+        vertical-align: middle;
     }
-}
 
-.text-container {
-    background-color: var(--primary-color);
-    height: 250px;
-    width: 600px;
-    border-radius: 20px 0 0 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
-    .content {
-        height: 250px;
+    .image-container {
+        border-radius: 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .text {
-            margin: 1rem 2rem;
-            h4 {
-                font-weight: bold;
-            }
-            p {
-                padding-left: 0.5rem;
-            }
+        img {
+            border-radius: 20px;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            object-fit: cover;
+            
         }
-        
+        &:hover {
+            transform: scale(1.01);
+            transition: all 0.2s ease 0s;
+        }
+    }
 
-        .bottom {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
+    .text-container {
+        background-color: var(--primary-color);
+        width: 600px;
+        height: 250px;
+
+        border-radius: 20px 0 0 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        .content {
+            height: 250px;
+
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
 
-            .links {
-                .btn {
-                    background-color: var( --secondary-color);
-                    border-radius: 5px;
-                    padding: 0.4rem 1.2rem;
+            .text {
+                margin: 1rem 2rem;
+                h4 {
+                    font-weight: bold;
                 }
-    
-                .github {
-                    display: inline-block;
-                    padding-left: 1rem;
-                    img {
-                        width: 35px;
+                p {
+                    padding-left: 0.5rem;
+                }
+            }
+
+            .bottom {
+                margin-left: 2rem;
+                margin-bottom: 1rem;
+                display: flex;
+                justify-content: space-between;
+
+                .links {
+                    .btn {
+                        background-color: var(--secondary-color);
+                        border-radius: 5px;
+                        padding: 0.4rem 1.2rem;
                         &:hover {
                             transform: scale(1.1);
                             transition: all 0.2s ease 0s;
                         }
                     }
-                }
-            }
-            
 
-            .icons {
-                padding-right: 1rem;
-                
-                img {
-                    margin-left: 0.5rem;
-                    width: 35px;
+                    .github {
+                        display: inline-block;
+                        padding-left: 1rem;
+                        img {
+                            width: 35px;
+                            &:hover {
+                                transform: scale(1.1);
+                                transition: all 0.2s ease 0s;
+                            }
+                        }
+                    }
+                }
+
+                .icons {
+                    padding-right: 1rem;
+
+                    img {
+                        margin-left: 0.5rem;
+                        width: 35px;
+                    }
                 }
             }
         }
-        
     }
+
+    @media screen and (max-width: 1300px) {
+
+        .image-container {
+            img {
+                width: 400px;
+                height: 240px;
+            }
+        }
+        .text-container {
+            width: 500px;
+            height: 210px;
+
+            .content {
+                height: 210px;
+
+                .text {
+                    margin: 0.8rem 1rem 0 1rem;
+
+                    p {
+                        padding-left: 0.5rem;
+                    }
+                }
+
+                .bottom {
+                    margin-left: 2rem;
+                    margin-top: 0rem;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 800px) and (max-width: 1024px) {
+
+        .image-container {
+            border-radius: 10px;
+            img {
+                border-radius: 10px;
+                width: 300px;
+                height: 180px;
+            }
+        }
+        .text-container {
+            width: 400px;
+            height: 170px;
+
+            .content {
+                height: 170px;
+
+                .text {
+                    margin: 0.8rem 1rem 0 0.5rem;
+                    h4 {
+                        font-size: 1.2rem;
+                    }
+                    p {
+                        font-size: 0.8rem;
+                        padding-left: 0.2rem;
+                    }
+                }
+
+                .bottom {
+                    
+                    margin-left: 2rem;
+                    margin-top: 0rem;
+                    .btn {
+                        font-size: 0.9rem;
+                        padding: 0.3rem 1rem !important;
+                    }
+                    .github {
+                        padding-left: 0.5rem !important;
+                        img {
+                            width: 30px !important;
+                            &:hover {
+                                transform: scale(1.1);
+                                transition: all 0.2s ease 0s;
+                            }
+                        }
+                    }
+                    .icons {
+                        padding-right: 0.5rem;
     
+                        img {
+                            margin-left: 0.5rem;
+                            width: 30px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column-reverse;
+        .image-container {
+            border-radius: 5px;
+            img {
+                border-radius: 5px;
+            }
+        }
+        .text-container {
+            border-radius: 20px;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .image-container {
+            border-radius: 10px;
+            img {
+                border-radius: 10px;
+                width: 300px;
+                height: 180px;
+            }
+        }
+        .text-container {
+            width: 400px;
+            height: 180px;
+
+            .content {
+                height: 180px;
+
+                .text {
+                    margin: 0.8rem 1rem 0 0.5rem;
+                    h4 {
+                        font-size: 1.2rem;
+                    }
+                    p {
+                        font-size: 0.8rem;
+                        padding-left: 0.2rem;
+                    }
+                }
+
+                .bottom {
+                    
+                    margin-left: 1.5rem;
+                    margin-top: 0rem;
+                    .btn {
+                        font-size: 0.9rem;
+                        padding: 0.3rem 1rem !important;
+                    }
+                    .github {
+                        padding-left: 0.5rem !important;
+                        img {
+                            width: 30px !important;
+                            &:hover {
+                                transform: scale(1.1);
+                                transition: all 0.2s ease 0s;
+                            }
+                        }
+                    }
+                    .icons {
+                        padding-right: 0.5rem;
     
+                        img {
+                            margin-left: 0.5rem;
+                            width: 25px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .image-container {
+            border-radius: 10px;
+            img {
+                border-radius: 10px;
+                width: 250px;
+                height: 150px;
+            }
+        }
+        .text-container {
+            width: 300px;
+            height: 220px;
+
+            .content {
+                height: 180px;
+
+                .text {
+                    margin: 0.8rem 1rem 0 0.5rem;
+                    h4 {
+                        font-size: 1.2rem;
+                    }
+                    p {
+                        font-size: 0.8rem;
+                        padding-left: 0.2rem;
+                    }
+                }
+
+                .bottom {
+                    
+                    margin-left: 1rem;
+                    margin-top: 1rem;
+                    .btn {
+                        font-size: 0.9rem;
+                        padding: 0.3rem 1rem !important;
+                    }
+                    .github {
+                        padding-left: 0.5rem !important;
+                        img {
+                            width: 25px !important;
+                            &:hover {
+                                transform: scale(1.1);
+                                transition: all 0.2s ease 0s;
+                            }
+                        }
+                    }
+                    .icons {
+                        padding-right: 0.5rem;
     
+                        img {
+                            margin-left: 0.4rem;
+                            width: 20px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
 }

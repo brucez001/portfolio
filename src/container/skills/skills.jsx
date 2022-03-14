@@ -6,10 +6,9 @@ import { blueIcons } from "../../constants";
 const skills = () => {
     return (
         <div id="skills">
-            <div className="edge">
                 <h1 id="skillset">My Skillsets</h1>
-                <div className="skills-row">
-                    <div className="col languages-box">
+                <div className="skills-container">
+                    <div className="box languages-box">
                         <div className="java">
                             <img src={blueIcons.java} alt="" />
                         </div>
@@ -28,7 +27,7 @@ const skills = () => {
                             <img src={blueIcons.javascript} alt="" />
                         </div>
                     </div>
-                    <div className="col development-box">
+                    <div className="box development-box">
                         <div className="flutter">
                             <img src={blueIcons.flutter} alt="" />
                         </div>
@@ -67,7 +66,7 @@ const skills = () => {
                         </div>
                     </div>
 
-                    <div className="col tools-box">
+                    <div className="box tools-box">
                         <div className="jupyter">
                             <img src={blueIcons.jupyter} alt="" />
                         </div>
@@ -87,7 +86,6 @@ const skills = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     );
 };

@@ -23,11 +23,19 @@
     }
     .projects-container {
         display: flex;
-        justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
+        flex-direction: column;
 
         .project-card {
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
+        }
+    }
+
+
+    @media screen and (max-width: 1300px) {
+        .bg {
+            width: 3rem;
         }
     }
 }

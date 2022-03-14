@@ -9,6 +9,8 @@ import css3 from '../assets/icons_original/css3.svg';
 import figma from '../assets/icons_original/figma.svg';
 import react from '../assets/icons_original/react.svg';
 import javascript from '../assets/icons_original/javascript.svg';
+import linkedin from '../assets/icons_original/linkedin.svg';
+import wordpress from '../assets/icons_original/wordpress-original.svg';
 
 
 
@@ -24,5 +26,7 @@ export default {
     figma,
     react,
     javascript,
+    linkedin,
+    wordpress,
 
 }

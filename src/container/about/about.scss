@@ -1,5 +1,5 @@
 #about {
-    padding-bottom: 13rem;
+    padding-bottom: 10rem;
 
     h1 {
         padding-top: 6rem;
@@ -9,10 +9,12 @@
         color: var(--blue-color);
     }
 
-    .container {
+    .about-container {
         display: flex;
+        flex-direction: row;
+        width: 100%;
         justify-content: center;
-        align-items:flex-start;
+        align-items: flex-start;
     }
 
     .about-left,
@@ -29,13 +31,14 @@
         width: 200px;
     }
 
-    .about-images, .space
-    .bio {
-        display: inline-block;
+    .about-images,
+    .space .bio {
+        //display: inline-block;
         vertical-align: top;
     }
 
     .about-images {
+        padding-left: 4rem;
         .headshot {
             img {
                 width: 250px;
@@ -59,21 +62,130 @@
         }
     }
 
-    .space {
-        width: 80px;
-    }
+    // .space {
+    //     width: 80px;
+    // }
 
     .bio {
         //float: right;
-        width: 60%;
+        padding-left: 5rem;
+        width: 50%;
 
         .bio-card {
             p {
-                font-size: larger;
+                font-size: 1.1rem;
                 span {
                     color: var(--blue-color);
                 }
             }
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+
+        .about-container {
+            justify-content: center;
+        }
+        .about-images {
+            .headshot {
+                img {
+                    width: 220px;
+                }
+            }
+            .about-btns {
+                img {
+                    width: 40px;
+                }
+            }
+        }
+
+
+        .bio {
+            .bio-card {
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+        
+    }
+
+    @media screen and (max-width: 768px) {
+        .about-container {
+            justify-content: center;
+        }
+        .about-images {
+            padding-left: 1rem;
+            .headshot {
+                img {
+                    width: 200px;
+                }
+            }
+            .about-btns {
+                padding-top: 1.5rem;
+                justify-content: space-around;
+                img {
+                    width: 35px;
+                }
+            }
+        }
+
+
+        .bio {
+            padding-left: 2rem;
+            .bio-card {
+                p {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .about-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .about-left {
+            width: 80px;
+            padding-top: 18rem;
+        }
+        .about-right {
+            padding-top: 35rem;
+            width: 130px;
+        }
+        h1 {
+            padding-bottom: 1rem;
+        }
+        .about-images {
+            padding-left: 0rem;
+            padding-bottom: 2rem;
+        }
+        .bio {
+            padding-left: 0;
+            width: 70%;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        padding-bottom: 5rem;
+        .about-images {
+            .headshot {
+                img {
+                    width: 170px;
+                }
+            }
+            .about-btns {
+                padding-top: 1rem;
+                justify-content: space-around;
+                img {
+                    width: 30px;
+                }
+            }
+        }
+        .bio {
+            padding-left: 1rem;
+            width: 80%;
         }
     }
 }

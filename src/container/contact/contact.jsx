@@ -8,13 +8,13 @@ import { Form, Button, Container } from "react-bootstrap";
 const contact = () => {
     return (
         <div id="contact">
-            <div className="edge">
-                <h1>Get in touch</h1>
+            <h1>Get in touch</h1>
+            <div className="contact-container">
                 <div className="images">
                     <div className="contact-computer">
                         <img src={originalIcons.computer} alt="" />
                     </div>
-                    <div className="media">
+                    <div className="contact-media">
                         <div className="email">
                             <img src={blueIcons.email} alt="" />
                         </div>
@@ -39,35 +39,38 @@ const contact = () => {
                 <div className="contact-form">
                     <Form>
                         <Container>
-                            <Form.Group
-                                className="email-field mb-4 col-6"
-                                controlId="form.Email"
-                            >
-                                <Form.Label>
-                                    <h4>Email</h4>
-                                </Form.Label>
-                                <Form.Control
-                                    className=""
-                                    type="email"
-                                    placeholder="name@example.com"
-                                    size="lg"
-                                />
-                            </Form.Group>
+                            
+                                <Form.Group
+                                    className="email-field mb-4"
+                                    controlId="form.Email"
+                                >
+                                    <Form.Label>
+                                        <h4>Email</h4>
+                                    </Form.Label>
+                                    <Form.Control
+                                        className=""
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        size="lg"
+                                    />
+                                </Form.Group>
 
-                            <Form.Group
-                                className="name-field col-5 offset-1"
-                                controlId="form.Name"
-                            >
-                                <Form.Label>
-                                    <h4>Name</h4>
-                                </Form.Label>
-                                <Form.Control
-                                    className=""
-                                    type="text"
-                                    placeholder="Enter name"
-                                    size="lg"
-                                />
-                            </Form.Group>
+                                <Form.Group
+                                    className="name-field mb-4"
+                                    controlId="form.Name"
+                                >
+                                    <Form.Label>
+                                        <h4>Name</h4>
+                                    </Form.Label>
+                                    <Form.Control
+                                        className=""
+                                        type="text"
+                                        placeholder="Enter name"
+                                        size="lg"
+                                    />
+                                </Form.Group>
+                            
+
                             <Form.Group controlId="form.Textarea">
                                 <Form.Label>
                                     <h4>Message</h4>

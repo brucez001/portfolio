@@ -1,7 +1,12 @@
 #contact {
-
     padding-bottom: 10rem;
-    
+
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
     h1 {
         text-align: center;
         font-weight: bolder;
@@ -9,22 +14,22 @@
         padding-bottom: 9rem;
     }
 
-    .images, .contact-form {
-        display: inline-block;
+    .images,
+    .contact-form {
+        //display: inline-block;
         vertical-align: top;
     }
 
     .contact-computer {
         padding-left: 1rem;
-        
     }
 
-    .media {
+    .contact-media {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         padding-top: 2rem;
         align-items: center;
-        
+
         div {
             text-align: center;
         }
@@ -32,21 +37,142 @@
             width: 40px;
             margin: auto;
         }
-        
     }
 
     .contact-form {
-        float: right;
         margin-left: 5rem;
         margin-top: -1rem;
         width: 100vh;
 
-        .email-field, .name-field {
+        .email-field,
+        .name-field {
             display: inline-block;
+            
         }
-
-        
+        .email-field {
+            width: 50%;
+            
+        }
+        .name-field {
+            padding-left: 5%;
+            width: 40%;
+            
+        }
+    }
+    @media screen and (max-width: 1300px) {
+        .contact-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .contact-computer {
+            img {
+                width: 300px;
+            }
+        }
     }
 
+    @media screen and (max-width: 1024px) {
+        .contact-computer {
+            img {
+                width: 270px;
+            }
+        }
+        .contact-media {
+            justify-content: center;
+            padding-top: 2rem;
 
+            div {
+                text-align: center;
+                margin-left: 0.5rem;
+            }
+            img {
+                width: 35px;
+                margin: auto;
+            }
+        }
+        .contact-form {
+            margin-left: 2rem;
+            width: 100vh;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        h1 {
+            padding-bottom: 5rem;
+        }
+        .contact-computer {
+            img {
+                width: 200px;
+            }
+        }
+        .contact-media {
+            justify-content: center;
+            padding-top: 2rem;
+
+            div {
+                text-align: center;
+                margin-left: 0.5rem;
+            }
+            img {
+                width: 25px;
+                margin: auto;
+            }
+        }
+        .contact-form {
+            margin-left: 1rem;
+            label {
+                h4 {
+                    font-size: 1.1rem;
+                }
+            }
+            ::-webkit-input-placeholder {
+                font-size: 1rem;
+            }
+            textarea {
+                height: 10rem;
+            }
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        h1 {
+            padding-bottom: 2rem;
+        }
+        .contact-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-media {
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+        }
+        .contact-form {
+            margin: 0;
+            width: 90%;
+            .email-field,
+            .name-field {
+                display: block;
+            }
+            .email-field {
+                width: 100%;
+                
+            }
+            .name-field {
+                padding-left: 0;
+                width: 100%;
+                
+            }
+            label {
+                h4 {
+                    font-size: 1.1rem;
+                }
+            }
+            ::-webkit-input-placeholder {
+                font-size: 1rem;
+            }
+            textarea {
+                height: 10rem;
+            }
+        }
+    }
 }

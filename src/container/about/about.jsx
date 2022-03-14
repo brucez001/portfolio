@@ -12,7 +12,7 @@ const about = () => {
             <img className="about-right" src={blueIcons.about_right} alt="" />
 
             <h1>About me</h1>
-            <div className="container">
+            <div className="about-container">
                 <div className="about-images">
                     <div className="headshot">
                         <img src={images.circle} alt="" />
@@ -24,7 +24,6 @@ const about = () => {
                         <img src={images.about_btn4} alt="" />
                     </div>
                 </div>
-                <div className="space"></div>
                 <div className="bio">
                     <div className="bio-card">
                         <p>
