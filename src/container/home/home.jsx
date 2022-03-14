@@ -4,18 +4,9 @@ import "./home.scss";
 import { Button } from "react-bootstrap";
 import { blueIcons, originalIcons } from "../../constants";
 import cv from "../../assets/cv.pdf"
-import HoverImage from "react-hover-image";
+
 
 const home = () => {
-    // function hover(e) {
-    //     e.setAttribute("src", "../../assets/icons_original/github.svg");
-    //     //element.src = {img};
-    // }
-
-    // function unhover(element) {
-    //     element.setAttribute("src", "../../assets/blueIcons/github.svg");
-    // }
-
     return (
         <div id="home">
             <div className="home-container">

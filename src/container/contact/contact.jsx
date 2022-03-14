@@ -4,8 +4,14 @@ import "./contact.scss";
 
 import { blueIcons, originalIcons } from "../../constants";
 import { Form, Button, Container } from "react-bootstrap";
+import HoverImage from "react-hover-image";
 
 const contact = () => {
+    // When the user clicks on div, open the popup
+    function myFunction() {
+        const popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
     return (
         <div id="contact">
             <h1>Get in touch</h1>
@@ -16,22 +22,67 @@ const contact = () => {
                     </div>
                     <div className="contact-media">
                         <div className="email">
-                            <img src={blueIcons.email} alt="" />
+                            <a href="mailto: brucezzhu@gmail.com">
+                                <HoverImage
+                                    src={blueIcons.email}
+                                    hoverSrc={originalIcons.email}
+                                />
+                            </a>
                         </div>
                         <div className="facebook">
-                            <img src={blueIcons.facebook} alt="" />
+                            <a
+                                href="https://www.facebook.com/profile.php?id=100028236881261"
+                                target="_blank"
+                            >
+                                <HoverImage
+                                    src={blueIcons.facebook}
+                                    hoverSrc={originalIcons.facebook}
+                                />
+                            </a>
                         </div>
                         <div className="instagram">
-                            <img src={blueIcons.instagram} alt="" />
+                            <a
+                                href="https://www.instagram.com/bruce_yc/"
+                                target="_blank"
+                            >
+                                <HoverImage
+                                    src={blueIcons.instagram}
+                                    hoverSrc={originalIcons.instagram}
+                                />
+                            </a>
                         </div>
                         <div className="wechat">
-                            <img src={blueIcons.wechat} alt="" />
+                            <div class="popup" onclick={myFunction}>
+                                <HoverImage
+                                    src={blueIcons.wechat}
+                                    hoverSrc={originalIcons.wechat}
+                                />
+                                <span class="popuptext" id="myPopup">
+                                    A Simple Popup!
+                                </span>
+                            </div>
                         </div>
                         <div className="linkedin2">
-                            <img src={blueIcons.linkedin2} alt="" />
+                            <a
+                                href="https://www.linkedin.com/in/bruce-zhu-01/"
+                                target="_blank"
+                            >
+                                <HoverImage
+                                    src={blueIcons.linkedin}
+                                    hoverSrc={originalIcons.linkedin}
+                                />
+                            </a>
                         </div>
                         <div className="github2">
-                            <img src={blueIcons.github2} alt="" />
+                            <a
+                                href="https://github.com/Bruce-zzhu"
+                                target="_blank"
+                            >
+                                <HoverImage
+                                    src={blueIcons.github}
+                                    hoverSrc={originalIcons.github}
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -39,37 +90,35 @@ const contact = () => {
                 <div className="contact-form">
                     <Form>
                         <Container>
-                            
-                                <Form.Group
-                                    className="email-field mb-4"
-                                    controlId="form.Email"
-                                >
-                                    <Form.Label>
-                                        <h4>Email</h4>
-                                    </Form.Label>
-                                    <Form.Control
-                                        className=""
-                                        type="email"
-                                        placeholder="name@example.com"
-                                        size="lg"
-                                    />
-                                </Form.Group>
+                            <Form.Group
+                                className="email-field mb-4"
+                                controlId="form.Email"
+                            >
+                                <Form.Label>
+                                    <h4>Email</h4>
+                                </Form.Label>
+                                <Form.Control
+                                    className=""
+                                    type="email"
+                                    placeholder="name@example.com"
+                                    size="lg"
+                                />
+                            </Form.Group>
 
-                                <Form.Group
-                                    className="name-field mb-4"
-                                    controlId="form.Name"
-                                >
-                                    <Form.Label>
-                                        <h4>Name</h4>
-                                    </Form.Label>
-                                    <Form.Control
-                                        className=""
-                                        type="text"
-                                        placeholder="Enter name"
-                                        size="lg"
-                                    />
-                                </Form.Group>
-                            
+                            <Form.Group
+                                className="name-field mb-4"
+                                controlId="form.Name"
+                            >
+                                <Form.Label>
+                                    <h4>Name</h4>
+                                </Form.Label>
+                                <Form.Control
+                                    className=""
+                                    type="text"
+                                    placeholder="Enter name"
+                                    size="lg"
+                                />
+                            </Form.Group>
 
                             <Form.Group controlId="form.Textarea">
                                 <Form.Label>

@@ -4,6 +4,7 @@ import "./about.scss";
 
 import { blueIcons, images } from "../../constants";
 
+
 const about = () => {
     return (
         <div id="about">
