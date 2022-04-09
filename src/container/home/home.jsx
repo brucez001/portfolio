@@ -2,7 +2,7 @@ import React from "react";
 
 import "./home.scss";
 import { Button } from "react-bootstrap";
-import { blueIcons, originalIcons } from "../../constants";
+import { blueIcons } from "../../constants";
 import cv from "../../assets/cv.pdf"
 
 

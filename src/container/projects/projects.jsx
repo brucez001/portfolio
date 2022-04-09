@@ -38,7 +38,7 @@ const projects = () => {
                         title="Yelp Camp"
                         imageUrl={images.yelpcamp}
                         body="YelpCamp is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account. This project was part of Colt Steele's web dev course on udemy."
-                        demoUrl=""
+                        demoUrl="https://yelpcamp-zyc.herokuapp.com/"
                         githubUrl="https://github.com/Bruce-zzhu/YelpCamp"
                         icons={yelpCamp}
                     />
