@@ -23,6 +23,9 @@ const projects = () => {
         originalIcons.css3,
         originalIcons.javascript,
     ];
+    const nutrition = [
+        originalIcons.python
+    ];
 
     return (
         <div id="projects">
@@ -41,6 +44,16 @@ const projects = () => {
                         demoUrl="https://yelpcamp-zyc.herokuapp.com/"
                         githubUrl="https://github.com/Bruce-zzhu/YelpCamp"
                         icons={yelpCamp}
+                    />
+                </div>
+                <div className="project-card">
+                    <ProjectCard
+                        title="Nutrition Expert"
+                        imageUrl={images.nutrition}
+                        body="Nutrition Expert is an interactive 2-d game, aimming to provide an opportunity for people to learn the knowledge about food & nutrition while playing a FUN game"
+                        demoUrl="https://www.youtube.com/watch?v=1K1vJ4ttd60&ab_channel=BruceZhu"
+                        githubUrl="https://github.com/Bruce-zzhu/Nutrition-Expert"
+                        icons={nutrition}
                     />
                 </div>
                 <div className="project-card">

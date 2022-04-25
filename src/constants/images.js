@@ -10,6 +10,7 @@ import candy from '../assets/images/candy.png';
 import ellipse1 from '../assets/images/ellipse1.png';
 import ellipse2 from '../assets/images/ellipse2.png'; 
 import photo from '../assets/images/photo.png'; 
+import nutrition from '../assets/images/nutrition.png'; 
 
 
 
@@ -26,5 +27,5 @@ export default {
     ellipse1,
     ellipse2,
     photo,
-
+    nutrition
 }
