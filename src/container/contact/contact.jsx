@@ -15,7 +15,7 @@ const contact = () => {
     return (
         <div id="contact">
             <h1>Get in touch</h1>
-            <div className="contact-container">
+            <div className="contact-container" style={{maxWidth: '1920px', margin: 'auto'}}>
                 <div className="images">
                     <div className="contact-computer">
                         <img src={originalIcons.computer} alt="" />

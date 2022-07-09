@@ -11,10 +11,10 @@ const projects = () => {
         originalIcons.express,
         originalIcons.bootstrap,
     ];
-    const planner = [
-        originalIcons.figma,
-        originalIcons.react,
-        originalIcons.html5,
+    const diabetes = [
+        originalIcons.mongodb2,
+        originalIcons.nodejs,
+        originalIcons.express,
         originalIcons.css3,
     ];
     const candy = [
@@ -38,6 +38,16 @@ const projects = () => {
             <div className="projects-container">
                 <div className="project-card">
                     <ProjectCard
+                        title="Diabetes at Home"
+                        imageUrl={images.diabetes}
+                        body="The app endeavours to simplify and habituate the oftentimes tedious task of keeping track of one's own health data, while also offering client-patient communication features for people with Diabetes."
+                        demoUrl="https://diabetes-at-home-xd.herokuapp.com/"
+                        githubUrl="https://github.com/Bruce-zzhu/Diabetes-at-Home"
+                        icons={diabetes}
+                    />
+                </div>
+                <div className="project-card">
+                    <ProjectCard
                         title="Yelp Camp"
                         imageUrl={images.yelpcamp}
                         body="YelpCamp is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account. This project was part of Colt Steele's web dev course on udemy."
@@ -54,16 +64,6 @@ const projects = () => {
                         demoUrl="https://www.youtube.com/watch?v=1K1vJ4ttd60&ab_channel=BruceZhu"
                         githubUrl="https://github.com/Bruce-zzhu/Nutrition-Expert"
                         icons={nutrition}
-                    />
-                </div>
-                <div className="project-card">
-                    <ProjectCard
-                        title="MindTask Planner"
-                        imageUrl={images.planner}
-                        body="A Planner web web app aiming to help people improve the efficiency of managing a project by implementing a task-hierarchy(mind map) system and a progress overview function based on ETC(Estimated Time to Complete)."
-                        demoUrl="https://mind-task-planner.herokuapp.com/"
-                        githubUrl="https://github.com/Bruce-zzhu/MindTask-Planner"
-                        icons={planner}
                     />
                 </div>
                 <div className="project-card">

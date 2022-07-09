@@ -7,13 +7,13 @@ import { blueIcons, images } from "../../constants";
 
 const about = () => {
     return (
-        <div id="about">
+        <div id="about" >
 
             <img className="about-left" src={blueIcons.about_left} alt="" />
             <img className="about-right" src={blueIcons.about_right} alt="" />
 
             <h1>About me</h1>
-            <div className="about-container">
+            <div className="about-container" style={{maxWidth: '1920px', margin: 'auto'}}>
                 <div className="about-images">
                     <div className="headshot">
                         <img src={images.photo} alt="" />

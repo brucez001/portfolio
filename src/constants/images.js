@@ -11,6 +11,7 @@ import ellipse1 from '../assets/images/ellipse1.png';
 import ellipse2 from '../assets/images/ellipse2.png'; 
 import photo from '../assets/images/photo.png'; 
 import nutrition from '../assets/images/nutrition.png'; 
+import diabetes from '../assets/images/diabetes.png'; 
 
 
 
@@ -27,5 +28,6 @@ export default {
     ellipse1,
     ellipse2,
     photo,
-    nutrition
+    nutrition,
+    diabetes,
 }
