@@ -29,7 +29,8 @@ const home = () => {
             </a>
           </div>
           <div className="button">
-            <Button href={cv} target="_blank">
+            {/* <Button href={cv} target="_blank"> */}
+            <Button>
               Download CV
             </Button>
           </div>
