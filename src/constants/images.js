@@ -12,6 +12,8 @@ import ellipse2 from '../assets/images/ellipse2.png';
 import photo from '../assets/images/photo.png'; 
 import nutrition from '../assets/images/nutrition.png'; 
 import diabetes from '../assets/images/diabetes.png'; 
+import loan_register from '../assets/images/loan_register.png'; 
+import forest from '../assets/images/forest.png'; 
 
 
 
@@ -30,4 +32,6 @@ export default {
     photo,
     nutrition,
     diabetes,
+    loan_register,
+    forest
 }
