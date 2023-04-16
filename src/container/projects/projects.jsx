@@ -26,17 +26,6 @@ const projects = () => {
     const nutrition = [
         originalIcons.python
     ];
-    const loan = [
-        originalIcons.react,
-        originalIcons.bootstrap,
-        originalIcons.express,
-        originalIcons.mongodb
-    ]
-
-    const forest = [
-        originalIcons.csharp,
-        originalIcons.unity
-    ]
 
     return (
         <div id="projects">
@@ -49,16 +38,6 @@ const projects = () => {
             <div className="projects-container">
                 <div className="project-card">
                     <ProjectCard
-                        title="Personal Loan Register"
-                        imageUrl={images.loan_register}
-                        body="Loan Register is an app that is designed to improve people's loaning experience, making the process of loaning out and borrowing items simpler and easier than ever before."
-                        demoUrl="/"
-                        githubUrl="https://github.com/Bruce-zzhu/Loan-Register"
-                        icons={loan}
-                    />
-                </div>
-                <div className="project-card">
-                    <ProjectCard
                         title="Diabetes at Home"
                         imageUrl={images.diabetes}
                         body="The app endeavours to simplify and habituate the oftentimes tedious task of keeping track of one's own health data, while also offering client-patient communication features for people with Diabetes."
@@ -69,12 +48,12 @@ const projects = () => {
                 </div>
                 <div className="project-card">
                     <ProjectCard
-                        title="Save: The Forest"
-                        imageUrl={images.forest}
-                        body="The game Save: The Forest is a 2.5D Adventure game made in Unity. The player would need to control the warrior, Fox, to take on a journey of reviving the forest by crossing through obstacles, defeating enemies and finally collecting the elements including Wood, Water and Soil at the end of each level."
-                        demoUrl="https://www.youtube.com/watch?v=wKx-X8AGKSk&t=5s&ab_channel=YuArthur"
-                        githubUrl="https://github.com/Bruce-zzhu/Save-The-Forest"
-                        icons={forest}
+                        title="Yelp Camp"
+                        imageUrl={images.yelpcamp}
+                        body="YelpCamp is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account. This project was part of Colt Steele's web dev course on udemy."
+                        demoUrl="https://yelpcamp-zyc.herokuapp.com/"
+                        githubUrl="https://github.com/Bruce-zzhu/YelpCamp"
+                        icons={yelpCamp}
                     />
                 </div>
                 <div className="project-card">
@@ -85,6 +64,16 @@ const projects = () => {
                         demoUrl="https://www.youtube.com/watch?v=1K1vJ4ttd60&ab_channel=BruceZhu"
                         githubUrl="https://github.com/Bruce-zzhu/Nutrition-Expert"
                         icons={nutrition}
+                    />
+                </div>
+                <div className="project-card">
+                    <ProjectCard
+                        title="Candy Challenge"
+                        imageUrl={images.candy}
+                        body="A web app aiming to help people improve social interactions through completing interesting group activities to earn “Candies” which can be used for exchanging commercial products in real life."
+                        demoUrl="https://candy-challenge.web.app/landing.html"
+                        githubUrl="https://github.com/Bruce-zzhu/Candy-Challenge"
+                        icons={candy}
                     />
                 </div>
             </div>
