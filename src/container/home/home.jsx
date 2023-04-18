@@ -28,12 +28,11 @@ const home = () => {
               <img className="linkedin" src={blueIcons.linkedin} alt="" />
             </a>
           </div>
-          <div className="button">
-            {/* <Button href={cv} target="_blank"> */}
+          {/* <div className="button">
             <Button>
               Download CV
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="content right">
           <div className="hero-card">
