@@ -24,6 +24,7 @@ function AIChat() {
     const curMessages = messages
     // add current input
     curMessages.push({role: ROLE.user, content: input})
+    // show "..." while waiting for response
     setMessages([...curMessages, {role: 'assistant', content: '...'}])
     setInput('')
 
@@ -40,6 +41,7 @@ function AIChat() {
   useEffect(() => {
     if (botMsg !== null) {
       const curMessages = messages
+      // remove "..." message and add bot response
       curMessages.pop()
       setMessages([...curMessages, botMsg])
     }
