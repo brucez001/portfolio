@@ -120,6 +120,13 @@ const InputContainer = styled.div`
     padding: 10px;
     max-height: 100px;
     min-height: 1.3rem;
+
+    @media (max-width: 768px) {
+      width: 80% !important;
+    }
+    @media (max-width: 500px) {
+      width: 90% !important;
+    }
   }
 
   span {
@@ -161,6 +168,12 @@ const Message = styled.div`
   }
   .content {
     margin-left: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 80% !important;
+  }
+  @media (max-width: 500px) {
+    width: 90% !important;
   }
 `
 
