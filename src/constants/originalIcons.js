@@ -27,6 +27,8 @@ import email from '../assets/icons_original/email.svg';
 import facebook from '../assets/icons_original/facebook.svg';
 import instagram from '../assets/icons_original/instagram.svg';
 import wechat from '../assets/icons_original/wechat.svg';
+import csharp from '../assets/icons_original/csharp.svg';
+import unity from '../assets/icons_original/unity.svg';
 
 export default {
     computer,
@@ -58,5 +60,6 @@ export default {
     facebook,
     instagram,
     wechat,
-
+    csharp,
+    unity,
 }

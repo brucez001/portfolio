@@ -1,11 +1,13 @@
 import React from 'react'
+import { Link, Route, Switch } from "react-router-dom";
 
-import { Home, About, Skills, Projects, Contact } from './container'
+import { Home, About, Skills, Projects, Contact, AIChat } from './container'
 import { Navbar, Footer } from './components';
 import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = () => {
+
+const MainSite = () => {
   return (
     <div className='app'>
       <Navbar />
@@ -16,6 +18,19 @@ const App = () => {
       <Contact />
       <Footer />
     </div>
+  )
+}
+
+
+
+
+const App = () => {
+  return (
+    <Switch>
+      <Route exact path="/"><MainSite /></Route>
+      <Route path="/playground/ai-chat"><AIChat /></Route>     	
+      <Route path="*"><MainSite /></Route>
+    </Switch>
   )
 };
 
