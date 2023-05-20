@@ -84,7 +84,7 @@ function AIChat() {
           <img alt='Send' src={sendIcon} />
         </span>
       </InputContainer>
-      <Copyright>Copyright © OpenAI</Copyright>
+      {/* <Copyright>Copyright © OpenAI</Copyright> */}
     </BottomContainer>
   </>
   );
