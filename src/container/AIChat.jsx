@@ -2,6 +2,7 @@ import { Configuration, OpenAIApi } from 'openai'
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import sendIcon from '../assets/sendIcon.svg';
+import ReactMarkdown from 'react-markdown';
 
 const ROLE = {
   user: 'user',
@@ -33,7 +34,6 @@ function AIChat() {
       messages: curMessages,
     })
     
-
     const botMsg = res.data?.choices[0].message || '' // botMsg = {role: 'assistant', content: <content>}
     setBotMsg(botMsg)
   }
@@ -54,6 +54,8 @@ function AIChat() {
     }
   }
 
+  
+
 
   return (
     <>
@@ -64,7 +66,8 @@ function AIChat() {
           <MessageRow key={index} role={message.role}>
             <Message>
               <p className='role'>{message.role === ROLE.user ? 'You' : 'Bot'}: </p>
-              <p className='content'>{message.content}</p>
+              <div className='content'><ReactMarkdown>{message.content}</ReactMarkdown></div>
+              
             </Message>
           </MessageRow>
         ))}
@@ -115,6 +118,7 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 
   textarea {
     width: 50% !important;

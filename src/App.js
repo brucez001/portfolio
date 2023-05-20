@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Home, About, Skills, Projects, Contact, AIChat } from './container'
 import { Navbar, Footer } from './components';
