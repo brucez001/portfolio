@@ -17,7 +17,7 @@ const home = () => {
           </div>
 
           <h1 className="name">Bruce Zhu</h1>
-          <p className="intro-text">Software Engineering Student</p>
+          <p className="intro-text">Software Engineer</p>
 
           <div className="home-media">
             <a href="https://github.com/Bruce-zzhu" target="_blank">

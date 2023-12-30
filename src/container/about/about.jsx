@@ -30,9 +30,7 @@ const about = () => {
                         <p>
                             <strong>
                                 Hi 👋, my name is Bruce Zhu, a passionate software
-                                engineering student at the University of
-                                Melbourne, pursuing to become a &nbsp;
-                                <span>software developer</span> in the future.
+                                engineer working at a tech company, responsible for developing web and mobile applications.
                             </strong>
                             <br />
                             <br />I fell in love with development when I built
@@ -44,7 +42,8 @@ const about = () => {
                             and I enjoy building projects and creating awesome
                             products with my own hand. <br />
                             <br />
-                            As a proactive student, apart from interacting with the computer, I also like socialising with people by participating in club activities, community volunteering activities, student programs, etc. <br/>
+                            As a proactive individual, apart from interacting with the computer, 
+                            I enjoy meeting with people through social events, coffee catchup, community volunteering, etc. <br/>
                             <br />
                             In my leisure time, I like playing badminton and
                             guitar as my hobbies, or implementing my project
