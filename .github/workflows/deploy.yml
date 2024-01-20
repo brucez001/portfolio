@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout main branch
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Fetches all history for all branches and tags
+          ref: main
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -26,10 +26,26 @@ jobs:
       - name: Build the app
         run: CI=false npm run build
 
-      - name: Deploy to gh-pages
+      - name: Copy build directory to temporary location
         run: |
-          git checkout gh-pages
-          cp -r ../main/build/* .  # Copy the built files from the main branch
+          mkdir ../build-temp
+          cp -r build/* ../build-temp/
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Copy build contents to gh-pages
+        run: |
+          cp -r ../build-temp/* gh-pages/
+
+      - name: Commit and push changes
+        run: |
+          cd gh-pages
+          git config user.name "Bruce-zzhu"
+          git config user.email "brucezzhu@gmail.com"
           git add .
           git commit -m "cd: deploy to gh-pages"
           git push origin gh-pages
