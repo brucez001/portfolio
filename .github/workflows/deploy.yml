@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Deploy to gh-pages
+        run: |
+          git checkout gh-pages
+          mkdir temp
+          mv CNAME temp/  # Move the CNAME file to the temporary directory
+          rm -rf *
+          mv temp/* .    # Move back the files
+          rmdir temp     # Remove the temporary directory
+          cp -r ../main/build/* .  # Copy the built files from the main branch
+          git add .
+          git commit -m "cd: deploy to gh-pages"
+          git push origin gh-pages
