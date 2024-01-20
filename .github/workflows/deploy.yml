@@ -29,11 +29,6 @@ jobs:
       - name: Deploy to gh-pages
         run: |
           git checkout gh-pages
-          mkdir temp
-          mv CNAME temp/  # Move the CNAME file to the temporary directory
-          rm -rf *
-          mv temp/* .    # Move back the files
-          rmdir temp     # Remove the temporary directory
           cp -r ../main/build/* .  # Copy the built files from the main branch
           git add .
           git commit -m "cd: deploy to gh-pages"
