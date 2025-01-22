@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 export default {
-  content: ['./src/**/*.{js,jsx}'],
+  content: ['./src/**/*.{ts,tsx}'],
   mode: 'jit',
   theme: {
     extend: {
@@ -20,7 +20,7 @@ export default {
         xs: '450px',
       },
       backgroundImage: {
-        'hero-pattern': "url('/src/assets/herobg.png')",
+        'hero-pattern': "url('/assets/herobg.png')",
       },
     },
   },
