@@ -3,16 +3,11 @@ import {
   backend,
   creator,
   web,
-  javascript,
   typescript,
-  html,
-  css,
   reactjs,
-  redux,
   tailwind,
   nodejs,
   mongodb,
-  git,
   figma,
   docker,
   meta,
@@ -22,7 +17,12 @@ import {
   carrent,
   jobit,
   tripguide,
-  threejs,
+  aws,
+  firebase,
+  graphql,
+  redis,
+  ios,
+  android,
 } from '/public/assets';
 
 export const navLinks = [
@@ -61,18 +61,6 @@ const services = [
 
 const technologies = [
   {
-    name: 'HTML 5',
-    icon: html,
-  },
-  {
-    name: 'CSS 3',
-    icon: css,
-  },
-  {
-    name: 'JavaScript',
-    icon: javascript,
-  },
-  {
     name: 'TypeScript',
     icon: typescript,
   },
@@ -81,28 +69,42 @@ const technologies = [
     icon: reactjs,
   },
   {
-    name: 'Redux Toolkit',
-    icon: redux,
+    name: 'Node JS',
+    icon: nodejs,
+  },
+  {
+    name: 'IOS',
+    icon: ios,
+  },
+  {
+    name: 'Android',
+    icon: android,
+  },
+  {
+    name: 'AWS',
+    icon: aws,
+  },
+  {
+    name: 'Firebase',
+    icon: firebase,
+  },
+
+  {
+    name: 'GrahQL',
+    icon: graphql,
   },
   {
     name: 'Tailwind CSS',
     icon: tailwind,
   },
-  {
-    name: 'Node JS',
-    icon: nodejs,
-  },
+
   {
     name: 'MongoDB',
     icon: mongodb,
   },
   {
-    name: 'Three JS',
-    icon: threejs,
-  },
-  {
-    name: 'git',
-    icon: git,
+    name: 'Redis',
+    icon: redis,
   },
   {
     name: 'figma',

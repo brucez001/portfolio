@@ -10,6 +10,7 @@ import { projects } from '@/utils/constants';
 import { fadeIn, textVariant } from '@/utils/motion';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
+import { useAnimateOnce } from '@/app/hooks';
 
 type Project = {
   name: string;
@@ -28,11 +29,12 @@ const ProjectCard = ({
 }) => {
   const { name, description, tags, image, source_code_link } = project;
 
+  const [motionProps] = useAnimateOnce();
+
   return (
     <motion.div
       variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
-      initial="hidden"
-      whileInView="show"
+      {...motionProps}
     >
       <Tilt className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full h-[100%] flex flex-col justify-between">
         <div>
@@ -78,13 +80,11 @@ const ProjectCard = ({
 };
 
 const Works = () => {
+  const [titleMotionProps] = useAnimateOnce();
+  const [descMotionProps] = useAnimateOnce();
   return (
     <>
-      <motion.div
-        variants={textVariant()}
-        initial="hidden"
-        whileInView={'show'}
-      >
+      <motion.div variants={textVariant()} {...titleMotionProps}>
         <p className={`${styles.sectionSubText} `}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
       </motion.div>
@@ -93,8 +93,7 @@ const Works = () => {
         <motion.p
           variants={fadeIn('', '', 0.1, 1)}
           className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
-          initial="hidden"
-          whileInView={'show'}
+          {...descMotionProps}
         >
           Following projects showcases my skills and experience through
           real-world examples of my work. Each project is briefly described with

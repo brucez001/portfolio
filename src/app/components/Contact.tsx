@@ -7,6 +7,7 @@ import emailjs from '@emailjs/browser';
 import { styles } from '@/utils/styles';
 import { EarthCanvas } from './canvas';
 import { slideIn } from '@/utils/motion';
+import { useAnimateOnce } from '@/app/hooks';
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -17,6 +18,9 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const [formMotionProps] = useAnimateOnce();
+  const [earthMotionProps] = useAnimateOnce();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -86,7 +90,7 @@ const Contact = () => {
         variants={slideIn('left', 'tween', 0.2, 1)}
         className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
         initial="hidden"
-        whileInView={'show'}
+        {...formMotionProps}
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -141,9 +145,8 @@ const Contact = () => {
 
       <motion.div
         variants={slideIn('right', 'tween', 0.2, 1)}
-        initial="hidden"
-        whileInView={'show'}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+        {...earthMotionProps}
       >
         <EarthCanvas />
       </motion.div>
