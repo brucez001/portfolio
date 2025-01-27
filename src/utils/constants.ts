@@ -42,19 +42,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: 'Web Developer',
+    title: 'Website SEO',
     icon: web,
   },
   {
-    title: 'React Native Developer',
+    title: 'Content Management System',
     icon: mobile,
   },
   {
-    title: 'Backend Developer',
+    title: 'Web App Development',
     icon: backend,
   },
   {
-    title: 'Content Creator',
+    title: 'Mobile App Development',
     icon: creator,
   },
 ];
@@ -124,10 +124,9 @@ const experiences = [
     iconBg: '#383E56',
     date: 'March 2020 - April 2021',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Developed product features for IOS, Android and web applications',
+      'Optimised website performance and enhanced SEO for better search engine visibility',
+      'Managed CI/CD pipelines, conducted software testing, and implemented monitoring solutions',
     ],
   },
   {
@@ -137,23 +136,21 @@ const experiences = [
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Built logistics technology solutions for the transportation and agriculture sectors',
+      'Developed products such as CRM, inventory management, order tracking systems, and e-commerce platforms',
+      'Architected and developed user-friendly web application interfaces to enhance user experience',
     ],
   },
   {
-    title: 'Web Developer',
-    company_name: 'Shopify',
-    icon: shopify,
-    iconBg: '#383E56',
-    date: 'Jan 2022 - Jan 2023',
+    title: 'CS Student',
+    company_name: 'University of Melbourne',
+    icon: unimelb,
+    iconBg: '#000F45',
+    date: '2020 - 2022',
     points: [
-      'Developing and maintaining web applications using React.js and other related technologies.',
-      'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-      'Implementing responsive design and ensuring cross-browser compatibility.',
-      'Participating in code reviews and providing constructive feedback to other developers.',
+      'Majored in Computer Science and Software Engineering',
+      'Won multiple Hackathon coding competition awards',
+      'Served as a committee member in multiple IT clubs and mentored first-year students',
     ],
   },
   // {

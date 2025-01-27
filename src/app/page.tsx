@@ -10,7 +10,7 @@ import {
   StarsCanvas,
 } from '@/app/components';
 
-export default function Home() {
+export default function Portfolio() {
   return (
     <div className="relative z-0 bg-primary">
       <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
