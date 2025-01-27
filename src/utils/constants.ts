@@ -124,7 +124,7 @@ const experiences = [
     iconBg: '#383E56',
     date: 'March 2020 - April 2021',
     points: [
-      'Developed product features for IOS, Android and web applications',
+      'Developed Web3 products across iOS, Android, and web platforms',
       'Optimised website performance and enhanced SEO for better search engine visibility',
       'Managed CI/CD pipelines, conducted software testing, and implemented monitoring solutions',
     ],
