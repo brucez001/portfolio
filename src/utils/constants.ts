@@ -136,7 +136,7 @@ const experiences = [
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
     points: [
-      'Built logistics technology solutions for the transportation and agriculture sectors',
+      'Implemented supply chain technology solutions for the transportation and agriculture sectors',
       'Developed products such as CRM, inventory management, order tracking systems, and e-commerce platforms',
       'Architected and developed user-friendly web application interfaces to enhance user experience',
     ],
