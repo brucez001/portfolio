@@ -9,6 +9,11 @@ import { EarthCanvas } from './canvas';
 import { slideIn } from '@/utils/motion';
 import { useAnimateOnce } from '@/app/hooks';
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string;
+const TO_EMAIL = process.env.NEXT_PUBLIC_EMAIL_TO_EMAIL as string;
+
 const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState({
@@ -36,48 +41,37 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      alert('Thank you. I will get back to you as soon as possible!');
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: 'Bruce',
+          from_email: form.email,
+          to_email: TO_EMAIL,
+          message: form.message,
+        },
+        PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          alert('Thank you. I will get back to you as soon as possible!');
 
-      setForm({
-        name: '',
-        email: '',
-        message: '',
-      });
-    }, 2000);
+          setForm({
+            name: '',
+            email: '',
+            message: '',
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.error(error);
 
-    // emailjs
-    //   .send(
-    //     process.env.VITE_APP_EMAILJS_SERVICE_ID,
-    //     process.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-    //     {
-    //       from_name: form.name,
-    //       to_name: "JavaScript Mastery",
-    //       from_email: form.email,
-    //       to_email: "sujata@jsmastery.pro",
-    //       message: form.message,
-    //     },
-    //     process.env.VITE_APP_EMAILJS_PUBLIC_KEY
-    //   )
-    //   .then(
-    //     () => {
-    //       setLoading(false);
-    //       alert("Thank you. I will get back to you as soon as possible.");
-
-    //       setForm({
-    //         name: "",
-    //         email: "",
-    //         message: "",
-    //       });
-    //     },
-    //     (error) => {
-    //       setLoading(false);
-    //       console.error(error);
-
-    //       alert("Ahh, something went wrong. Please try again.");
-    //     }
-    //   );
+          alert('Ahh, something went wrong. Please try again.');
+        }
+      );
   };
 
   return (
