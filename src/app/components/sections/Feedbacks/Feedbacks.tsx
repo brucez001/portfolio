@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { styles } from '@/utils/styles';
 import { fadeIn, textVariant } from '@/utils/motion';
 import { testimonials } from '@/utils/constants';
-import { useAnimateOnce } from '@/app/hooks';
+import Image from 'next/image';
 
 type Feedback = {
   testimonial: string;
@@ -17,8 +17,6 @@ type Feedback = {
 };
 
 const Feedbacks = () => {
-  const [motionProps] = useAnimateOnce();
-
   return (
     <div className={'mt-12 bg-black-100 rounded-[20px]'}>
       <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
@@ -39,13 +37,10 @@ const Feedbacks = () => {
 const FeedbackCard = ({ index, feedback }: { index: number; feedback: Feedback }) => {
   const { testimonial, name, designation, company, image } = feedback;
 
-  const [motionProps] = useAnimateOnce();
-
   return (
     <motion.div
       variants={fadeIn('', 'spring', index * 0.5, 0.75)}
       className='bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full'
-      {...motionProps}
     >
       <p className='text-white font-black text-[48px]'>"</p>
 
@@ -62,7 +57,7 @@ const FeedbackCard = ({ index, feedback }: { index: number; feedback: Feedback }
             </p>
           </div>
 
-          <img
+          <Image
             src={image}
             alt={`feedback_by-${name}`}
             className='w-10 h-10 rounded-full object-cover'
