@@ -7,7 +7,8 @@ import emailjs from '@emailjs/browser';
 import { styles } from '@/utils/styles';
 import { EarthCanvas } from './canvas';
 import { slideIn } from '@/utils/motion';
-import { useAnimateOnce } from '@/app/hooks';
+import Image from 'next/image';
+import { github_color, linkedin_color } from '/public/assets';
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string;
@@ -84,8 +85,15 @@ const Contact = () => {
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
-
-        <form ref={formRef} onSubmit={handleSubmit} className='mt-12 flex flex-col gap-8'>
+        <div className='flex items-center gap-3'>
+          <a href='https://github.com/Bruce-zzhu' target='_blank' className='w-10 h-10'>
+            <Image src={github_color} alt='github' />
+          </a>
+          <a href='https://www.linkedin.com/in/bruce-zhu-01/' target='_blank' className='w-10 h-10'>
+            <Image src={linkedin_color} alt='linkedin' />
+          </a>
+        </div>
+        <form ref={formRef} onSubmit={handleSubmit} className='mt-10 flex flex-col gap-8'>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input
@@ -115,7 +123,7 @@ const Contact = () => {
               name='message'
               value={form.message}
               onChange={handleChange}
-              placeholder='What you want to say?'
+              placeholder="Let's connect!"
               className='bg-tertiary py-4 px-6 placeholder:text-secondaryLight text-white rounded-lg outline-none border-none font-medium'
             />
           </label>

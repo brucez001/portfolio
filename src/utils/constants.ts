@@ -198,10 +198,10 @@ const projects = [
   {
     name: 'iTrazo ADI',
     description:
-      'Supply chain management platform that enables users to efficiently track shipments, manage inventory, and generate reports to streamline their business operations',
+      'Supply chain management platform integrating advanced real-time asset tracking, inventory management, and CRM to optimise traceability and efficiency',
     tags: [
       {
-        name: 'React',
+        name: 'React.js',
         color: 'blue-text-gradient',
       },
       {
@@ -209,7 +209,7 @@ const projects = [
         color: 'green-text-gradient',
       },
       {
-        name: 'DynamoDB',
+        name: 'Real-time & Map',
         color: 'pink-text-gradient',
       },
     ],
@@ -220,10 +220,10 @@ const projects = [
   {
     name: 'Freight Cyber',
     description:
-      'Freight and logistics management solution that allows clients to efficiently manage their assets, business operations, and stakeholder engagements',
+      'Freight and logistics management solution that allows businesses to manage drivers and subcontractors, optimise job routing and scheduling, and streamline business operations',
     tags: [
       {
-        name: 'React',
+        name: 'React.js',
         color: 'blue-text-gradient',
       },
       {
@@ -231,7 +231,7 @@ const projects = [
         color: 'green-text-gradient',
       },
       {
-        name: 'SQL',
+        name: 'Routing Optimisation',
         color: 'pink-text-gradient',
       },
     ],
@@ -240,16 +240,16 @@ const projects = [
     source_code_link: 'https://github.com/',
   },
   {
-    name: 'Article Website',
+    name: 'Blog Website',
     description:
-      'An article website integrated with a Content Management System that allows admin users to customise contents and share to the public',
+      'Article/blog website integrated with a Content Management System that allows admin users to customise contents and share to the public',
     tags: [
       {
-        name: 'Nextjs',
+        name: 'Next.js',
         color: 'blue-text-gradient',
       },
       {
-        name: 'CMS',
+        name: 'Strapi',
         color: 'green-text-gradient',
       },
       {
