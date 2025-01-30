@@ -21,14 +21,13 @@ import redis from './tech/redis.png';
 import ios from './tech/ios.png';
 import android from './tech/android.png';
 
-import meta from './company/meta.png';
-import shopify from './company/shopify.png';
-import starbucks from './company/starbucks.png';
-import tesla from './company/tesla.png';
+import coinjar from './company/coinjar.png';
+import itrazo from './company/itrazo.png';
+import unimelb from './company/unimelb.png';
 
-import carrent from './carrent.png';
-import jobit from './jobit.png';
-import tripguide from './tripguide.png';
+import fc from './projects/fc/fc_login.png';
+import itrazo_adi from './projects/itrazo/itrazo_adi.png';
+import cj_learn from './projects/coinjar/cj_learn.png';
 
 import photo from './photo.png';
 
@@ -54,12 +53,11 @@ export {
   android,
   firebase,
   graphql,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  carrent,
-  jobit,
-  tripguide,
+  coinjar,
+  itrazo,
+  unimelb,
   photo,
+  fc,
+  itrazo_adi,
+  cj_learn,
 };

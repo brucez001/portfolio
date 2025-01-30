@@ -10,19 +10,18 @@ import {
   mongodb,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
+  coinjar,
+  itrazo,
+  unimelb,
   aws,
   firebase,
   graphql,
   redis,
   ios,
   android,
+  itrazo_adi,
+  fc,
+  cj_learn,
 } from '/public/assets';
 
 export const navLinks = [
@@ -197,7 +196,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: 'Car Rent',
+    name: 'iTrazo ADI',
     description:
       'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
     tags: [
@@ -214,11 +213,12 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: carrent,
+    image: itrazo_adi,
+    imgAlignment: 'object-left',
     source_code_link: 'https://github.com/',
   },
   {
-    name: 'Job IT',
+    name: 'Freight Cyber',
     description:
       'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
     tags: [
@@ -235,11 +235,12 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: jobit,
+    image: fc,
+    imgAlignment: 'object-center',
     source_code_link: 'https://github.com/',
   },
   {
-    name: 'Trip Guide',
+    name: 'Article Website',
     description:
       'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
     tags: [
@@ -256,7 +257,8 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: tripguide,
+    image: cj_learn,
+    imgAlignment: 'object-top',
     source_code_link: 'https://github.com/',
   },
 ];
