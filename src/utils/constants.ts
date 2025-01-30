@@ -198,18 +198,18 @@ const projects = [
   {
     name: 'iTrazo ADI',
     description:
-      'Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.',
+      'Supply chain management platform that enables users to efficiently track shipments, manage inventory, and generate reports to streamline their business operations',
     tags: [
       {
-        name: 'react',
+        name: 'React',
         color: 'blue-text-gradient',
       },
       {
-        name: 'mongodb',
+        name: 'AWS',
         color: 'green-text-gradient',
       },
       {
-        name: 'tailwind',
+        name: 'DynamoDB',
         color: 'pink-text-gradient',
       },
     ],
@@ -220,18 +220,18 @@ const projects = [
   {
     name: 'Freight Cyber',
     description:
-      'Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.',
+      'Freight and logistics management solution that allows clients to efficiently manage their assets, business operations, and stakeholder engagements',
     tags: [
       {
-        name: 'react',
+        name: 'React',
         color: 'blue-text-gradient',
       },
       {
-        name: 'restapi',
+        name: 'AWS',
         color: 'green-text-gradient',
       },
       {
-        name: 'scss',
+        name: 'SQL',
         color: 'pink-text-gradient',
       },
     ],
@@ -242,18 +242,18 @@ const projects = [
   {
     name: 'Article Website',
     description:
-      'A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.',
+      'An article website integrated with a Content Management System that allows admin users to customise contents and share to the public',
     tags: [
       {
-        name: 'nextjs',
+        name: 'Nextjs',
         color: 'blue-text-gradient',
       },
       {
-        name: 'supabase',
+        name: 'CMS',
         color: 'green-text-gradient',
       },
       {
-        name: 'css',
+        name: 'SEO',
         color: 'pink-text-gradient',
       },
     ],
