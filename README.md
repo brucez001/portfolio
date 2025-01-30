@@ -1,5 +1,3 @@
-# portfolio
+## Bruce's Portfolio
 
-Bruce's portfolio website
-
-Node Version: v16.19.0
+Welcome to my portfolio and nice to meet you! 👋
