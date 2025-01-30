@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { SectionWrapper } from '@/app/hoc';
 import { BallCanvas } from '../../canvas';
@@ -15,4 +17,4 @@ const Tech = () => {
   );
 };
 
-export default Tech;
+export default SectionWrapper(Tech, '');

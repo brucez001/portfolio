@@ -7,7 +7,7 @@ export {
   About,
   Tech,
   Experience,
-  Works,
+  Projects,
   Feedbacks,
   Contact,
   EarthCanvas,

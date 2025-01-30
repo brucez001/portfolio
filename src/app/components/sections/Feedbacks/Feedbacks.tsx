@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-
+import { SectionWrapper } from '@/app/hoc';
 import { styles } from '@/utils/styles';
 import { fadeIn, textVariant } from '@/utils/motion';
 import { testimonials } from '@/utils/constants';
@@ -68,4 +68,4 @@ const FeedbackCard = ({ index, feedback }: { index: number; feedback: Feedback }
   );
 };
 
-export default Feedbacks;
+export default SectionWrapper(Feedbacks, '');

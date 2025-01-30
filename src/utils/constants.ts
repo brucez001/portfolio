@@ -30,8 +30,12 @@ export const navLinks = [
     title: 'About',
   },
   {
-    id: 'work',
-    title: 'Work',
+    id: 'experience',
+    title: 'Experience',
+  },
+  {
+    id: 'projects',
+    title: 'Projects',
   },
   {
     id: 'contact',
@@ -117,11 +121,11 @@ const technologies = [
 
 const experiences = [
   {
-    title: 'React.js Developer',
-    company_name: 'Starbucks',
-    icon: starbucks,
-    iconBg: '#383E56',
-    date: 'March 2020 - April 2021',
+    title: 'Software Developer',
+    company_name: 'CoinJar',
+    icon: coinjar,
+    iconBg: '#fff',
+    date: 'May 2024 - Present',
     points: [
       'Developed Web3 products across iOS, Android, and web platforms',
       'Optimised website performance and enhanced SEO for better search engine visibility',
@@ -129,11 +133,11 @@ const experiences = [
     ],
   },
   {
-    title: 'React Native Developer',
-    company_name: 'Tesla',
-    icon: tesla,
-    iconBg: '#E6DEDD',
-    date: 'Jan 2021 - Feb 2022',
+    title: 'Software Developer',
+    company_name: 'iTrazo Tracetech',
+    icon: itrazo,
+    iconBg: '#1F1F1F',
+    date: 'May 2022 - May 2024',
     points: [
       'Implemented supply chain technology solutions for the transportation and agriculture sectors',
       'Developed products such as CRM, inventory management, order tracking systems, and e-commerce platforms',
@@ -152,19 +156,6 @@ const experiences = [
       'Served as a committee member in multiple IT clubs and mentored first-year students',
     ],
   },
-  // {
-  //   title: 'Full stack Developer',
-  //   company_name: 'Meta',
-  //   icon: meta,
-  //   iconBg: '#E6DEDD',
-  //   date: 'Jan 2023 - Present',
-  //   points: [
-  //     'Developing and maintaining web applications using React.js and other related technologies.',
-  //     'Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.',
-  //     'Implementing responsive design and ensuring cross-browser compatibility.',
-  //     'Participating in code reviews and providing constructive feedback to other developers.',
-  //   ],
-  // },
 ];
 
 const testimonials = [

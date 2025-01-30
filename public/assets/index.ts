@@ -7,6 +7,9 @@ import github from './github.png';
 import menu from './menu.svg';
 import close from './close.svg';
 
+import github_color from './github_color.png';
+import linkedin_color from './linkedin_color.png';
+
 import docker from './tech/docker.png';
 import figma from './tech/figma.png';
 import mongodb from './tech/mongodb.png';
@@ -25,6 +28,7 @@ import coinjar from './company/coinjar.png';
 import itrazo from './company/itrazo.png';
 import unimelb from './company/unimelb.png';
 
+
 import fc from './projects/fc/fc_login.png';
 import itrazo_adi from './projects/itrazo/itrazo_adi.png';
 import cj_learn from './projects/coinjar/cj_learn.png';
@@ -33,6 +37,8 @@ import photo from './photo.png';
 
 export {
   logo,
+  github_color,
+  linkedin_color,
   backend,
   creator,
   mobile,
@@ -59,5 +65,5 @@ export {
   photo,
   fc,
   itrazo_adi,
-  cj_learn,
+  cj_learn
 };
