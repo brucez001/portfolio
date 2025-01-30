@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { styles } from '@/utils/styles';
 import { navLinks } from '@/utils/constants';
-import { logo, menu, close } from '../../../public/assets';
+import { logo, menu, close } from '/public/assets';
 import Image from 'next/image';
 
 const Navbar = () => {

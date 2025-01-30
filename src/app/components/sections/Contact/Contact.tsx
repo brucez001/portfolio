@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
 import { styles } from '@/utils/styles';
-import { EarthCanvas } from './canvas';
+import { EarthCanvas } from '@/app/components/canvas';
 import { slideIn } from '@/utils/motion';
 import Image from 'next/image';
 import { github_color, linkedin_color } from '/public/assets';
@@ -16,7 +16,6 @@ const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string;
 const TO_EMAIL = process.env.NEXT_PUBLIC_EMAIL_TO_EMAIL as string;
 
 const Contact = () => {
-  const formRef = useRef(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -93,7 +92,7 @@ const Contact = () => {
             <Image src={linkedin_color} alt='linkedin' />
           </a>
         </div>
-        <form ref={formRef} onSubmit={handleSubmit} className='mt-10 flex flex-col gap-8'>
+        <form onSubmit={handleSubmit} className='mt-10 flex flex-col gap-8'>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input

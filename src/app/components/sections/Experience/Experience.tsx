@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { VerticalTimeline } from 'react-vertical-timeline-component';
 import { motion } from 'framer-motion';
 
 import 'react-vertical-timeline-component/style.min.css';
@@ -10,16 +10,7 @@ import { styles } from '@/utils/styles';
 import { experiences } from '@/utils/constants';
 import { SectionWrapper } from '@/app/hoc';
 import { textVariant } from '@/utils/motion';
-import Image, { StaticImageData } from 'next/image';
-
-type Experience = {
-  date: string;
-  title: string;
-  company_name: string;
-  icon: StaticImageData;
-  iconBg: string;
-  points: string[];
-};
+import ExperienceCard from './ExperienceCard';
 
 const ExperienceCard = ({
   experience,
@@ -115,7 +106,7 @@ const Experience = () => {
             <ExperienceCard
               key={`experience-${index}`}
               experience={experience}
-              visibleList={visibleList[index]}
+              visible={visibleList[index]}
             />
           ))}
         </VerticalTimeline>
@@ -124,4 +115,4 @@ const Experience = () => {
   );
 };
 
-export default SectionWrapper(Experience, 'work');
+export default SectionWrapper(Experience, 'experience');
