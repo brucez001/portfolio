@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: photo.src,
-        width: 1200,
-        height: 630,
+        width: photo.width,
+        height: photo.height,
         alt: 'Bruce Zhu Portfolio',
       },
     ],
