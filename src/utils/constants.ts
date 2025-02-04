@@ -49,7 +49,7 @@ const services = [
     icon: web,
   },
   {
-    title: 'Content Management System',
+    title: 'E-commerce',
     icon: mobile,
   },
   {
