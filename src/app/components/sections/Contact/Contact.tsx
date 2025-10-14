@@ -23,6 +23,7 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { target } = e;
@@ -32,10 +33,19 @@ const Contact = () => {
       ...form,
       [name]: value,
     });
+    if (error) {
+      setError(null);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setError('Please fill out all fields before submitting.');
+      return;
+    }
+
+    setError(null);
     setLoading(true);
 
     emailjs
@@ -121,6 +131,9 @@ const Contact = () => {
               className='bg-tertiary py-4 px-6 placeholder:text-secondaryLight text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
+          {error && (
+            <p className='text-red-400 text-sm font-medium'>{error}</p>
+          )}
           <button
             type='submit'
             className='bg-tertiary py-3 px-10 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary active:bg-tertiaryLight'
