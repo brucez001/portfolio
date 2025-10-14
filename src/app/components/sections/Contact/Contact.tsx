@@ -44,6 +44,12 @@ const Contact = () => {
       setError('Please fill out all fields before submitting.');
       return;
     }
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
 
     setError(null);
     setLoading(true);
