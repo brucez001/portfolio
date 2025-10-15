@@ -65,6 +65,11 @@ export async function submitContact(
   const userAgent = headersList.get('user-agent') ?? 'unknown';
   const ip = headersList.get('x-forwarded-for') ?? headersList.get('x-real-ip') ?? 'unknown';
   const referer = headersList.get('referer') ?? 'unknown';
+  const metadata = {
+    ip,
+    userAgent,
+    referer,
+  };
 
   if (!serviceId || !templateId || !publicKey) {
     console.error('Contact form misconfiguration detected', {
@@ -97,6 +102,9 @@ export async function submitContact(
           to_name: 'Bruce',
           from_email: email,
           message,
+          metadata_ip: metadata.ip,
+          metadata_user_agent: metadata.userAgent,
+          metadata_referer: metadata.referer,
         },
       }),
     });
@@ -119,11 +127,7 @@ export async function submitContact(
       submittedAt: new Date().toISOString(),
       name,
       email,
-      metadata: {
-        ip,
-        userAgent,
-        referer,
-      },
+      metadata,
     });
 
     return {
