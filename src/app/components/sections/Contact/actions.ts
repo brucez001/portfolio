@@ -84,7 +84,7 @@ export async function submitContact(
       body: JSON.stringify({
         service_id: serviceId,
         template_id: templateId,
-        public_key: publicKey,
+        user_id: publicKey,
         accessToken: privateKey,
         template_params: {
           from_name: name,
