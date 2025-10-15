@@ -4,13 +4,10 @@ import { headers } from 'next/headers';
 
 const EMAILJS_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
-const serviceId =
-  process.env.EMAIL_SERVICE_ID ?? process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
-const templateId =
-  process.env.EMAIL_TEMPLATE_ID ?? process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
-const publicKey =
-  process.env.EMAIL_PUBLIC_KEY ?? process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY;
-const privateKey = process.env.EMAIL_PRIVATE_KEY ?? process.env.EMAILJS_TOKEN;
+const serviceId = process.env.EMAIL_SERVICE_ID;
+const templateId = process.env.EMAIL_TEMPLATE_ID;
+const publicKey = process.env.EMAIL_PUBLIC_KEY;
+const privateKey = process.env.EMAIL_PRIVATE_KEY;
 
 export type ContactFormState = {
   status: 'idle' | 'success' | 'error';
@@ -71,12 +68,13 @@ export async function submitContact(
     referer,
   };
 
-  if (!serviceId || !templateId || !publicKey) {
+  if (!serviceId || !templateId || !publicKey || !privateKey) {
     console.error('Contact form misconfiguration detected', {
       missing: {
         serviceId: Boolean(serviceId),
         templateId: Boolean(templateId),
         publicKey: Boolean(publicKey),
+        privateKey: Boolean(privateKey),
       },
     });
 
