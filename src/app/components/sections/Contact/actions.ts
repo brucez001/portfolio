@@ -10,8 +10,6 @@ const templateId =
   process.env.EMAIL_TEMPLATE_ID ?? process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
 const publicKey =
   process.env.EMAIL_PUBLIC_KEY ?? process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY;
-const recipientEmail =
-  process.env.EMAIL_TO_EMAIL ?? process.env.NEXT_PUBLIC_EMAIL_TO_EMAIL;
 const privateKey = process.env.EMAIL_PRIVATE_KEY ?? process.env.EMAILJS_TOKEN;
 
 export type ContactFormState = {
@@ -68,13 +66,12 @@ export async function submitContact(
   const ip = headersList.get('x-forwarded-for') ?? headersList.get('x-real-ip') ?? 'unknown';
   const referer = headersList.get('referer') ?? 'unknown';
 
-  if (!serviceId || !templateId || !publicKey || !recipientEmail) {
+  if (!serviceId || !templateId || !publicKey) {
     console.error('Contact form misconfiguration detected', {
       missing: {
         serviceId: Boolean(serviceId),
         templateId: Boolean(templateId),
         publicKey: Boolean(publicKey),
-        recipientEmail: Boolean(recipientEmail),
       },
     });
 
@@ -99,11 +96,7 @@ export async function submitContact(
           from_name: name,
           to_name: 'Bruce',
           from_email: email,
-          to_email: recipientEmail,
           message,
-          metadata_ip: ip,
-          metadata_user_agent: userAgent,
-          metadata_referer: referer,
         },
       }),
     });
