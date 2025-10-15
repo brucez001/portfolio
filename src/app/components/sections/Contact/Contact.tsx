@@ -9,7 +9,8 @@ import { EarthCanvas } from '@/app/components/canvas';
 import { slideIn } from '@/utils/motion';
 import Image from 'next/image';
 import { github_color, linkedin_color } from '/public/assets';
-import { initialState, submitContact } from './actions';
+import { submitContact } from './actions';
+import { initialState } from './state';
 import { SubmitButton } from './SubmitButton';
 
 const Contact = () => {
