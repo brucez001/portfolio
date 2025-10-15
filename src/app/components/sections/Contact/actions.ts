@@ -1,9 +1,8 @@
 'use server';
 
 import { headers } from 'next/headers';
+import emailjs from '@emailjs/nodejs';
 import type { ContactFormState } from './state';
-
-const EMAILJS_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
 const serviceId = process.env.EMAIL_SERVICE_ID;
 const templateId = process.env.EMAIL_TEMPLATE_ID;
@@ -76,41 +75,23 @@ export async function submitContact(
   }
 
   try {
-    const response = await fetch(EMAILJS_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    await emailjs.send(
+      serviceId,
+      templateId,
+      {
+        from_name: name,
+        to_name: 'Bruce',
+        from_email: email,
+        message,
+        metadata_ip: metadata.ip,
+        metadata_user_agent: metadata.userAgent,
+        metadata_referer: metadata.referer,
       },
-      body: JSON.stringify({
-        service_id: serviceId,
-        template_id: templateId,
-        user_id: publicKey,
-        accessToken: privateKey,
-        template_params: {
-          from_name: name,
-          to_name: 'Bruce',
-          from_email: email,
-          message,
-          metadata_ip: metadata.ip,
-          metadata_user_agent: metadata.userAgent,
-          metadata_referer: metadata.referer,
-        },
-      }),
-    });
-
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error('Contact form submission failed', {
-        status: response.status,
-        statusText: response.statusText,
-        body: errorBody,
-      });
-
-      return {
-        status: 'error',
-        message: 'Something went wrong while sending your message. Please try again later.',
-      };
-    }
+      {
+        publicKey,
+        privateKey,
+      }
+    );
 
     console.info('Contact form submission sent', {
       submittedAt: new Date().toISOString(),
