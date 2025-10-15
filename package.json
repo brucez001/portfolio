@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emailjs/nodejs": "^4.4.1",
-    "@emailjs/browser": "^4.4.1",
+    "@emailjs/nodejs": "^5.0.2",
     "@react-three/drei": "^9.121.3",
     "@react-three/fiber": "^8.17.12",
     "@vercel/analytics": "^1.4.1",
