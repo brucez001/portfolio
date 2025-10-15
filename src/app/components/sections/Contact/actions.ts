@@ -1,6 +1,7 @@
 'use server';
 
 import { headers } from 'next/headers';
+import type { ContactFormState } from './state';
 
 const EMAILJS_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
@@ -8,16 +9,6 @@ const serviceId = process.env.EMAIL_SERVICE_ID;
 const templateId = process.env.EMAIL_TEMPLATE_ID;
 const publicKey = process.env.EMAIL_PUBLIC_KEY;
 const privateKey = process.env.EMAIL_PRIVATE_KEY;
-
-export type ContactFormState = {
-  status: 'idle' | 'success' | 'error';
-  message: string;
-};
-
-export const initialState: ContactFormState = {
-  status: 'idle',
-  message: '',
-};
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
