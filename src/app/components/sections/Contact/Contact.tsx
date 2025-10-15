@@ -1,91 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import { useFormState } from 'react-dom';
 import { SectionWrapper } from '@/app/hoc';
 import { styles } from '@/utils/styles';
 import { EarthCanvas } from '@/app/components/canvas';
 import { slideIn } from '@/utils/motion';
 import Image from 'next/image';
 import { github_color, linkedin_color } from '/public/assets';
-
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID as string;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID as string;
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY as string;
-const TO_EMAIL = process.env.NEXT_PUBLIC_EMAIL_TO_EMAIL as string;
+import { initialState, submitContact } from './actions';
+import { SubmitButton } from './SubmitButton';
 
 const Contact = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const [state, formAction] = useFormState(submitContact, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-    if (error) {
-      setError(null);
+  useEffect(() => {
+    if (state.status === 'success') {
+      formRef.current?.reset();
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setError('Please fill out all fields before submitting.');
-      return;
-    }
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(form.email)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-
-    setError(null);
-    setLoading(true);
-
-    emailjs
-      .send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: 'Bruce',
-          from_email: form.email,
-          to_email: TO_EMAIL,
-          message: form.message,
-        },
-        PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert('Thank you. I will get back to you as soon as possible!');
-
-          setForm({
-            name: '',
-            email: '',
-            message: '',
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert('Ahh, something went wrong. Please try again.');
-        }
-      );
-  };
+  }, [state.status]);
 
   return (
     <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
@@ -103,14 +38,20 @@ const Contact = () => {
             <Image src={linkedin_color} alt='linkedin' />
           </a>
         </div>
-        <form onSubmit={handleSubmit} className='mt-10 flex flex-col gap-8'>
+        <form ref={formRef} action={formAction} className='mt-10 flex flex-col gap-8'>
+          <input
+            type='text'
+            name='nickname'
+            tabIndex={-1}
+            autoComplete='off'
+            className='hidden'
+            aria-hidden='true'
+          />
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input
               type='text'
               name='name'
-              value={form.name}
-              onChange={handleChange}
               placeholder="What's your name?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondaryLight text-white rounded-lg outline-none border-none font-medium'
             />
@@ -120,8 +61,6 @@ const Contact = () => {
             <input
               type='email'
               name='email'
-              value={form.email}
-              onChange={handleChange}
               placeholder="What's your email address?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondaryLight text-white rounded-lg outline-none border-none font-medium'
             />
@@ -131,21 +70,17 @@ const Contact = () => {
             <textarea
               rows={7}
               name='message'
-              value={form.message}
-              onChange={handleChange}
               placeholder="Let's connect!"
               className='bg-tertiary py-4 px-6 placeholder:text-secondaryLight text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
-          {error && (
-            <p className='text-red-400 text-sm font-medium'>{error}</p>
+          {state.status === 'error' && (
+            <p className='text-red-400 text-sm font-medium'>{state.message}</p>
           )}
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-10 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary active:bg-tertiaryLight'
-          >
-            {loading ? 'Sending...' : 'Send'}
-          </button>
+          {state.status === 'success' && (
+            <p className='text-emerald-400 text-sm font-medium'>{state.message}</p>
+          )}
+          <SubmitButton />
         </form>
       </motion.div>
 
