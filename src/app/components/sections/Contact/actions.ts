@@ -11,6 +11,27 @@ const privateKey = process.env.EMAIL_PRIVATE_KEY;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+let emailClientInitialized = false;
+
+const ensureEmailClient = () => {
+  if (emailClientInitialized) {
+    return;
+  }
+
+  if (!publicKey || !privateKey) {
+    throw new Error(
+      'Missing EMAIL_PUBLIC_KEY or EMAIL_PRIVATE_KEY environment variable. Email client cannot be initialized.'
+    );
+  }
+
+  emailjs.init({
+    publicKey: publicKey,
+    privateKey: privateKey,
+  });
+
+  emailClientInitialized = true;
+};
+
 export async function submitContact(
   _prevState: ContactFormState,
   formData: FormData
@@ -74,24 +95,30 @@ export async function submitContact(
     };
   }
 
+  ensureEmailClient();
+
   try {
-    await emailjs.send(
-      serviceId,
-      templateId,
-      {
-        from_name: name,
-        to_name: 'Bruce',
-        from_email: email,
-        message,
-        metadata_ip: metadata.ip,
-        metadata_user_agent: metadata.userAgent,
-        metadata_referer: metadata.referer,
-      },
-      {
-        publicKey,
-        privateKey,
-      }
-    );
+    const response = await emailjs.send(serviceId, templateId, {
+      from_name: name,
+      to_name: 'Bruce',
+      from_email: email,
+      message,
+      metadata_ip: metadata.ip,
+      metadata_user_agent: metadata.userAgent,
+      metadata_referer: metadata.referer,
+    });
+
+    if (response.status < 200 || response.status >= 300) {
+      console.error('Contact form submission rejected by EmailJS', {
+        status: response.status,
+        text: response.text,
+      });
+
+      return {
+        status: 'error',
+        message: 'Contact form is temporarily unavailable. Please try again later.',
+      };
+    }
 
     console.info('Contact form submission sent', {
       submittedAt: new Date().toISOString(),
@@ -105,6 +132,21 @@ export async function submitContact(
       message: 'Thank you. I will get back to you as soon as possible!',
     };
   } catch (error) {
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'status' in error &&
+      'text' in error
+    ) {
+      const { status, text } = error as { status: number; text: string };
+      console.error('Contact form submission rejected by EmailJS', { status, text });
+
+      return {
+        status: 'error',
+        message: 'Contact form is temporarily unavailable. Please try again later.',
+      };
+    }
+
     console.error('Contact form submission encountered an unexpected error', error);
 
     return {
