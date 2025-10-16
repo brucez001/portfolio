@@ -83,7 +83,6 @@ const ensureEmailClient = () => {
   emailjs.init({
     publicKey: publicKey,
     privateKey: privateKey,
-    blockHeadless: true,
   });
 
   emailClientInitialized = true;
