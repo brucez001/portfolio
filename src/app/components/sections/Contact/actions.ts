@@ -18,9 +18,15 @@ const ensureEmailClient = () => {
     return;
   }
 
+  if (!publicKey || !privateKey) {
+    throw new Error(
+      'Missing EMAIL_PUBLIC_KEY or EMAIL_PRIVATE_KEY environment variable. Email client cannot be initialized.'
+    );
+  }
+
   emailjs.init({
-    publicKey: publicKey!,
-    privateKey: privateKey!,
+    publicKey: publicKey,
+    privateKey: privateKey,
   });
 
   emailClientInitialized = true;
