@@ -11,6 +11,62 @@ const privateKey = process.env.EMAIL_PRIVATE_KEY;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const detectOperatingSystem = (userAgent: string): string => {
+  const normalizedAgent = userAgent.toLowerCase();
+
+  if (normalizedAgent.includes('windows nt 10')) {
+    return 'Windows 10';
+  }
+
+  if (normalizedAgent.includes('windows nt 11')) {
+    return 'Windows 11';
+  }
+
+  if (normalizedAgent.includes('mac os x')) {
+    return 'macOS';
+  }
+
+  if (normalizedAgent.includes('android')) {
+    return 'Android';
+  }
+
+  if (normalizedAgent.includes('iphone') || normalizedAgent.includes('ipad')) {
+    return 'iOS';
+  }
+
+  if (normalizedAgent.includes('linux')) {
+    return 'Linux';
+  }
+
+  return 'unknown';
+};
+
+const detectBrowser = (userAgent: string): { browser: string; version: string } => {
+  const normalizedAgent = userAgent.toLowerCase();
+
+  if (normalizedAgent.includes('edg/')) {
+    const versionMatch = /edg\/(\d+(?:\.\d+)*)/i.exec(userAgent);
+    return { browser: 'Edge', version: versionMatch?.[1] ?? 'unknown' };
+  }
+
+  if (normalizedAgent.includes('chrome/')) {
+    const versionMatch = /chrome\/(\d+(?:\.\d+)*)/i.exec(userAgent);
+    return { browser: 'Chrome', version: versionMatch?.[1] ?? 'unknown' };
+  }
+
+  if (normalizedAgent.includes('safari/') && normalizedAgent.includes('version/')) {
+    const versionMatch = /version\/(\d+(?:\.\d+)*)/i.exec(userAgent);
+    return { browser: 'Safari', version: versionMatch?.[1] ?? 'unknown' };
+  }
+
+  if (normalizedAgent.includes('firefox/')) {
+    const versionMatch = /firefox\/(\d+(?:\.\d+)*)/i.exec(userAgent);
+    return { browser: 'Firefox', version: versionMatch?.[1] ?? 'unknown' };
+  }
+
+  return { browser: 'unknown', version: 'unknown' };
+};
+
 let emailClientInitialized = false;
 
 const ensureEmailClient = () => {
@@ -27,6 +83,7 @@ const ensureEmailClient = () => {
   emailjs.init({
     publicKey: publicKey,
     privateKey: privateKey,
+    blockHeadless: true,
   });
 
   emailClientInitialized = true;
@@ -73,10 +130,24 @@ export async function submitContact(
   const userAgent = headersList.get('user-agent') ?? 'unknown';
   const ip = headersList.get('x-forwarded-for') ?? headersList.get('x-real-ip') ?? 'unknown';
   const referer = headersList.get('referer') ?? 'unknown';
+  const platformHeader = headersList.get('sec-ch-ua-platform') ?? undefined;
+  const userPlatform = platformHeader ? platformHeader.replace(/"/g, '') : 'unknown';
+  const userCountry =
+    headersList.get('x-vercel-ip-country') ??
+    headersList.get('x-country') ??
+    headersList.get('cloudfront-viewer-country') ??
+    'unknown';
+  const userOs = detectOperatingSystem(userAgent);
+  const { browser: userBrowser, version: userVersion } = detectBrowser(userAgent);
   const metadata = {
     ip,
     userAgent,
     referer,
+    user_os: userOs,
+    user_platform: userPlatform,
+    user_browser: userBrowser,
+    user_version: userVersion,
+    user_country: userCountry,
   };
 
   if (!serviceId || !templateId || !publicKey || !privateKey) {
@@ -106,6 +177,11 @@ export async function submitContact(
       metadata_ip: metadata.ip,
       metadata_user_agent: metadata.userAgent,
       metadata_referer: metadata.referer,
+      metadata_user_os: metadata.user_os,
+      metadata_user_platform: metadata.user_platform,
+      metadata_user_browser: metadata.user_browser,
+      metadata_user_version: metadata.user_version,
+      metadata_user_country: metadata.user_country,
     });
 
     if (response.status < 200 || response.status >= 300) {
