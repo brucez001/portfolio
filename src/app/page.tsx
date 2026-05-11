@@ -3,7 +3,6 @@ import Image from 'next/image';
 import type { SVGProps } from 'react';
 import profilePhoto from '../../public/assets/photo.png';
 import { ContactForm } from '@/app/components/ContactForm';
-import { ExperienceCarousel } from '@/app/components/ExperienceCarousel';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
 import { Reveal } from '@/app/components/Reveal';
@@ -39,19 +38,26 @@ export default function Portfolio() {
         <section className="hero" id="home">
           <HeroCanvas />
           <div className="hero-content">
-            <p className="hero-label">Software Developer - Melbourne</p>
-            <h1>
-              I build things
-              <br />
-              for the <em>web</em>
+            <p className="hero-label">Turning ideas into functional things</p>
+            <h1 className="animated-headline" aria-label="I build complex products that feel simple">
+              <span className="headline-line">
+                <span className="headline-word delay-1">I</span>{' '}
+                <span className="headline-word delay-2">build</span>{' '}
+                <span className="headline-word delay-3">complex</span>
+              </span>
+              <span className="headline-line">
+                <span className="headline-word delay-4">products</span>{' '}
+                <span className="headline-word delay-5">that feel</span>{' '}
+                <em className="headline-word headline-accent delay-6">simple</em>
+              </span>
             </h1>
             <p className="hero-summary">
-              Developer at CoinJar. I like making products that are fast, reliable, and actually pleasant to use -
-              from crypto platforms to supply-chain systems.
+              I love creating software that is fast, reliable, and actually pleasant to use - from product UI to
+              the systems behind them.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#projects">
-                View my work
+              <a className="button button-primary" href="#about">
+                Get to know me
                 <ArrowRight aria-hidden="true" />
               </a>
               <div className="social-buttons" aria-label="Social links">
@@ -86,13 +92,16 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="about-copy">
               <p>
-                I&apos;m a software developer based in Melbourne with experience across full-stack development, from
-                building Web3 products to optimising supply-chain systems. I care about clean code, reliable delivery,
-                and product experiences that work well for real people.
+                I&apos;m a software developer based in Melbourne who loves building web and mobile apps. I&apos;m at my best
+                turning rough ideas into polished product experiences, shaping the details until it feels ready to use.
               </p>
               <p>
-                Outside my day-to-day at CoinJar, I&apos;m curious about crypto markets, side projects, and tools that
-                make development feel sharper and more enjoyable.
+                I also care deeply about design and user experience. I&apos;m good at shaping product UI, thinking
+                through the user journey, and polishing the small details that make something feel intuitive instead of
+                just functional.
+              </p>
+              <p>
+                I love seeing what I build create value for someone and make them go &ldquo;wow, that&apos;s nice.&rdquo;
               </p>
               <dl className="highlight-grid">
                 {highlights.map((highlight) => (
@@ -111,23 +120,39 @@ export default function Portfolio() {
             <p className="section-label">02 - What I do</p>
             <h2 className="section-title">Experience</h2>
           </Reveal>
-          <Reveal className="experience-layout">
-            <ExperienceCarousel items={experiences} />
-            <div className="experience-side">
-              <div className="skills-list" aria-label="Technical skills">
-                {skills.map((skill) => (
-                  <span key={skill}>{skill}</span>
-                ))}
-              </div>
-              <div className="services-list">
-                {services.map((service) => (
-                  <article className="service-item" key={service.title}>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                  </article>
-                ))}
-              </div>
+
+          <Reveal>
+            <div className="skills-list" aria-label="Technical skills">
+              {skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
             </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="services-grid">
+              {services.map((service) => (
+                <article className="service-item" key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <ol className="experience-timeline" aria-label="Career timeline">
+              {experiences.map((item) => (
+                <li className="timeline-item" key={`${item.company}-${item.role}`}>
+                  <p className="timeline-year">{item.date}</p>
+                  <div className="timeline-content">
+                    <h3 className="timeline-role">{item.role}</h3>
+                    <p className="timeline-company">{item.company}</p>
+                    <p className="timeline-desc">{item.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </Reveal>
         </section>
 
@@ -162,24 +187,25 @@ export default function Portfolio() {
             <h2 className="section-title">Let&apos;s talk</h2>
           </Reveal>
           <Reveal className="contact-layout">
-            <div>
-              <p className="contact-intro">
-                Have a project in mind, or just want to chat? I&apos;m open to interesting conversations and
-                opportunities. Use the form or reach out through socials.
-              </p>
-              <div className="contact-socials">
-                {socialLinks.map((link) => {
-                  const Icon = socialIcons[link.label];
-                  return (
-                    <a href={link.href} key={link.href} rel="noopener noreferrer" target="_blank">
-                      <Icon aria-hidden="true" />
-                      {link.label}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-            <ContactForm />
+            <p className="contact-intro">
+              Have a project in mind, or just want to chat? I&apos;m open to interesting conversations and
+              opportunities.
+            </p>
+            <ContactForm
+              footerStart={
+                <div className="contact-form-socials" aria-label="Social links">
+                  {socialLinks.map((link) => {
+                    const Icon = socialIcons[link.label];
+                    return (
+                      <a href={link.href} key={link.href} rel="noopener noreferrer" target="_blank">
+                        <Icon aria-hidden="true" />
+                        {link.label}
+                      </a>
+                    );
+                  })}
+                </div>
+              }
+            />
           </Reveal>
         </section>
       </main>
