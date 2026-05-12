@@ -99,7 +99,7 @@ export default function Portfolio() {
                 turning rough ideas into polished product experiences, shaping the details until it feels ready to use.
               </p>
               <p>
-                I also care deeply about design and user experience. I&apos;m good at shaping product UI, thinking
+                I also care deeply about design and user experience. I&apos;m passionate about designing product UI, thinking
                 through the user journey, and polishing the small details that make something feel intuitive instead of
                 just functional.
               </p>
@@ -226,7 +226,7 @@ export default function Portfolio() {
         <section className="section contact-section" id="contact">
           <Reveal>
             <p className="section-label">04 - Get in touch</p>
-            <h2 className="section-title">Let&apos;s talk</h2>
+            <h2 className="section-title">Let&apos;s connect</h2>
           </Reveal>
           <Reveal className="contact-layout">
             <p className="contact-intro">
@@ -254,7 +254,7 @@ export default function Portfolio() {
 
       <footer className="site-footer">
         <span>&copy; 2026 Bruce Zhu</span>
-        <span>Built with care</span>
+        <span>Built with love</span>
       </footer>
     </>
   );

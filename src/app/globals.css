@@ -32,9 +32,9 @@
   --moon-filter: saturate(0.62) contrast(1.1) brightness(0.68) sepia(0.05) hue-rotate(178deg);
   --moon-opacity: 0.44;
   --moon-shadow: 0 0 70px rgba(107, 158, 255, 0.08), 0 0 180px rgba(0, 0, 0, 0.45);
-  --card-glass: rgba(20, 24, 32, 0.5);
-  --card-glass-border: rgba(185, 205, 255, 0.12);
-  --card-glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  --card-glass: rgba(20, 24, 32, 0.12);
+  --card-glass-border: rgba(185, 205, 255, 0.14);
+  --card-glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
 }
 
 [data-theme="light"] {
@@ -64,9 +64,9 @@
   --moon-filter: saturate(0.18) contrast(0.78) brightness(1.08) sepia(0.18);
   --moon-opacity: 0.18;
   --moon-shadow: 0 0 90px rgba(45, 91, 215, 0.05);
-  --card-glass: rgba(255, 255, 255, 0.58);
-  --card-glass-border: rgba(30, 40, 80, 0.12);
-  --card-glass-shadow: 0 12px 40px rgba(20, 20, 60, 0.08);
+  --card-glass: rgba(255, 255, 255, 0.25);
+  --card-glass-border: rgba(30, 40, 80, 0.14);
+  --card-glass-shadow: 0 12px 40px rgba(20, 20, 60, 0.1);
 }
 
 * {
@@ -82,6 +82,7 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--sans);
+  isolation: isolate;
   line-height: 1.7;
   margin: 0;
   min-width: 320px;
@@ -304,8 +305,7 @@ img {
 }
 
 .page-companion {
-  --companion-scale: 1.75;
-  bottom: calc(clamp(-13rem, -18vw, -7rem) + clamp(20rem, 42vw, 35rem) * 0.9);
+  bottom: calc(clamp(-13rem, -18vw, -7rem) + clamp(20rem, 42vw, 35rem) * 0.87);
   height: 56px;
   left: calc(clamp(-9rem, -11vw, -4rem) + clamp(20rem, 42vw, 35rem) * 0.6 - 1.75rem);
   opacity: 0.96;
@@ -315,24 +315,18 @@ img {
   z-index: 2;
 }
 
-.companion-sprite {
-  animation: companion-sprite-idle 0.9s steps(2) infinite;
-  background-image: url("/assets/companions/space-soldier-idle.png");
+.companion-figure {
+  animation: companion-space-soldier-stand 0.9s steps(2) infinite;
+  background-image: url("/assets/companions/space-soldier-idle-themed.png");
   background-position: 0 0;
   background-repeat: no-repeat;
+  background-size: 64px 32px;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.34));
   height: 32px;
   image-rendering: pixelated;
-  transform: scale(var(--companion-scale));
+  transform: scale(1.75);
   transform-origin: 50% 100%;
   width: 32px;
-}
-
-.page-companion.is-developer .companion-sprite {
-  filter: hue-rotate(165deg) saturate(0.45) brightness(0.9);
-}
-
-.page-companion.is-shadow .companion-sprite {
-  filter: hue-rotate(190deg) saturate(1.6) brightness(0.7) drop-shadow(0 0 8px rgba(107, 158, 255, 0.36));
 }
 
 .hero {
@@ -356,7 +350,7 @@ img {
 
 .hero-moon {
   aspect-ratio: 1;
-  background-image: url("/assets/moon-realistic.png");
+  background-image: url("/assets/moon-realistic-transparent.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -369,8 +363,6 @@ img {
   position: absolute;
   width: clamp(20rem, 42vw, 35rem);
   z-index: 0;
-  -webkit-mask-image: radial-gradient(circle at center, #000 58%, rgba(0, 0, 0, 0.82) 72%, transparent 100%);
-  mask-image: radial-gradient(circle at center, #000 58%, rgba(0, 0, 0, 0.82) 72%, transparent 100%);
 }
 
 .hero-moon::after {
@@ -845,16 +837,29 @@ a.project-media-frame:focus-visible {
 }
 
 .project-row {
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  backdrop-filter: blur(18px) saturate(1.4);
-  background: var(--card-glass);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  backdrop-filter: blur(32px) saturate(1.6);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 40%),
+    var(--card-glass);
   border: 1px solid var(--card-glass-border);
   border-radius: 20px;
-  box-shadow: var(--card-glass-shadow);
+  box-shadow:
+    var(--card-glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+[data-theme="light"] .project-row {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 40%),
+    var(--card-glass);
+  box-shadow:
+    var(--card-glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .project-row:hover {
@@ -1048,10 +1053,9 @@ a.project-media-frame:focus-visible {
 
 .contact-form label span {
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .contact-form input,
@@ -1132,9 +1136,9 @@ a.project-media-frame:focus-visible {
   }
 }
 
-@keyframes companion-sprite-idle {
+@keyframes companion-space-soldier-stand {
   to {
-    background-position-x: -64px;
+    background-position: -64px 0;
   }
 }
 
@@ -1189,8 +1193,8 @@ a.project-media-frame:focus-visible {
     transform: scaleX(1);
   }
 
-  .page-companion {
-    display: none;
+  .companion-figure {
+    animation: none;
   }
 }
 
@@ -1233,16 +1237,13 @@ a.project-media-frame:focus-visible {
 
   .hero-moon {
     bottom: -9.5rem;
-    left: -7rem;
+    left: 50%;
+    transform: translateX(-50%);
     width: min(86vw, 22rem);
   }
 
   .page-companion {
-    --companion-scale: 1.5;
-    bottom: calc(-9.5rem + min(86vw, 22rem) * 0.9);
-    height: 48px;
-    left: calc(-7rem + min(86vw, 22rem) * 0.6 - 1.5rem);
-    width: 48px;
+    display: none;
   }
 
   .headline-line {
