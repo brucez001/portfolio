@@ -6,6 +6,7 @@ import '@fontsource/dm-serif-display/400-italic.css';
 import '@fontsource/instrument-sans/400.css';
 import '@fontsource/instrument-sans/500.css';
 import '@fontsource/instrument-sans/600.css';
+import { BackdropConstellation } from '@/app/components/BackdropConstellation';
 import './globals.css';
 
 const siteDescription =
@@ -89,6 +90,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <BackdropConstellation />
         {children}
         {shouldLoadVercelTelemetry ? (
           <>
