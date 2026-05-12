@@ -136,6 +136,6 @@ export const projects: Project[] = [
     imageAlt: 'CoinJar On/Offchain newsletter and article listing page',
     imageSrc: '/assets/projects/coinjar/cj_onoffchain.png',
     name: 'Blog Website',
-    tags: ['Next.js', 'Strapi', 'SEO'],
+    tags: ['Next.js', 'Strapi', 'CMS', 'SEO'],
   },
 ];
