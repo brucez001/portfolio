@@ -5,6 +5,7 @@ import profilePhoto from '../../public/assets/photo.png';
 import { ContactForm } from '@/app/components/ContactForm';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
+import { PageCompanion } from '@/app/components/PageCompanion';
 import { Reveal } from '@/app/components/Reveal';
 import { experiences, highlights, navLinks, projects, services, skills, socialLinks } from '@/app/data';
 
@@ -37,6 +38,8 @@ export default function Portfolio() {
       <main>
         <section className="hero" id="home">
           <HeroCanvas />
+          <div aria-hidden="true" className="hero-moon" />
+          <PageCompanion />
           <div className="hero-content">
             <p className="hero-label">Turning ideas into functional things</p>
             <h1 className="animated-headline" aria-label="I build complex products that feel simple">
@@ -165,10 +168,49 @@ export default function Portfolio() {
             {projects.map((project) => (
               <Reveal className="project-row" key={project.name}>
                 <div className="project-media">
-                  <Image alt={project.imageAlt} fill sizes="(max-width: 768px) 100vw, 550px" src={project.imageSrc} />
+                  {project.link ? (
+                    <a
+                      aria-label={`Open ${project.name} (opens in new tab)`}
+                      className="project-media-frame"
+                      href={project.link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <Image
+                        alt={project.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 550px"
+                        src={project.imageSrc}
+                        style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
+                      />
+                    </a>
+                  ) : (
+                    <div className="project-media-frame">
+                      <Image
+                        alt={project.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 550px"
+                        src={project.imageSrc}
+                        style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="project-info">
-                  <h3>{project.name}</h3>
+                  <h3>
+                    {project.link ? (
+                      <a
+                        className="project-title-link"
+                        href={project.link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {project.name}
+                      </a>
+                    ) : (
+                      project.name
+                    )}
+                  </h3>
                   <p>{project.description}</p>
                   <div className="project-tags" aria-label={`${project.name} technologies`}>
                     {project.tags.map((tag) => (

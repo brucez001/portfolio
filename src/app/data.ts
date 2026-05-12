@@ -15,7 +15,9 @@ export type Experience = {
 export type Project = {
   description: string;
   imageAlt: string;
+  imagePosition?: 'center' | 'top left';
   imageSrc: string;
+  link?: string;
   name: string;
   tags: string[];
 };
@@ -40,7 +42,7 @@ export const socialLinks = [
 
 export const highlights = [
   { label: 'Building', value: 'Web & mobile' },
-  { label: 'Shaping', value: 'UI & UX' },
+  { label: 'Designing', value: 'UI & UX' },
   { label: 'Exploring', value: 'AI models & tools' },
 ] as const;
 
@@ -103,25 +105,36 @@ export const experiences: Experience[] = [
 export const projects: Project[] = [
   {
     description:
+      'Online storefront for a home bakery with product browsing, ordering, and secure checkout — built for fast loads and strong SEO.',
+    imageAlt: 'Jinni Bakehouse online bakery storefront homepage',
+    imageSrc: '/assets/projects/jinni/jinni_home.png',
+    link: 'https://jinnibakehouse.com',
+    name: 'Jinni Bakehouse',
+    tags: ['Next.js', 'Tailwind', 'E-commerce', 'SEO'],
+  },
+  {
+    description:
+      'Internal operations console for managing products, orders, customers, and content — with drag-and-drop ordering, rich-text editing, and role-based access.',
+    imageAlt: 'E-commerce admin console showing the orders management view',
+    imagePosition: 'top left',
+    imageSrc: '/assets/projects/jinni/jinni_admin.png',
+    name: 'E-commerce Admin Console',
+    tags: ['Vite', 'PostgreSQL', 'TanStack', 'Admin'],
+  },
+  {
+    description:
       'Supply chain management platform with real-time asset tracking, inventory management, and integrated CRM for end-to-end traceability.',
-    imageAlt: 'iTrazo ADI dashboard showing asset tracking and operations data',
+    imageAlt: 'Supply chain platform dashboard showing asset tracking and operations data',
+    imagePosition: 'top left',
     imageSrc: '/assets/projects/itrazo/itrazo_adi.png',
-    name: 'iTrazo ADI',
+    name: 'Supply Chain Platform',
     tags: ['React', 'AWS', 'Real-time', 'Maps'],
   },
   {
     description:
-      'Logistics management solution for driver coordination, job routing, and streamlined business operations.',
-    imageAlt: 'Freight Cyber logistics login and routing interface',
-    imageSrc: '/assets/projects/fc/fc_login.png',
-    name: 'Freight Cyber',
-    tags: ['React', 'AWS', 'Routing'],
-  },
-  {
-    description:
       'CMS-integrated article platform for publishing and managing content with performance and SEO as core product requirements.',
-    imageAlt: 'CoinJar Learn content website screenshot',
-    imageSrc: '/assets/projects/coinjar/cj_learn.png',
+    imageAlt: 'CoinJar On/Offchain newsletter and article listing page',
+    imageSrc: '/assets/projects/coinjar/cj_onoffchain.png',
     name: 'Blog Website',
     tags: ['Next.js', 'Strapi', 'SEO'],
   },
