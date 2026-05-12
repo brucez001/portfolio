@@ -944,9 +944,12 @@ a.project-media-frame:focus-visible {
 }
 
 .contact-form {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  background: var(--card-glass);
+  border: 1px solid var(--card-glass-border);
+  border-radius: 20px;
+  box-shadow: var(--card-glass-shadow);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -955,7 +958,7 @@ a.project-media-frame:focus-visible {
 }
 
 .contact-form:focus-within {
-  border-color: var(--border-hover);
+  border-color: var(--accent-dim-hover);
 }
 
 .contact-form-footer {
