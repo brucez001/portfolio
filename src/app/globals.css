@@ -32,6 +32,9 @@
   --moon-filter: saturate(0.62) contrast(1.1) brightness(0.68) sepia(0.05) hue-rotate(178deg);
   --moon-opacity: 0.44;
   --moon-shadow: 0 0 70px rgba(107, 158, 255, 0.08), 0 0 180px rgba(0, 0, 0, 0.45);
+  --card-glass: rgba(20, 24, 32, 0.5);
+  --card-glass-border: rgba(185, 205, 255, 0.12);
+  --card-glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
 }
 
 [data-theme="light"] {
@@ -61,6 +64,9 @@
   --moon-filter: saturate(0.18) contrast(0.78) brightness(1.08) sepia(0.18);
   --moon-opacity: 0.18;
   --moon-shadow: 0 0 90px rgba(45, 91, 215, 0.05);
+  --card-glass: rgba(255, 255, 255, 0.58);
+  --card-glass-border: rgba(30, 40, 80, 0.12);
+  --card-glass-shadow: 0 12px 40px rgba(20, 20, 60, 0.08);
 }
 
 * {
@@ -839,10 +845,12 @@ a.project-media-frame:focus-visible {
 }
 
 .project-row {
-  background: var(--bg-card);
-  border: 1px solid var(--border-hover);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  background: var(--card-glass);
+  border: 1px solid var(--card-glass-border);
   border-radius: 20px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--card-glass-shadow);
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
@@ -850,8 +858,8 @@ a.project-media-frame:focus-visible {
 }
 
 .project-row:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--card-shadow);
+  border-color: var(--accent-dim-hover);
+  box-shadow: var(--card-shadow), var(--card-glass-shadow);
   transform: translateY(-2px);
 }
 
