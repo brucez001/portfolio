@@ -3,15 +3,7 @@
 import emailjs from '@emailjs/nodejs';
 import { headers } from 'next/headers';
 
-export type ContactFormState = {
-  message: string;
-  status: 'idle' | 'success' | 'error';
-};
-
-export const initialContactFormState: ContactFormState = {
-  message: '',
-  status: 'idle',
-};
+import type { ContactFormState } from './contact-form-state';
 
 const serviceId = process.env.EMAIL_SERVICE_ID;
 const templateId = process.env.EMAIL_TEMPLATE_ID;

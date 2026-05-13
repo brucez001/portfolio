@@ -3,7 +3,8 @@
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { type ReactNode, useActionState, useEffect, useRef } from 'react';
 
-import { initialContactFormState, submitContact } from './contact-actions';
+import { submitContact } from './contact-actions';
+import { initialContactFormState } from './contact-form-state';
 
 type ContactFormProps = {
   footerStart?: ReactNode;
