@@ -126,12 +126,13 @@ export function BackdropConstellation() {
     };
 
     const reset = () => {
+      window.cancelAnimationFrame(animationFrame);
       resize();
       createStars();
+      draw();
     };
 
     reset();
-    draw();
 
     window.addEventListener('resize', reset);
     reducedMotionQuery.addEventListener('change', reset);
