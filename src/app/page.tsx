@@ -95,8 +95,9 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="about-copy">
               <p>
-                I&apos;m a software developer based in Melbourne who loves building web and mobile apps. I&apos;m at my best
-                turning rough ideas into polished product experiences, shaping the details until it feels ready to use.
+                I&apos;m Bruce, a software developer based in Melbourne who loves building web and mobile apps. I&apos;m at my
+                best turning rough ideas into polished product experiences, shaping the details until it feels ready
+                to use.
               </p>
               <p>
                 I also care deeply about design and user experience. I&apos;m passionate about designing product UI, thinking
