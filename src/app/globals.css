@@ -333,7 +333,7 @@ img {
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: 88vh;
+  min-height: 95vh;
   overflow: hidden;
   position: relative;
 }

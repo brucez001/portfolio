@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import Image from 'next/image';
 import type { SVGProps } from 'react';
 import profilePhoto from '../../public/assets/photo.png';
@@ -61,7 +61,7 @@ export default function Portfolio() {
             <div className="hero-actions">
               <a className="button button-primary" href="#about">
                 Get to know me
-                <ArrowRight aria-hidden="true" />
+                <ArrowDown aria-hidden="true" />
               </a>
               <div className="social-buttons" aria-label="Social links">
                 {socialLinks.map((link) => {
