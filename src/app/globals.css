@@ -304,10 +304,11 @@ img {
 }
 
 .page-companion {
+  animation: page-companion-in 0.9s var(--ease) 2s forwards;
   bottom: calc(clamp(-13rem, -18vw, -7rem) + clamp(20rem, 42vw, 35rem) * 0.87);
   height: 56px;
   left: calc(clamp(-9rem, -11vw, -4rem) + clamp(20rem, 42vw, 35rem) * 0.6 - 1.75rem);
-  opacity: 0.96;
+  opacity: 0;
   pointer-events: none;
   position: absolute;
   width: 56px;
@@ -348,6 +349,7 @@ img {
 }
 
 .hero-moon {
+  animation: hero-moon-in 1s var(--ease) 1.7s forwards;
   aspect-ratio: 1;
   background-image: url("/assets/moon-realistic-transparent.png");
   background-position: center;
@@ -357,7 +359,7 @@ img {
   filter: var(--moon-filter);
   left: clamp(-9rem, -11vw, -4rem);
   mix-blend-mode: screen;
-  opacity: var(--moon-opacity);
+  opacity: 0;
   pointer-events: none;
   position: absolute;
   width: clamp(20rem, 42vw, 35rem);
@@ -1144,6 +1146,18 @@ a.project-media-frame:focus-visible {
   }
 }
 
+@keyframes hero-moon-in {
+  to {
+    opacity: var(--moon-opacity);
+  }
+}
+
+@keyframes page-companion-in {
+  to {
+    opacity: 0.96;
+  }
+}
+
 @keyframes companion-space-soldier-stand {
   to {
     background-position: -64px 0;
@@ -1203,6 +1217,16 @@ a.project-media-frame:focus-visible {
 
   .companion-figure {
     animation: none;
+  }
+
+  .hero-moon {
+    animation: none;
+    opacity: var(--moon-opacity);
+  }
+
+  .page-companion {
+    animation: none;
+    opacity: 0.96;
   }
 }
 
