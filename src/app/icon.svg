@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    text { fill: #2d5bd7; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #6b9eff; }
+    }
+  </style>
   <text x="6" y="48"
         font-family="Georgia, 'Times New Roman', serif"
-        font-size="44" font-weight="400" fill="#e2e6ed"
+        font-size="44" font-weight="400"
         letter-spacing="-1.5">BZ</text>
 </svg>
