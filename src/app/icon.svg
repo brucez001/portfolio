@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    .bg { fill: #2d5bd7; }
+    .letter { fill: #f8f7f4; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #6b9eff; }
+      .letter { fill: #0c0e12; }
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="64" height="64" rx="14" ry="14"/>
+  <text class="letter"
+        x="32" y="50"
+        text-anchor="middle"
+        font-family="'Bodoni 72', 'Bodoni Moda', Didot, Georgia, serif"
+        font-size="54" font-weight="700">B</text>
+</svg>
