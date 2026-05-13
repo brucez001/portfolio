@@ -433,7 +433,7 @@ img {
 }
 
 .headline-accent {
-  background: linear-gradient(110deg, var(--accent) 0%, var(--accent) 48%, var(--text-primary) 50%, var(--accent) 54%, var(--accent-secondary) 100%);
+  background: linear-gradient(110deg, var(--accent) 0%, var(--accent) 48%, #e2e6ed 50%, var(--accent) 54%, var(--accent-secondary) 100%);
   background-clip: text;
   background-size: 260% 100%;
   color: transparent;
