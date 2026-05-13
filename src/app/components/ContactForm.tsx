@@ -1,78 +1,45 @@
 'use client';
 
-import emailjs from '@emailjs/browser';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useActionState, useEffect, useRef } from 'react';
 
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY;
-const TO_EMAIL = process.env.NEXT_PUBLIC_EMAIL_TO_EMAIL;
-
-type Status = 'idle' | 'sending' | 'success' | 'error';
+import { initialContactFormState, submitContact } from './contact-actions';
 
 type ContactFormProps = {
   footerStart?: ReactNode;
 };
 
 export function ContactForm({ footerStart }: ContactFormProps) {
-  const [form, setForm] = useState({ email: '', message: '', name: '' });
-  const [status, setStatus] = useState<Status>('idle');
+  const [state, formAction, isPending] = useActionState(submitContact, initialContactFormState);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const updateField = (field: keyof typeof form, value: string) => {
-    setForm((current) => ({ ...current, [field]: value }));
-  };
-
-  const handleSubmit = async () => {
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      setStatus('error');
-      return;
+  useEffect(() => {
+    if (state.status === 'success') {
+      formRef.current?.reset();
     }
-
-    setStatus('sending');
-
-    try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_email: form.email,
-          from_name: form.name,
-          message: form.message,
-          to_email: TO_EMAIL,
-          to_name: 'Bruce',
-        },
-        PUBLIC_KEY,
-      );
-      setStatus('success');
-      setForm({ email: '', message: '', name: '' });
-    } catch {
-      setStatus('error');
-    }
-  };
-
-  const isSending = status === 'sending';
+  }, [state.status]);
 
   return (
-    <form
-      className="contact-form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <form action={formAction} className="contact-form" ref={formRef}>
+      <input
+        aria-hidden="true"
+        autoComplete="off"
+        className="contact-form-honeypot"
+        name="nickname"
+        tabIndex={-1}
+        type="text"
+      />
+
       <div className="form-row">
         <label>
           <span>Name</span>
           <input
             autoComplete="name"
-            disabled={isSending}
+            disabled={isPending}
             name="name"
-            onChange={(event) => updateField('name', event.target.value)}
             placeholder="Your name"
             required
             type="text"
-            value={form.name}
           />
         </label>
 
@@ -80,13 +47,11 @@ export function ContactForm({ footerStart }: ContactFormProps) {
           <span>Email</span>
           <input
             autoComplete="email"
-            disabled={isSending}
+            disabled={isPending}
             name="email"
-            onChange={(event) => updateField('email', event.target.value)}
             placeholder="you@example.com"
             required
             type="email"
-            value={form.email}
           />
         </label>
       </div>
@@ -94,30 +59,28 @@ export function ContactForm({ footerStart }: ContactFormProps) {
       <label>
         <span>Message</span>
         <textarea
-          disabled={isSending}
+          disabled={isPending}
           name="message"
-          onChange={(event) => updateField('message', event.target.value)}
           placeholder="Tell me about your project or idea..."
           required
-          value={form.message}
         />
       </label>
 
-      {status === 'success' && (
+      {state.status === 'success' && (
         <p className="contact-form-status is-success" role="status">
-          Thanks — your message is on its way. I&apos;ll get back to you soon.
+          {state.message}
         </p>
       )}
-      {status === 'error' && (
+      {state.status === 'error' && (
         <p className="contact-form-status is-error" role="alert">
-          Something went wrong sending your message. Please try again or reach out via socials.
+          {state.message}
         </p>
       )}
 
       <div className="contact-form-footer">
         {footerStart}
-        <button className="button button-primary" disabled={isSending} type="submit">
-          {isSending ? (
+        <button className="button button-primary" disabled={isPending} type="submit">
+          {isPending ? (
             <>
               Sending
               <Loader2 aria-hidden="true" className="contact-form-spinner" />

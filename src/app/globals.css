@@ -965,6 +965,15 @@ a.project-media-frame:focus-visible {
   border-color: var(--accent-dim-hover);
 }
 
+.contact-form-honeypot {
+  height: 0;
+  left: -10000px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+
 .contact-form-footer {
   align-items: center;
   display: flex;
