@@ -89,7 +89,7 @@ export function ContactForm({ footerStart }: ContactFormProps) {
             </>
           ) : (
             <>
-              Send message
+              Send Message
               <ArrowRight aria-hidden="true" />
             </>
           )}
