@@ -304,7 +304,7 @@ img {
 }
 
 .page-companion {
-  animation: page-companion-in 0.9s var(--ease) 2s forwards;
+  animation: page-companion-in 0.9s var(--ease) 1.5s forwards;
   bottom: calc(clamp(-13rem, -18vw, -7rem) + clamp(20rem, 42vw, 35rem) * 0.87);
   height: 56px;
   left: calc(clamp(-9rem, -11vw, -4rem) + clamp(20rem, 42vw, 35rem) * 0.6 - 1.75rem);
@@ -349,7 +349,7 @@ img {
 }
 
 .hero-moon {
-  animation: hero-moon-in 1s var(--ease) 1.7s forwards;
+  animation: hero-moon-in 1s var(--ease) 1.3s forwards;
   aspect-ratio: 1;
   background-image: url("/assets/moon-realistic-transparent.png");
   background-position: center;
