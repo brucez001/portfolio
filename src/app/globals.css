@@ -29,6 +29,7 @@
   --toggle-icon: #6b9eff;
   --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   --dot-color: rgba(140, 160, 200, 0.045);
+  --moon-blend-mode: screen;
   --moon-filter: saturate(0.62) contrast(1.1) brightness(0.68) sepia(0.05) hue-rotate(178deg);
   --moon-opacity: 0.44;
   --moon-shadow: 0 0 70px rgba(107, 158, 255, 0.08), 0 0 180px rgba(0, 0, 0, 0.45);
@@ -61,8 +62,9 @@
   --toggle-icon: #2d5bd7;
   --card-shadow: 0 8px 30px rgba(20, 20, 60, 0.07);
   --dot-color: rgba(20, 20, 60, 0.04);
-  --moon-filter: saturate(0.18) contrast(0.78) brightness(1.08) sepia(0.18);
-  --moon-opacity: 0.18;
+  --moon-blend-mode: multiply;
+  --moon-filter: saturate(0.35) contrast(0.95) brightness(0.82) sepia(0.18);
+  --moon-opacity: 0.38;
   --moon-shadow: 0 0 90px rgba(45, 91, 215, 0.05);
   --card-glass: rgba(255, 255, 255, 0.25);
   --card-glass-border: rgba(30, 40, 80, 0.14);
@@ -358,7 +360,7 @@ img {
   bottom: clamp(-13rem, -18vw, -7rem);
   filter: var(--moon-filter);
   left: clamp(-9rem, -11vw, -4rem);
-  mix-blend-mode: screen;
+  mix-blend-mode: var(--moon-blend-mode);
   opacity: 0;
   pointer-events: none;
   position: absolute;
