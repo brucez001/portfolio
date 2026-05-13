@@ -1,12 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <style>
-    text { fill: #2d5bd7; }
+    .bg { fill: #2d5bd7; }
+    .letter { fill: #f8f7f4; }
     @media (prefers-color-scheme: dark) {
-      text { fill: #6b9eff; }
+      .bg { fill: #6b9eff; }
+      .letter { fill: #0c0e12; }
     }
   </style>
-  <text x="6" y="48"
+  <rect class="bg" x="0" y="0" width="64" height="64" rx="14" ry="14"/>
+  <text class="letter"
+        x="32" y="50"
+        text-anchor="middle"
         font-family="Georgia, 'Times New Roman', serif"
-        font-size="44" font-weight="400"
-        letter-spacing="-1.5">BZ</text>
+        font-size="54" font-weight="700">B</text>
 </svg>
