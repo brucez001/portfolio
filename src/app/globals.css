@@ -80,6 +80,33 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+.skip-link {
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  left: 1rem;
+  padding: 0.6rem 1rem;
+  position: absolute;
+  text-decoration: none;
+  top: -100px;
+  transition: top 0.2s var(--ease);
+  z-index: 1000;
+}
+
+.skip-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  top: 1rem;
+}
+
 body {
   background: var(--bg);
   color: var(--text-primary);
@@ -415,6 +442,7 @@ img {
 
 .animated-headline {
   max-width: 1120px;
+  text-wrap: balance;
 }
 
 .headline-line {
@@ -580,6 +608,7 @@ img {
   font-weight: 400;
   line-height: 1.2;
   margin: 0.8rem 0 3.5rem;
+  text-wrap: balance;
   transition: color 0.45s var(--ease);
 }
 

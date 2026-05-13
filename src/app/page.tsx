@@ -35,7 +35,7 @@ export default function Portfolio() {
     <>
       <Navigation links={navLinks} />
 
-      <main>
+      <main id="main">
         <section className="hero" id="home">
           <HeroCanvas />
           <div aria-hidden="true" className="hero-moon" />
@@ -55,12 +55,12 @@ export default function Portfolio() {
               </span>
             </h1>
             <p className="hero-summary">
-              I love creating software that is fast, reliable, and actually pleasant to use - from product UI to
+              I love creating software that is fast, reliable, and actually pleasant to use — from product UI to
               the systems behind them.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#about">
-                Get to know me
+                Get to Know Me
                 <ArrowDown aria-hidden="true" />
               </a>
               <div className="social-buttons" aria-label="Social links">

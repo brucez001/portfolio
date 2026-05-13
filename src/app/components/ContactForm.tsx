@@ -60,9 +60,10 @@ export function ContactForm({ footerStart }: ContactFormProps) {
       <label>
         <span>Message</span>
         <textarea
+          autoComplete="off"
           disabled={isPending}
           name="message"
-          placeholder="Tell me about your project or idea..."
+          placeholder="Tell me about your project or idea…"
           required
         />
       </label>

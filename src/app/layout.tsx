@@ -51,9 +51,24 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
-    images: ['/assets/photo.png'],
+    images: [{ alt: 'Bruce Zhu portfolio', url: '/assets/photo.png' }],
     title: 'Bruce Zhu - Software Developer',
   },
+};
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'AU',
+    addressLocality: 'Melbourne',
+  },
+  image: 'https://brucezhu.dev/assets/photo.png',
+  jobTitle: 'Software Developer',
+  name: 'Bruce Zhu',
+  sameAs: ['https://github.com/Bruce-zzhu', 'https://www.linkedin.com/in/bruce-zhu-01/'],
+  url: 'https://brucezhu.dev',
 };
 
 export const viewport: Viewport = {
@@ -85,11 +100,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="dark" lang="en" suppressHydrationWarning>
+    <html data-theme="dark" lang="en-AU" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          type="application/ld+json"
+        />
       </head>
       <body>
+        <a className="skip-link" href="#main">Skip to main content</a>
         <BackdropConstellation />
         {children}
         {shouldLoadVercelTelemetry ? (
