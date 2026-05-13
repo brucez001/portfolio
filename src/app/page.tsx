@@ -55,7 +55,7 @@ export default function Portfolio() {
               </span>
             </h1>
             <p className="hero-summary">
-              I love creating software that is fast, reliable, and actually pleasant to use — from product UI to
+              I love creating software that is fast, reliable, and actually pleasant to use - from product UI to
               the systems behind them.
             </p>
             <div className="hero-actions">
