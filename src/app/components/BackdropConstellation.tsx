@@ -21,7 +21,10 @@ export function BackdropConstellation() {
   useEffect(() => {
     const update = () => {
       const hero = document.querySelector('.hero');
-      if (!hero) return;
+      if (!hero) {
+        setIsPastHero(true);
+        return;
+      }
       const rect = hero.getBoundingClientRect();
       setIsPastHero(rect.bottom < window.innerHeight * 0.35);
     };

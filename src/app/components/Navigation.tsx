@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react';
 import type { NavLink } from '@/app/data';
 
 type NavigationProps = {
+  brandHref?: string;
   links: NavLink[];
 };
 
-export function Navigation({ links }: NavigationProps) {
+export function Navigation({ brandHref = '/#home', links }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
@@ -57,7 +58,7 @@ export function Navigation({ links }: NavigationProps) {
   return (
     <>
       <nav className={`site-nav${isScrolled ? ' is-scrolled' : ''}`} aria-label="Primary navigation">
-        <a className="nav-brand" href="#home" onClick={closeMenu}>
+        <a className="nav-brand" href={brandHref} onClick={closeMenu}>
           BZ<span>.</span>
         </a>
 

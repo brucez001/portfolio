@@ -23,10 +23,11 @@ export type Project = {
 };
 
 export const navLinks: NavLink[] = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export const socialLinks = [

@@ -8,6 +8,16 @@ Bruce Zhu's portfolio site. The current app is a Next.js App Router project usin
 
 The active product direction is a full UI redesign based on the provided HTML reference: editorial serif/sans typography, restrained dark/light themes, subtle dotted texture, compact glass navigation, high performance, strong SEO, and polished responsive sections.
 
+## AI-Driven Development
+
+This repository is maintained through AI-assisted development. When planning implementation work, assume an LLM coding agent will do the execution unless the user explicitly says otherwise.
+
+- Write plans as agent-executable work, with clear file areas, expected behavior, verification steps, and acceptance criteria.
+- Prefer concrete implementation steps over human handoff language like "the developer should".
+- Ask the user only for product decisions, credentials, external access, or tradeoffs that cannot be resolved from repository context.
+- Keep tasks scoped so an agent can implement, verify, and report the result without requiring manual follow-up.
+- Do not lower engineering standards because the work is AI-executed; keep build, lint, browser verification, accessibility, SEO, and performance requirements intact.
+
 ## Repository Setup
 
 - Branch for the redesign: `codex-ui-redesign`.

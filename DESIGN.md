@@ -14,9 +14,10 @@ The strongest direction comes from the supplied HTML reference:
 
 - Dark-first canvas with a soft blue accent.
 - Editorial serif display type paired with a practical sans.
-- Thin borders, subtle glass navigation, restrained cards, and a dotted technical texture.
+- Thin borders, subtle glass navigation, restrained glass surfaces, and a dotted technical texture.
 - Light mode that feels warm and paper-like rather than pure white.
 - Project and experience sections that are easy to scan.
+- A quiet space motif in the hero: constellation dots, a low-opacity moon, and one tiny pixel companion.
 
 Design tone blend:
 
@@ -46,7 +47,7 @@ Use CSS custom properties so theme switching is simple and consistent.
 | --- | --- | --- |
 | `--bg` | `#0c0e12` | Page background |
 | `--bg-elevated` | `#13161c` | Soft section and input background |
-| `--bg-card` | `#101318` | Project cards, carousel cards |
+| `--bg-card` | `#101318` | Small cards and contained surfaces |
 | `--bg-nav` | `rgba(12, 14, 18, 0.88)` | Solid nav fallback |
 | `--nav-glass` | `rgba(12, 14, 18, 0.30)` | Fixed glass nav |
 | `--nav-glass-border` | `rgba(140, 160, 220, 0.05)` | Nav divider |
@@ -66,6 +67,13 @@ Use CSS custom properties so theme switching is simple and consistent.
 | `--toggle-icon` | `#6b9eff` | Theme toggle icon |
 | `--card-shadow` | `0 8px 30px rgba(0, 0, 0, 0.20)` | Hover card elevation |
 | `--dot-color` | `rgba(140, 160, 200, 0.045)` | Background dot texture |
+| `--moon-blend-mode` | `screen` | Hero moon blend behavior |
+| `--moon-filter` | themed filter stack | Hero moon image treatment |
+| `--moon-opacity` | `0.44` | Hero moon visibility |
+| `--moon-shadow` | soft blue/black glow | Hero moon atmosphere |
+| `--card-glass` | `rgba(20, 24, 32, 0.12)` | Large project and contact panels |
+| `--card-glass-border` | `rgba(185, 205, 255, 0.14)` | Large panel hairline |
+| `--card-glass-shadow` | `0 12px 40px rgba(0, 0, 0, 0.32)` | Large panel depth |
 
 ### Light Theme
 
@@ -73,7 +81,7 @@ Use CSS custom properties so theme switching is simple and consistent.
 | --- | --- | --- |
 | `--bg` | `#f8f7f4` | Warm paper canvas |
 | `--bg-elevated` | `#efede8` | Soft section and input background |
-| `--bg-card` | `#ffffff` | Project cards, carousel cards |
+| `--bg-card` | `#ffffff` | Small cards and contained surfaces |
 | `--bg-nav` | `rgba(248, 247, 244, 0.88)` | Solid nav fallback |
 | `--nav-glass` | `rgba(248, 247, 244, 0.35)` | Fixed glass nav |
 | `--nav-glass-border` | `rgba(30, 40, 80, 0.06)` | Nav divider |
@@ -93,14 +101,22 @@ Use CSS custom properties so theme switching is simple and consistent.
 | `--toggle-icon` | `#2d5bd7` | Theme toggle icon |
 | `--card-shadow` | `0 8px 30px rgba(20, 20, 60, 0.07)` | Hover card elevation |
 | `--dot-color` | `rgba(20, 20, 60, 0.04)` | Background dot texture |
+| `--moon-blend-mode` | `multiply` | Hero moon blend behavior |
+| `--moon-filter` | themed filter stack | Hero moon image treatment |
+| `--moon-opacity` | `0.38` | Hero moon visibility |
+| `--moon-shadow` | soft blue glow | Hero moon atmosphere |
+| `--card-glass` | `rgba(255, 255, 255, 0.25)` | Large project and contact panels |
+| `--card-glass-border` | `rgba(30, 40, 80, 0.14)` | Large panel hairline |
+| `--card-glass-shadow` | `0 12px 40px rgba(20, 20, 60, 0.10)` | Large panel depth |
 
 ### Color Rules
 
-- Use the blue accent for CTAs, active carousel dots, tags, links, and small highlights.
+- Use the blue accent for CTAs, active states, tags, links, and small highlights.
 - Do not flood backgrounds with blue or blue gradients.
 - Avoid purple, neon cyan, hot pink, and heavy multicolor gradients from the old design.
 - Keep dark mode dominant and light mode equally complete.
 - Borders should be visible only when they structure the layout.
+- Space-themed elements must stay quiet and low-opacity. They support the hero atmosphere; they are not the brand.
 
 ## 4. Typography Rules
 
@@ -156,9 +172,9 @@ Base unit: 4px.
 - Section padding: `7rem 3rem` desktop, `5rem 1.5rem` mobile.
 - Hero minimum height: about `88vh`, leaving a hint of following content on common viewports.
 - About: `280px / 1fr` grid on desktop, stacked on mobile.
-- Experience: `1fr / 1fr` grid on desktop, stacked on mobile.
+- Experience: compact services grid followed by a readable timeline.
 - Projects: vertical list of alternating two-column rows, stacked on mobile.
-- Contact: two-column content/form split, stacked on mobile.
+- Contact: centered intro and form, capped to a comfortable reading width.
 
 ### Whitespace Philosophy
 
@@ -179,7 +195,7 @@ The texture should remain subtle. It should never compete with text or project s
 
 ### Hero Canvas
 
-The hero may use a lightweight constellation canvas:
+The hero uses a lightweight constellation canvas:
 
 - Dots and connecting lines only.
 - Accent color changes with theme.
@@ -189,13 +205,24 @@ The hero may use a lightweight constellation canvas:
 
 Avoid WebGL/Three.js in the hero unless there is a clear performance budget and browser verification proves it is worth the cost.
 
+### Hero Moon & Companion
+
+The current hero includes a realistic transparent moon asset and a tiny pixel companion. Keep this treatment restrained:
+
+- Moon is low opacity, partially off-canvas, and themed with CSS variables.
+- Companion is decorative and hidden on mobile.
+- Pixel-art scale should remain small enough to read as a signature detail, not a game UI.
+- Reduced motion disables the companion frame animation.
+
 ### Photography & Screenshots
 
 - Use the existing `public/assets/photo.png` for the about image if it works with the new crop.
 - Use actual project screenshots where available:
+  - `public/assets/projects/jinni/jinni_home.png`
+  - `public/assets/projects/jinni/jinni_admin.png`
   - `public/assets/projects/itrazo/itrazo_adi.png`
-  - `public/assets/projects/fc/fc_login.png`
   - `public/assets/projects/coinjar/cj_learn.png`
+  - `public/assets/projects/coinjar/cj_onoffchain.png`
 - Prefer real product screenshots over abstract placeholders.
 - Keep image radius at 8px or less unless the component is circular.
 - Add meaningful alt text.
@@ -255,12 +282,20 @@ Secondary link button:
 
 General card rules:
 
-- Radius: 6px or 8px.
+- Radius: 6px or 8px for small cards and controls.
 - Border: `1px solid var(--border)`.
 - Background: `var(--bg-card)` or transparent depending on context.
 - Hover: only border change and subtle shadow.
 - Do not nest cards inside cards.
 - Do not use large soft blobs, orbs, or decorative gradient backgrounds.
+
+Large editorial panels, currently project rows and the contact form, may use the themed glass tokens:
+
+- Radius: up to 20px.
+- Background: `var(--card-glass)` plus a subtle top highlight.
+- Border: `1px solid var(--card-glass-border)`.
+- Backdrop blur is acceptable when it remains performant and text contrast stays strong.
+- Hover lift should stay subtle, no more than 2px.
 
 ### Section Headers
 
@@ -270,26 +305,37 @@ Each major section should use:
 - Serif title.
 - Enough bottom margin to make the following content feel intentional.
 
-### Experience Carousel
+### Experience Section
 
-The carousel is a compact product-like control, not a flashy slider.
+The experience section is scan-first and should stay easy to read.
 
-- Card with border and `var(--bg-card)`.
-- Slide body above screenshot/media.
-- Dot indicators: 6px circles, accent for active.
-- Arrows: 32px circular border buttons.
-- No autoplay unless explicitly requested.
-- Keyboard accessible controls.
+- Skills appear as compact rounded chips before the main content.
+- Services appear in a restrained three-column grid on desktop and one column on mobile.
+- Career history appears as a semantic ordered timeline.
+- Dates are compact uppercase metadata.
+- Role names use serif type; company names may use the accent color.
+- Timeline rows use borders and spacing for structure rather than heavy cards.
 
 ### Project Rows
 
 Projects should be a vertical list, not a masonry grid.
 
-- Desktop: two-column row, screenshot and content.
+- Desktop: two-column glass panel row, screenshot and content.
 - Alternate image/content order on even rows.
 - Mobile: image first, then content.
 - Image aspect ratio: 4/3.
-- Tags: small accent-dim capsules, 4px radius.
+- Tags: small accent-dim capsules.
+
+Project media frames may use a slightly larger radius than the base card system when nested inside the glass project panel, but should still feel precise and not pill-shaped.
+
+### Contact Section
+
+The contact section is centered and direct.
+
+- Intro copy is centered and capped around 540px.
+- Form is capped around 680px.
+- The form may use the large glass panel treatment.
+- Social links can sit in the form footer beside the submit button, wrapping cleanly on small screens.
 
 ### Forms
 
@@ -319,6 +365,7 @@ Respect `prefers-reduced-motion`:
 - Disable particle animation or reduce it to static dots.
 - Disable reveal transforms.
 - Keep theme switching functional.
+- Disable pixel companion frame animation.
 
 ## 9. Accessibility & SEO
 
@@ -326,7 +373,7 @@ Respect `prefers-reduced-motion`:
 - One `h1` only.
 - Section titles should be real headings.
 - Navigation anchors must be keyboard reachable.
-- Theme toggle and carousel controls need `aria-label`.
+- Theme toggle and menu controls need `aria-label`.
 - Mobile menu must be dismissible by link click and ideally by Escape.
 - Do not hide meaningful copy inside canvas, images, or animation-only layers.
 - Use Next.js metadata for title, description, Open Graph, and Twitter card.
@@ -346,7 +393,7 @@ Touch targets:
 
 - Icon buttons should be at least 38px by 38px; 44px preferred where layout allows.
 - Text buttons need enough horizontal padding for reliable taps.
-- Avoid tiny carousel dots as the only control on mobile; keep arrows or swipe support.
+- Avoid making compact decorative controls the only route to important content on mobile.
 
 ## 11. Do's and Don'ts
 
@@ -357,12 +404,14 @@ Touch targets:
 - Use serif headings to create personality.
 - Use real screenshots and the existing headshot where possible.
 - Use thin borders and low-alpha surfaces.
+- Keep the moon and companion as a subtle signature detail.
 - Keep client components isolated to actual interactivity.
 - Verify mobile text wrapping and button fit.
 
 ### Don't
 
-- Do not keep the old purple/space/Three.js visual identity unless a specific element earns its place.
+- Do not revive the old purple/Three.js visual identity.
+- Do not let the space motif expand beyond the current restrained hero treatment unless the design direction changes deliberately.
 - Do not use oversized marketing hero copy.
 - Do not use decorative gradient blobs, one-note purple palettes, or glass cards everywhere.
 - Do not make every section a card.
@@ -374,7 +423,7 @@ Touch targets:
 
 When asking an AI coding agent to build or revise UI in this repo, use prompts like:
 
-> Use `DESIGN.md` as the visual source of truth. Build a dark-first Next.js portfolio section with DM Serif Display headings, Instrument Sans body, subtle blue accent, 8px-or-less radii, thin themed borders, and no decorative gradient blobs.
+> Use `DESIGN.md` as the visual source of truth. Build a dark-first Next.js portfolio section with DM Serif Display headings, Instrument Sans body, subtle blue accent, thin themed borders, restrained glass only where the system allows it, and no decorative gradient blobs.
 
 > Convert this component to follow the portfolio design system: server component by default, semantic headings, theme tokens from `DESIGN.md`, accessible controls, and responsive layout that does not overlap on mobile.
 

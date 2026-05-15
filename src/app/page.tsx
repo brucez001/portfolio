@@ -1,7 +1,9 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { SVGProps } from 'react';
 import profilePhoto from '../../public/assets/photo.png';
+import { getBlogPosts } from '@/app/blog/blog-content';
 import { ContactForm } from '@/app/components/ContactForm';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
@@ -31,6 +33,8 @@ const socialIcons = {
 };
 
 export default function Portfolio() {
+  const blogPosts = getBlogPosts().slice(0, 3);
+
   return (
     <>
       <Navigation links={navLinks} />
@@ -224,9 +228,45 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {blogPosts.length > 0 && (
+          <section className="section" id="writing">
+            <Reveal className="section-heading-row">
+              <div>
+                <p className="section-label">04 - Writing</p>
+                <h2 className="section-title">Recent blogs</h2>
+              </div>
+              <Link className="section-cta" href="/blog">
+                See all blogs
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+            </Reveal>
+            <Reveal>
+              <ol className="writing-timeline" aria-label="Recent blog posts">
+                {blogPosts.map((post) => (
+                  <li className="writing-item" key={post.slug}>
+                    <Link className="writing-link" href={`/blog/${post.slug}`}>
+                      <span className="writing-copy">
+                        <span className="writing-title">{post.title}</span>
+                        <span className="writing-date">{post.displayDate}</span>
+                        <span className="writing-tags" aria-label={`${post.title} tags`}>
+                          {post.tags.join(' · ')}
+                        </span>
+                        <span className="writing-summary">{post.summary}</span>
+                      </span>
+                      <span className="writing-arrow" aria-hidden="true">
+                        <ArrowUpRight />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          </section>
+        )}
+
         <section className="section contact-section" id="contact">
           <Reveal>
-            <p className="section-label">04 - Get in touch</p>
+            <p className="section-label">05 - Get in touch</p>
             <h2 className="section-title">Let&apos;s connect</h2>
           </Reveal>
           <Reveal className="contact-layout">
