@@ -10,7 +10,14 @@ import { BackdropConstellation } from '@/app/components/BackdropConstellation';
 import './globals.css';
 
 const siteDescription =
-  'Bruce Zhu is a Melbourne software developer building fast, reliable web, mobile, Web3, and supply-chain products.';
+  'Building at the edge of curiosity, design, and software.';
+
+const openGraphImage = {
+  alt: 'Bruce Zhu portfolio',
+  height: 630,
+  url: '/og-image.png',
+  width: 1200,
+};
 
 export const metadata: Metadata = {
   alternates: {
@@ -30,14 +37,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://brucezhu.dev'),
   openGraph: {
     description: siteDescription,
-    images: [
-      {
-        alt: 'Bruce Zhu portfolio',
-        height: 630,
-        url: '/assets/photo.png',
-        width: 1200,
-      },
-    ],
+    images: [openGraphImage],
     locale: 'en_AU',
     siteName: 'Bruce Zhu',
     title: 'Bruce Zhu - Software Developer',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
-    images: [{ alt: 'Bruce Zhu portfolio', url: '/assets/photo.png' }],
+    images: [openGraphImage],
     title: 'Bruce Zhu - Software Developer',
   },
 };
