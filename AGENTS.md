@@ -8,13 +8,32 @@ Bruce Zhu's portfolio site. The current app is a Next.js App Router project usin
 
 The active product direction is a full UI redesign based on the provided HTML reference: editorial serif/sans typography, restrained dark/light themes, subtle dotted texture, compact glass navigation, high performance, strong SEO, and polished responsive sections.
 
+## Design Context
+
+Register: `brand` (a personal portfolio: design IS the product). See `PRODUCT.md` for the full strategic layer (audience, purpose, personality, anti-references) and `DESIGN.md` for the visual system.
+
+Audience: hiring managers and recruiters, senior engineers and collaborators, freelance leads, and the general professional network, usually skimming, often on mobile, often skeptical. The job is to convey credibility and product judgement fast, then make it easy to go deeper or get in touch.
+
+Personality: a calm senior craftsperson. Quiet confidence over spectacle; the work speaks and the design gets out of its way.
+
+Guiding principles:
+
+1. The site is the proof: craft, performance, and accessibility are the argument, not decoration around it.
+2. Quiet confidence over spectacle: blue is a scarce, meaningful signal, never a wash.
+3. Real work over decoration: actual projects, real screenshots, honest descriptions of the role played.
+4. Scannable in seconds, rewarding on a second pass.
+5. Fast and reachable everywhere: a skeptical visitor on a phone is the design target.
+
+Avoid: generic SaaS landing pages (hero-metric templates, buzzword marketing, identical feature-card grids), flashy 3D or game-like portfolios, and overstuffed resume dumps.
+
 ## Repository Setup
 
 - Branch for the redesign: `codex-ui-redesign`.
 - Package manager: npm.
 - Main app code: `src/app`.
 - Static assets: `public`.
-- Visual design source of truth: `DESIGN.md`.
+- Strategic source of truth (who/what/why): `PRODUCT.md`.
+- Visual design source of truth (how it looks): `DESIGN.md`.
 - Project-scoped agent skills: `.agents/skills`.
 - Skill lockfile: `skills-lock.json`.
 
