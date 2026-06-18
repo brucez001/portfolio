@@ -12,6 +12,13 @@ import './globals.css';
 const siteDescription =
   'Bruce Zhu is a Melbourne software developer building fast, reliable web, mobile, Web3, and supply-chain products.';
 
+const socialImage = {
+  alt: 'A quiet lunar exploration scene for Bruce Zhu portfolio',
+  height: 630,
+  url: '/assets/bruce-zhu-og-image.png',
+  width: 1200,
+};
+
 export const metadata: Metadata = {
   alternates: {
     canonical: '/',
@@ -30,14 +37,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://brucezhu.dev'),
   openGraph: {
     description: siteDescription,
-    images: [
-      {
-        alt: 'Bruce Zhu portfolio',
-        height: 630,
-        url: '/assets/photo.png',
-        width: 1200,
-      },
-    ],
+    images: [socialImage],
     locale: 'en_AU',
     siteName: 'Bruce Zhu',
     title: 'Bruce Zhu - Software Developer',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
-    images: [{ alt: 'Bruce Zhu portfolio', url: '/assets/photo.png' }],
+    images: [{ alt: socialImage.alt, url: socialImage.url }],
     title: 'Bruce Zhu - Software Developer',
   },
 };

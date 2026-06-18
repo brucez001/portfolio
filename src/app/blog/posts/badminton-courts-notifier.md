@@ -6,7 +6,7 @@ date: "2025-01-26"
 coverImage: "/assets/blog/badminton-slot-hunter.svg"
 coverAlt: "Graphic cover showing a badminton shuttle orbiting a calendar-like planet in a star field."
 source: "https://www.notion.so/45b917eb57ae4463b1a5df371a7d9b23"
-summary: "A small automation that watches badminton court availability for me, because refreshing a booking page is not a hobby."
+summary: "An automation that watches badminton court availability for me so I don't miss my play time."
 tags:
   - Automation
   - Python
@@ -44,6 +44,9 @@ The biggest challenge was the booking calendar itself. There was no reliable way
 
 Checking every slot one by one would have made the bot slow and noisy, so I used a binary search approach to narrow down the useful range faster. It turned the calendar from a tedious manual scan into a more efficient search problem.
 
+> [!TIP]
+> When a UI does not expose the data you need, treat the slow path as a search problem instead of a scan. A few extra clicks beats brute-forcing the whole calendar.
+
 Once the core flow worked locally, I moved the script into GitHub Actions so it could run on a schedule without needing my laptop. Credentials were handled through environment variables, and the notification step used email so I could act quickly when a slot appeared.
 
 The interesting part was not the code itself. It was translating a human habit into a reliable sequence:
@@ -68,6 +71,4 @@ The result was a small system that helped me find badminton slots without checki
 I like this project because it shows the kind of engineering I enjoy: practical, user-focused, and just enough to solve the problem.
 
 It combines scripting, browser automation, scheduled jobs, and notification design, but the value is easy to understand: less manual checking, faster reaction time, and more chances to actually play.
-
-Code: https://github.com/Bruce-zzhu/unimelb-badminton-courts-notifier
 

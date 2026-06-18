@@ -55,6 +55,9 @@ I did not need a general assistant. I needed a small parser that understood my b
 
 I also learned that automation quality depends heavily on the last mile. The impressive part is the AI extraction, but the useful part is the boring connection work: field mapping, API permissions, database IDs, relation IDs, and request formatting.
 
+> [!NOTE]
+> Notion's API treats every property type differently. Numbers, selects, relations, and rich text all need their own payload shape, so plan the mapping layer before you wire up the AI step.
+
 ## Why I Like This One
 
 This project is a small example of how personal software can remove friction from everyday habits.
