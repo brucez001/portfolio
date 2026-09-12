@@ -10,7 +10,7 @@ import { BackdropConstellation } from '@/app/components/BackdropConstellation';
 import './globals.css';
 
 const siteDescription =
-  'Building at the edge of curiosity, design, and software.';
+  'Building at the edge of curiosity, design, and software systems.';
 
 const openGraphImage = {
   alt: 'Bruce Zhu portfolio',

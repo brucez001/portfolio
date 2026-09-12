@@ -3,6 +3,7 @@ import Image from 'next/image';
 import type { SVGProps } from 'react';
 import profilePhoto from '../../public/assets/photo.png';
 import { ContactForm } from '@/app/components/ContactForm';
+import { CursorGlow } from '@/app/components/CursorGlow';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
 import { PageCompanion } from '@/app/components/PageCompanion';
@@ -136,7 +137,8 @@ export default function Portfolio() {
           <Reveal>
             <div className="services-grid">
               {services.map((service) => (
-                <article className="service-item" key={service.title}>
+                <article className="service-item" data-glow="" key={service.title}>
+                  <span aria-hidden="true" className="glow-layer" />
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                 </article>
@@ -167,7 +169,8 @@ export default function Portfolio() {
           </Reveal>
           <div className="projects-list">
             {projects.map((project) => (
-              <Reveal className="project-row" key={project.name}>
+              <Reveal className="project-row" glow key={project.name}>
+                <span aria-hidden="true" className="glow-layer" />
                 <div className="project-media">
                   {project.link ? (
                     <a
@@ -252,6 +255,8 @@ export default function Portfolio() {
           </Reveal>
         </section>
       </main>
+
+      <CursorGlow />
 
       <footer className="site-footer">
         <span>&copy; 2026 Bruce Zhu</span>

@@ -773,7 +773,7 @@ a.project-media-frame:focus-visible {
   font-weight: 500;
   letter-spacing: 0.04em;
   padding: 0.4rem 0.9rem;
-  transition: all 0.3s var(--ease), background 0.45s var(--ease);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), background 0.45s var(--ease);
 }
 
 .skills-list span:hover {
@@ -1391,5 +1391,37 @@ a.project-media-frame:focus-visible {
 
   .contact-form-socials {
     justify-content: center;
+  }
+}
+
+/* Cursor spotlight on cards: a compositor-only glow layer moved via transform (wired by CursorGlow) */
+[data-glow] {
+  overflow: hidden;
+  position: relative;
+}
+
+[data-glow] > *:not(.glow-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-layer {
+  background: radial-gradient(closest-side, var(--accent-dim-hover), transparent 70%);
+  border-radius: 50%;
+  height: 480px;
+  left: -240px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -240px;
+  transition: opacity 0.35s var(--ease);
+  width: 480px;
+  will-change: transform;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-layer {
+    display: none;
   }
 }

@@ -5,9 +5,10 @@ import { type ReactNode, useEffect, useRef, useState } from 'react';
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  glow?: boolean;
 };
 
-export function Reveal({ children, className = '' }: RevealProps) {
+export function Reveal({ children, className = '', glow = false }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -30,7 +31,11 @@ export function Reveal({ children, className = '' }: RevealProps) {
   }, []);
 
   return (
-    <div className={`reveal${isVisible ? ' is-visible' : ''}${className ? ` ${className}` : ''}`} ref={ref}>
+    <div
+      className={`reveal${isVisible ? ' is-visible' : ''}${className ? ` ${className}` : ''}`}
+      data-glow={glow ? '' : undefined}
+      ref={ref}
+    >
       {children}
     </div>
   );
