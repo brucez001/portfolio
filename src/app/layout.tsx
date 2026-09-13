@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [
     'Bruce Zhu',
-    'Design Engineer Melbourne',
+    'Software Engineer Melbourne',
     'Software Developer Melbourne',
     'Next.js Developer',
     'React Developer',
@@ -44,19 +44,19 @@ export const metadata: Metadata = {
     images: [openGraphImage],
     locale: 'en_AU',
     siteName: 'Bruce Zhu',
-    title: 'Bruce Zhu - Design Engineer',
+    title: 'Bruce Zhu - Software Engineer',
     type: 'website',
     url: 'https://brucezhu.dev',
   },
   title: {
-    default: 'Bruce Zhu - Design Engineer',
+    default: 'Bruce Zhu - Software Engineer',
     template: '%s - Bruce Zhu',
   },
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
     images: [openGraphImage],
-    title: 'Bruce Zhu - Design Engineer',
+    title: 'Bruce Zhu - Software Engineer',
   },
 };
 
@@ -69,7 +69,7 @@ const personJsonLd = {
     addressLocality: 'Melbourne',
   },
   image: 'https://brucezhu.dev/assets/photo.png',
-  jobTitle: 'Design Engineer',
+  jobTitle: 'Software Engineer',
   name: 'Bruce Zhu',
   sameAs: ['https://github.com/brucez001', 'https://www.linkedin.com/in/bruce-zhu-01/'],
   url: 'https://brucezhu.dev',
