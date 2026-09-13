@@ -1041,7 +1041,9 @@ a.project-media-frame:focus-visible {
   }
 
   .about-photo {
-    max-width: 220px;
+    /* Needs a definite width: auto margins turn the grid item into a
+       shrink-to-fit box, and the fill image contributes no intrinsic size. */
+    width: min(220px, 100%);
     margin-inline: auto;
     position: relative;
     top: auto;
