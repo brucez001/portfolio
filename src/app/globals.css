@@ -42,6 +42,11 @@
   --card-glass: rgba(20, 24, 32, 0.12);
   --card-glass-border: rgba(185, 205, 255, 0.14);
   --card-glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+  --form-glass: rgba(12, 14, 18, 0.68);
+  --form-glass-highlight: rgba(255, 255, 255, 0.06);
+  --form-glass-filter: blur(2.5px) saturate(1.5) brightness(2.1);
+  --form-field: rgba(255, 255, 255, 0.05);
+  --form-field-focus: rgba(255, 255, 255, 0.09);
 }
 
 [data-theme="light"] {
@@ -72,6 +77,11 @@
   --card-glass: rgba(255, 255, 255, 0.25);
   --card-glass-border: rgba(30, 40, 80, 0.14);
   --card-glass-shadow: 0 12px 40px rgba(20, 20, 60, 0.1);
+  --form-glass: rgba(248, 247, 244, 0.72);
+  --form-glass-highlight: rgba(255, 255, 255, 0.5);
+  --form-glass-filter: blur(2.5px) saturate(1.4) contrast(1.12);
+  --form-field: rgba(255, 255, 255, 0.32);
+  --form-field-focus: rgba(255, 255, 255, 0.6);
 }
 
 * {
@@ -439,6 +449,11 @@ img {
   margin-top: 1.2rem;
 }
 
+.about-copy strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
 .highlight-grid {
   display: grid;
   gap: 1rem;
@@ -468,8 +483,8 @@ img {
 }
 
 .contact-layout {
-  margin: 0 auto;
-  max-width: 680px;
+  margin: 0;
+  max-width: 760px;
 }
 
 .service-item h3,
@@ -745,35 +760,62 @@ a.project-media-frame:focus-visible {
   background: var(--accent-dim-hover);
 }
 
+.contact-stage {
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-stage > .contact-section,
+.contact-stage > .site-footer {
+  position: relative;
+}
+
+.contact-moon {
+  display: block;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
 .contact-section {
   padding-bottom: 7rem;
 }
 
-.contact-section .section-label,
 .contact-section .section-title {
-  text-align: center;
+  margin-bottom: 1.2rem;
+  max-width: 560px;
 }
 
 .contact-intro {
   font-size: var(--fs-lead);
   line-height: 1.7;
-  margin: 0 auto 2.5rem;
-  max-width: 540px;
-  text-align: center;
+  margin: 0 0 2.5rem;
+  max-width: 480px;
 }
 
 .contact-form {
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  backdrop-filter: blur(18px) saturate(1.4);
-  background: var(--card-glass);
-  border: 1px solid var(--card-glass-border);
+  -webkit-backdrop-filter: var(--form-glass-filter);
+  backdrop-filter: var(--form-glass-filter);
+  background: var(--form-glass);
+  border: 1px solid var(--nav-glass-border);
   border-radius: 20px;
-  box-shadow: var(--card-glass-shadow);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    var(--card-glass-shadow),
+    inset 0 1px 0 var(--form-glass-highlight);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  padding: 2rem;
+  padding: 2.25rem;
   transition: var(--transition-theme), border-color 0.3s var(--ease);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .contact-form {
+    background: var(--bg-elevated);
+  }
 }
 
 .contact-form:focus-within {
@@ -883,7 +925,7 @@ a.project-media-frame:focus-visible {
 
 .contact-form input,
 .contact-form textarea {
-  background: var(--bg-elevated);
+  background: var(--form-field);
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--text-primary);
@@ -900,7 +942,7 @@ a.project-media-frame:focus-visible {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  background: var(--bg-card);
+  background: var(--form-field-focus);
   border-color: var(--accent);
 }
 
@@ -913,11 +955,10 @@ a.project-media-frame:focus-visible {
   align-items: center;
   border-top: 1px solid var(--border);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
   max-width: 1100px;
   padding: 2rem 3rem;
-  text-align: center;
   transition: border-color 0.45s var(--ease);
 }
 

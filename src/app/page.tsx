@@ -3,6 +3,7 @@ import Image from 'next/image';
 import type { SVGProps } from 'react';
 import profilePhoto from '../../public/assets/about-photo.webp';
 import { ContactForm } from '@/app/components/ContactForm';
+import { ContactMoon } from '@/app/components/ContactMoon';
 import { CursorGlow } from '@/app/components/CursorGlow';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
@@ -97,8 +98,8 @@ export default function Portfolio() {
             <Reveal className="about-copy">
               <p>
                 Hi 👋 I&apos;m Bruce Zhu, a software engineer based in Melbourne. I&rsquo;m interested in the space
-                where engineering, product and design overlap - turning complex ideas into simple, intuitive
-                experiences that feel polished and easy to use.
+                where <strong>engineering, product and design</strong> overlap - turning complex ideas into simple,
+                intuitive experiences that feel polished and easy to use.
               </p>
               <p>
                 Beyond solving engineering problems, I enjoy understanding how people use products, working closely with
@@ -227,7 +228,10 @@ export default function Portfolio() {
             ))}
           </div>
         </section>
+      </main>
 
+      <div className="contact-stage">
+        <ContactMoon />
         <section className="section contact-section" id="contact">
           <Reveal>
             <p className="section-label">IV - Get in touch</p>
@@ -255,13 +259,12 @@ export default function Portfolio() {
             />
           </Reveal>
         </section>
-      </main>
+        <footer className="site-footer">
+          <span>&copy; 2026 Bruce Zhu</span>
+        </footer>
+      </div>
 
       <CursorGlow />
-
-      <footer className="site-footer">
-        <span>&copy; 2026 Bruce Zhu</span>
-      </footer>
     </>
   );
 }

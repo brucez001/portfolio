@@ -80,7 +80,7 @@ export const experiences: Experience[] = [
       'Developing financial products across iOS, Android, and web. Optimising site performance and SEO.',
     imageAlt: 'CoinJar Learn project screenshot',
     imageSrc: '/assets/projects/coinjar/cj_learn.png',
-    role: 'Software Developer',
+    role: 'Software Engineer',
   },
   {
     company: 'iTrazo Tracetech',
@@ -89,7 +89,7 @@ export const experiences: Experience[] = [
       'Built supply-chain technology for transport and agriculture, including CRM, inventory management, order tracking, and e-commerce systems.',
     imageAlt: 'iTrazo ADI supply chain platform screenshot',
     imageSrc: '/assets/projects/itrazo/itrazo_adi.png',
-    role: 'Software Developer',
+    role: 'Software Engineer',
   },
   {
     company: 'University of Melbourne',
