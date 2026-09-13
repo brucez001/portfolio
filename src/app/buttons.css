@@ -130,9 +130,19 @@
 .theme-toggle,
 .menu-toggle {
   border-radius: 50%;
-  height: var(--control-height);
+  height: 36px;
+  position: relative;
   transition: var(--control-transition);
-  width: var(--control-height);
+  width: 36px;
+}
+
+/* Keeps a 44px touch target without inflating the visible circle. */
+.theme-toggle::after,
+.menu-toggle::after {
+  border-radius: inherit;
+  content: '';
+  inset: -4px;
+  position: absolute;
 }
 
 .theme-toggle:hover,
