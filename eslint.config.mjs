@@ -5,7 +5,14 @@ const eslintConfig = [
   ...nextVitals,
   ...nextTypescript,
   {
-    ignores: ['.next/**', 'node_modules/**', 'out/**'],
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'out/**',
+      // Vendored agent skill scripts, not project source.
+      '.agents/**',
+      '.claude/**',
+    ],
   },
 ];
 
