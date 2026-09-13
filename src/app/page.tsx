@@ -60,21 +60,23 @@ export default function Portfolio() {
                 Get to know me
                 <ArrowDown aria-hidden="true" />
               </a>
-              {socialLinks.map((link) => {
-                const Icon = socialIcons[link.label];
-                return (
-                  <a
-                    className="button button-secondary"
-                    href={link.href}
-                    key={link.href}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <Icon aria-hidden="true" />
-                    {link.label}
-                  </a>
-                );
-              })}
+              <div className="hero-social-actions">
+                {socialLinks.map((link) => {
+                  const Icon = socialIcons[link.label];
+                  return (
+                    <a
+                      className="button button-secondary"
+                      href={link.href}
+                      key={link.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <Icon aria-hidden="true" />
+                      {link.label}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <HeroCanvas />

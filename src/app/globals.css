@@ -1042,6 +1042,7 @@ a.project-media-frame:focus-visible {
 
   .about-photo {
     max-width: 220px;
+    margin-inline: auto;
     position: relative;
     top: auto;
   }

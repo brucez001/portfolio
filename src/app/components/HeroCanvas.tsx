@@ -178,7 +178,7 @@ export function HeroCanvas() {
       gl.uniform1f(atmosphere.rippleGain, rippleGain);
       gl.uniform1f(atmosphere.lightTheme, light ? 1 : 0);
       gl.uniform2f(atmosphere.center, .5, .53);
-      const ringRadius = Math.min(350, bounds.height * .28) / bounds.height;
+      const ringRadius = Math.min(350, bounds.height * .28, bounds.width * .34) / bounds.height;
       const radius = .004 + (ringRadius - .004) * expansion;
       gl.uniform2f(atmosphere.ringSize, radius, radius);
       gl.uniform2f(atmosphere.readingPlane, Math.min(350, bounds.width * .36) / bounds.height, .23);
