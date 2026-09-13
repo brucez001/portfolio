@@ -18,17 +18,13 @@
   color-scheme: dark;
   --bg: #0c0e12;
   --bg-elevated: #13161c;
-  --bg-card: #101318;
-  --bg-nav: #0c0e12;
   --nav-glass: rgba(12, 14, 18, 0.62);
-  --nav-glass-highlight: transparent;
   --nav-glass-border: rgba(185, 205, 255, 0.14);
   --bg-mobile: rgba(12, 14, 18, 0.97);
   --text-primary: #e2e6ed;
   --text-secondary: #8a92a1;
   --text-muted: #7f8798;
   --accent: #6b9eff;
-  --accent-secondary: #4a7de0;
   --accent-dim: rgba(107, 158, 255, 0.1);
   --accent-dim-hover: rgba(107, 158, 255, 0.18);
   --border: rgba(140, 160, 200, 0.07);
@@ -53,17 +49,13 @@
   color-scheme: light;
   --bg: #f8f7f4;
   --bg-elevated: #efede8;
-  --bg-card: #ffffff;
-  --bg-nav: #f8f7f4;
   --nav-glass: rgba(248, 247, 244, 0.62);
-  --nav-glass-highlight: transparent;
   --nav-glass-border: rgba(30, 40, 80, 0.12);
   --bg-mobile: rgba(248, 247, 244, 0.97);
   --text-primary: #1a1a2e;
   --text-secondary: #4a4e69;
   --text-muted: #62677a;
   --accent: #2d5bd7;
-  --accent-secondary: #1e45b0;
   --accent-dim: rgba(45, 91, 215, 0.07);
   --accent-dim-hover: rgba(45, 91, 215, 0.13);
   --border: rgba(20, 20, 60, 0.09);
@@ -977,28 +969,6 @@ a.project-media-frame:focus-visible {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

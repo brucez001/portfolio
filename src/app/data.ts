@@ -7,8 +7,6 @@ export type Experience = {
   company: string;
   date: string;
   description: string;
-  imageAlt: string;
-  imageSrc: string;
   role: string;
 };
 
@@ -78,8 +76,6 @@ export const experiences: Experience[] = [
     date: '2024 - Present',
     description:
       'Developing financial products across iOS, Android, and web. Optimising site performance and SEO.',
-    imageAlt: 'CoinJar Learn project screenshot',
-    imageSrc: '/assets/projects/coinjar/cj_learn.png',
     role: 'Software Engineer',
   },
   {
@@ -87,8 +83,6 @@ export const experiences: Experience[] = [
     date: '2022 - 2024',
     description:
       'Built supply-chain technology for transport and agriculture, including CRM, inventory management, order tracking, and e-commerce systems.',
-    imageAlt: 'iTrazo ADI supply chain platform screenshot',
-    imageSrc: '/assets/projects/itrazo/itrazo_adi.png',
     role: 'Software Engineer',
   },
   {
@@ -96,8 +90,6 @@ export const experiences: Experience[] = [
     date: '2022',
     description:
       'Majored in Computer Science and Software Engineering, won hackathon awards, and mentored first-year students through IT club work.',
-    imageAlt: 'University of Melbourne company mark',
-    imageSrc: '/assets/company/unimelb.png',
     role: 'CS Graduate',
   },
 ];
