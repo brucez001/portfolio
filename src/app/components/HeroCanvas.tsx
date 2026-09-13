@@ -62,6 +62,8 @@ export function HeroCanvas() {
       resolution: gl.getUniformLocation(atmosphereProgram, 'resolution'),
       time: gl.getUniformLocation(atmosphereProgram, 'time'),
       entrance: gl.getUniformLocation(atmosphereProgram, 'entrance'),
+      ripple: gl.getUniformLocation(atmosphereProgram, 'ripple'),
+      rippleGain: gl.getUniformLocation(atmosphereProgram, 'rippleGain'),
       lightTheme: gl.getUniformLocation(atmosphereProgram, 'lightTheme'),
       flowmap: gl.getUniformLocation(atmosphereProgram, 'flowmap'),
       center: gl.getUniformLocation(atmosphereProgram, 'center'),
@@ -120,7 +122,13 @@ export function HeroCanvas() {
     let lastInput = -Infinity;
     let elapsed = 0;
     const entranceDuration = 2.4;
+    const scrollRippleDuration = 1.2;
+    const scrollRippleGain = .55;
+    let rippleDuration = entranceDuration;
+    let rippleGain = 1;
     let entranceElapsed = motion.matches ? entranceDuration : 0;
+    let rippleElapsed = motion.matches ? rippleDuration : 0;
+    let scrolledAway = window.scrollY > 120;
     let visible = true;
     let lost = false;
     let ready = false;
@@ -166,6 +174,8 @@ export function HeroCanvas() {
       const progress = Math.min(1, entranceElapsed / entranceDuration);
       const expansion = 1 - Math.pow(1 - progress, 3);
       gl.uniform1f(atmosphere.entrance, progress);
+      gl.uniform1f(atmosphere.ripple, Math.min(1, rippleElapsed / rippleDuration));
+      gl.uniform1f(atmosphere.rippleGain, rippleGain);
       gl.uniform1f(atmosphere.lightTheme, light ? 1 : 0);
       gl.uniform2f(atmosphere.center, .5, .53);
       const ringRadius = Math.min(350, bounds.height * .28) / bounds.height;
@@ -215,11 +225,13 @@ export function HeroCanvas() {
       frame = 0;
       if (!canAnimate()) return;
       if ((window.devicePixelRatio || 1) !== pixelRatio) { densityChanged(); return; }
-      const interval = entranceElapsed < entranceDuration || now - lastInput < 1200 ? 1000 / 60 : 1000 / 30;
+      const interval = entranceElapsed < entranceDuration || rippleElapsed < rippleDuration || now - lastInput < 1200
+        ? 1000 / 60 : 1000 / 30;
       if (now - lastTime >= interval - .5) {
         const delta = Math.min((now - lastTime) / 1000, .08);
         elapsed += delta;
         entranceElapsed = Math.min(entranceDuration, entranceElapsed + delta);
+        rippleElapsed = Math.min(rippleDuration, rippleElapsed + delta);
         lastTime = now;
         updateFlow(delta);
         render(delta);
@@ -235,6 +247,7 @@ export function HeroCanvas() {
       if (!canAnimate()) resetInput();
       if (motion.matches) {
         entranceElapsed = entranceDuration;
+        rippleElapsed = rippleDuration;
         clearFlow();
       }
       render();
@@ -304,6 +317,17 @@ export function HeroCanvas() {
     const updateBounds = () => {
       bounds = hero.getBoundingClientRect();
       resetInput();
+      const offset = window.scrollY;
+      if (offset > 120) scrolledAway = true;
+      else if (offset <= 2 && scrolledAway) {
+        scrolledAway = false;
+        if (!motion.matches) {
+          rippleDuration = scrollRippleDuration;
+          rippleGain = scrollRippleGain;
+          rippleElapsed = 0;
+          wake();
+        }
+      }
     };
     const contextLost = () => {
       lost = true;

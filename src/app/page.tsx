@@ -96,17 +96,18 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="about-copy">
               <p>
-                Hi 👋 I&apos;m Bruce Zhu, a design engineer based in Melbourne. I work in both Figma and the component
-                code, and I prototype in the real stack rather than in mockups, because the real thing is the only
-                honest test of how something feels.
+                Hi 👋 I&apos;m Bruce Zhu, a software engineer based in Melbourne. I&rsquo;m interested in the space
+                where engineering, product and design overlap - turning complex ideas into simple, intuitive
+                experiences that feel polished and easy to use.
               </p>
               <p>
-                I care about the last 10%: easing curves, focus states, empty states, how a layout holds up on a small
-                phone or a slow connection. Not just &ldquo;does it work&rdquo; but &ldquo;does it feel right.&rdquo;
-                Performance and accessibility are part of that, not chores: a fast, reachable interface is better design.
+                Beyond solving engineering problems, I enjoy understanding how people use products, working closely with
+                designers, and thinking about how UX decisions shape the overall experience and create value for the
+                business.
               </p>
               <p>
-                I love seeing what I build create value for someone and make them go &ldquo;wow, that&apos;s nice.&rdquo;
+                Excited to build with AI and explore how it reshapes finance, technology, products, and everyday life
+                both digitally and physically.
               </p>
               <dl className="highlight-grid">
                 {highlights.map((highlight) => (
@@ -260,7 +261,6 @@ export default function Portfolio() {
 
       <footer className="site-footer">
         <span>&copy; 2026 Bruce Zhu</span>
-        <span>Built with love</span>
       </footer>
     </>
   );

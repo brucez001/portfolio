@@ -3,6 +3,15 @@
   --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-theme: background 0.45s var(--ease), color 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease);
+
+  /* Type scale: one step per role, no near-duplicates. */
+  --fs-eyebrow: 0.75rem;
+  --fs-meta: 0.875rem;
+  --fs-body: 0.95rem;
+  --fs-lead: 1.05rem;
+  --fs-card-title: 1.25rem;
+  --fs-item-title: 1.5rem;
+  --fs-section-title: clamp(2rem, 4vw, 3rem);
 }
 
 [data-theme="dark"] {
@@ -344,7 +353,7 @@ img {
 
 .section-label {
   color: var(--text-muted);
-  font-size: 0.76rem;
+  font-size: var(--fs-eyebrow);
   font-weight: 600;
   letter-spacing: 0.16em;
   margin: 0;
@@ -366,7 +375,7 @@ img {
 .section-title {
   color: var(--text-primary);
   font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-section-title);
   font-weight: 400;
   line-height: 1.2;
   margin: 0.8rem 0 3.5rem;
@@ -406,8 +415,8 @@ img {
 
 .about-copy {
   color: color-mix(in srgb, var(--text-primary) 86%, var(--text-secondary));
-  font-size: 0.95rem;
-  line-height: 1.9;
+  font-size: var(--fs-lead);
+  line-height: 1.85;
   transition: color 0.45s var(--ease);
 }
 
@@ -433,16 +442,16 @@ img {
 
 .highlight-grid dt {
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: var(--fs-eyebrow);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .highlight-grid dd {
   color: var(--text-primary);
   font-family: var(--serif);
-  font-size: 1.2rem;
+  font-size: var(--fs-card-title);
   line-height: 1.25;
   margin: 0.35rem 0 0;
 }
@@ -520,7 +529,7 @@ a.project-media-frame:focus-visible {
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.7rem;
   margin-bottom: 3rem;
 }
 
@@ -529,10 +538,10 @@ a.project-media-frame:focus-visible {
   border: 1px solid var(--border);
   border-radius: 100px;
   color: var(--text-secondary);
-  font-size: 0.75rem;
+  font-size: var(--fs-meta);
   font-weight: 500;
   letter-spacing: 0.04em;
-  padding: 0.4rem 0.9rem;
+  padding: 0.5rem 1.1rem;
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), background 0.45s var(--ease);
 }
 
@@ -561,11 +570,11 @@ a.project-media-frame:focus-visible {
 }
 
 .service-item h3 {
-  font-size: 1.25rem;
+  font-size: var(--fs-card-title);
 }
 
 .service-item p {
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
   line-height: 1.65;
   margin: 0.5rem 0 0;
 }
@@ -592,17 +601,17 @@ a.project-media-frame:focus-visible {
 
 .timeline-year {
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: var(--fs-eyebrow);
   font-weight: 500;
-  letter-spacing: 0.12em;
-  margin: 0.35rem 0 0;
+  letter-spacing: 0.16em;
+  margin: 0.5rem 0 0;
   text-transform: uppercase;
 }
 
 .timeline-role {
   color: var(--text-primary);
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: var(--fs-item-title);
   font-weight: 400;
   line-height: 1.25;
   margin: 0;
@@ -610,14 +619,14 @@ a.project-media-frame:focus-visible {
 
 .timeline-company {
   color: var(--accent);
-  font-size: 0.9rem;
+  font-size: var(--fs-meta);
   font-weight: 500;
   margin: 0.3rem 0 1rem;
 }
 
 .timeline-desc {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: var(--fs-body);
   line-height: 1.7;
   margin: 0;
   max-width: 60ch;
@@ -692,13 +701,13 @@ a.project-media-frame:focus-visible {
 }
 
 .project-info h3 {
-  font-size: 1.6rem;
+  font-size: var(--fs-item-title);
   margin-bottom: 0.7rem;
   transition: color 0.3s var(--ease);
 }
 
 .project-info p {
-  font-size: 0.9rem;
+  font-size: var(--fs-body);
   line-height: 1.75;
   margin: 0 0 1.5rem;
 }
@@ -714,10 +723,10 @@ a.project-media-frame:focus-visible {
   border: 1px solid transparent;
   border-radius: 999px;
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: var(--fs-meta);
   font-weight: 500;
   letter-spacing: 0.04em;
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.95rem;
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
@@ -735,7 +744,7 @@ a.project-media-frame:focus-visible {
 }
 
 .contact-intro {
-  font-size: 1rem;
+  font-size: var(--fs-lead);
   line-height: 1.7;
   margin: 0 auto 2.5rem;
   max-width: 540px;
@@ -788,7 +797,7 @@ a.project-media-frame:focus-visible {
   align-items: center;
   color: var(--text-secondary);
   display: inline-flex;
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
   gap: 0.45rem;
   transition: color 0.3s var(--ease);
 }
@@ -816,7 +825,7 @@ a.project-media-frame:focus-visible {
 
 .contact-form-status {
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
   line-height: 1.5;
   margin: 0;
   padding: 0.7rem 0.9rem;
@@ -856,9 +865,9 @@ a.project-media-frame:focus-visible {
 
 .contact-form label span {
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: var(--fs-eyebrow);
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
 }
 
 .contact-form input,
@@ -893,16 +902,17 @@ a.project-media-frame:focus-visible {
   align-items: center;
   border-top: 1px solid var(--border);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
   max-width: 1100px;
   padding: 2rem 3rem;
+  text-align: center;
   transition: border-color 0.45s var(--ease);
 }
 
 .site-footer span {
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 0.06em;
 }
 
@@ -1035,10 +1045,7 @@ a.project-media-frame:focus-visible {
   }
 
   .site-footer {
-    flex-direction: column;
-    gap: 0.5rem;
     padding: 2rem 1.5rem;
-    text-align: center;
   }
 }
 

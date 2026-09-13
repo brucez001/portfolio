@@ -43,32 +43,32 @@ export const socialLinks = [
 export const highlights = [
   { label: 'Building', value: 'Web & mobile' },
   { label: 'Designing', value: 'Systems & interfaces' },
-  { label: 'Exploring', value: 'AI models & tools' },
+  { label: 'Exploring', value: 'AI & agents' },
 ] as const;
 
 export const skills = [
-  'Design Systems',
-  'Product UX',
-  'Accessibility',
   'Cross-platform',
-  'Agentic Engineering',
-  'SEO',
+  'Design Systems',
   'Cloud',
+  'SEO',
   'E-commerce',
+  'Supply Chain',
+  'Crypto',
+  'Trading',
 ] as const;
 
 export const services = [
   {
     title: 'Web Apps',
-    description: 'Product interfaces in modern React: considered interaction, solid architecture, and performance treated as a design quality.',
+    description: 'Scalable interfaces with modern React architecture, secure authentication, and reliable performance.',
   },
   {
     title: 'Mobile Apps',
-    description: 'Cross-platform iOS and Android experiences that feel native: smooth motion, right-sized touch targets, and careful edge cases.',
+    description: 'Cross-platform product experiences for iOS and Android with native-feeling UI and smooth performance.',
   },
   {
     title: 'Custom Websites',
-    description: 'Fast, crawlable marketing and content sites where typography, SEO, and Core Web Vitals get equal care.',
+    description: 'Fast, beautiful and crawlable marketing and content sites with strong SEO foundations.',
   },
 ] as const;
 

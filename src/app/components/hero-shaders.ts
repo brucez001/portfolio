@@ -58,6 +58,8 @@ uniform vec2 resolution;
 uniform sampler2D flowmap;
 uniform float time;
 uniform float entrance;
+uniform float ripple;
+uniform float rippleGain;
 uniform float lightTheme;
 uniform vec2 center;
 uniform vec2 ringSize;
@@ -123,8 +125,8 @@ void main() {
     marbled.x += swirl / fi * cos(t * 1.6 + fi * 1.5 * marbled.y);
     marbled.y += swirl / fi * cos(t * 1.3 + fi * 1. * marbled.x);
   }
-  float phase = entrance * 18.;
-  float energy = smoothstep(0., .10, entrance) * (1. - smoothstep(.35, 1., entrance));
+  float phase = ripple * 18.;
+  float energy = smoothstep(0., .10, ripple) * (1. - smoothstep(.35, 1., ripple)) * rippleGain;
   float angle = atan(screen.y, screen.x + .000001);
   float surfaceWave = .065 * sin(angle * 3. - phase)
     + .028 * sin(angle * 5. + phase * 1.3)
