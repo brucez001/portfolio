@@ -151,7 +151,6 @@ uniform float uTime;
 uniform float uDpr;
 uniform float uLightTheme;
 uniform vec3 uAccent;
-uniform vec2 uPointer;
 uniform float uEntrance;
 varying vec4 vColor;
 float hash(float n) { return fract(sin(n * 127.1) * 43758.5453); }
@@ -170,10 +169,6 @@ void main() {
   vec2 pos = start + n * reach * e;
   pos.y -= t * t * 0.18 * uRadius;
   pos.x += sin(uTime * 0.6 + s * 12.0) * 0.02 * uRadius * t;
-  vec2 d = pos - uPointer;
-  float dd = dot(d, d) / (uDpr * uDpr);
-  float push = 9000.0 / (dd + 2500.0);
-  pos += normalize(d + vec2(0.001)) * push * uDpr;
   float a = sin(3.14159 * t);
   float alpha = a * a * (0.6 + 0.4 * hash(s + 5.0)) * (0.3 + 0.7 * lit) * uEntrance;
   vec2 clip = pos / uRes * 2.0 - 1.0;

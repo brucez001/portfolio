@@ -187,7 +187,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
   let entranceStart = 0;
   let light = document.documentElement.dataset.theme === 'light';
   let accent = readAccent();
-  const pointer = { px: 0, py: 0, tx: -9999, ty: -9999, x: -9999, y: -9999 };
   const clock = { last: 0, time: 0 };
 
   const resize = () => {
@@ -214,20 +213,8 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
 
     const narrow = width < 720;
     const radius = narrow ? width * 0.55 : Math.min(height * 0.62, width * 0.45);
-    if (pointer.tx > -9000) {
-      if (pointer.x < -9000) { pointer.x = pointer.tx; pointer.y = pointer.ty; }
-      pointer.x += (pointer.tx - pointer.x) * 0.08;
-      pointer.y += (pointer.ty - pointer.y) * 0.08;
-      pointer.px += ((pointer.tx / width - 0.5) * -12 - pointer.px) * 0.05;
-      pointer.py += ((pointer.ty / height - 0.5) * -8 - pointer.py) * 0.05;
-    } else {
-      pointer.x = -9999;
-      pointer.y = -9999;
-      pointer.px *= 0.95;
-      pointer.py *= 0.95;
-    }
-    const cx = (width + pointer.px) * dpr;
-    const cy = (height + (1 - entrance) * radius * 0.3 + pointer.py) * dpr;
+    const cx = width * dpr;
+    const cy = (height + (1 - entrance) * radius * 0.3) * dpr;
     const r = radius * dpr;
     const spin = (reducedMotion ? 0.6 : time * 0.02) + 2.4;
     const lightTheme = light ? 1 : 0;
@@ -314,7 +301,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
       gl.uniform1f(dustProgram.uniforms.uDpr, dpr);
       gl.uniform1f(dustProgram.uniforms.uLightTheme, lightTheme);
       gl.uniform3f(dustProgram.uniforms.uAccent, accent[0], accent[1], accent[2]);
-      gl.uniform2f(dustProgram.uniforms.uPointer, pointer.x * dpr, pointer.y * dpr);
       gl.uniform1f(dustProgram.uniforms.uEntrance, entrance);
       gl.bindBuffer(gl.ARRAY_BUFFER, dustBuffer);
       gl.enableVertexAttribArray(dustProgram.attributes.aSeed);
@@ -335,12 +321,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     frame = requestAnimationFrame(loop);
   };
 
-  const onPointerMove = (event: PointerEvent) => {
-    const rect = stage.getBoundingClientRect();
-    pointer.tx = event.clientX - rect.left;
-    pointer.ty = event.clientY - rect.top;
-  };
-  const onPointerLeave = () => { pointer.tx = -9999; pointer.ty = -9999; };
   const onVisibilityChange = () => { if (!document.hidden) requestFrame(); };
   const themeObserver = new MutationObserver(() => {
     light = document.documentElement.dataset.theme === 'light';
@@ -349,8 +329,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
   });
   const resizeObserver = new ResizeObserver(resize);
 
-  stage.addEventListener('pointermove', onPointerMove, { passive: true });
-  stage.addEventListener('pointerleave', onPointerLeave);
   document.addEventListener('visibilitychange', onVisibilityChange);
   themeObserver.observe(document.documentElement, { attributeFilter: ['data-theme'], attributes: true });
   resizeObserver.observe(stage);
@@ -360,8 +338,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     dispose() {
       disposed = true;
       if (frame) cancelAnimationFrame(frame);
-      stage.removeEventListener('pointermove', onPointerMove);
-      stage.removeEventListener('pointerleave', onPointerLeave);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       themeObserver.disconnect();
       resizeObserver.disconnect();
