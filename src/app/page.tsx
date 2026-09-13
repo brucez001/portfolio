@@ -81,7 +81,7 @@ export default function Portfolio() {
 
         <section className="section" id="about">
           <Reveal>
-            <p className="section-label">01 - Introduction</p>
+            <p className="section-label">I - Introduction</p>
             <h2 className="section-title">About me</h2>
           </Reveal>
           <div className="about-layout">
@@ -123,7 +123,7 @@ export default function Portfolio() {
 
         <section className="section" id="experience">
           <Reveal>
-            <p className="section-label">02 - What I do</p>
+            <p className="section-label">II - What I do</p>
             <h2 className="section-title">Experience</h2>
           </Reveal>
 
@@ -165,7 +165,7 @@ export default function Portfolio() {
 
         <section className="section" id="projects">
           <Reveal>
-            <p className="section-label">03 - Work</p>
+            <p className="section-label">III - Work</p>
             <h2 className="section-title">Selected projects</h2>
           </Reveal>
           <div className="projects-list">
@@ -230,7 +230,7 @@ export default function Portfolio() {
 
         <section className="section contact-section" id="contact">
           <Reveal>
-            <p className="section-label">04 - Get in touch</p>
+            <p className="section-label">IV - Get in touch</p>
             <h2 className="section-title">Let&apos;s connect</h2>
           </Reveal>
           <Reveal className="contact-layout">
