@@ -869,11 +869,45 @@ a.project-media-frame:focus-visible {
 }
 
 .contact-form-status {
+  align-items: flex-start;
   border-radius: 6px;
+  display: flex;
   font-size: var(--fs-meta);
+  gap: 0.75rem;
+  justify-content: space-between;
   line-height: 1.5;
   margin: 0;
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 0.7rem 0.7rem 0.9rem;
+}
+
+.contact-form-status-message {
+  margin: 0;
+}
+
+.contact-form-status-close {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  margin: -0.15rem 0;
+  opacity: 0.7;
+  padding: 0.25rem;
+  transition: opacity 0.3s var(--ease);
+}
+
+.contact-form-status-close:hover,
+.contact-form-status-close:focus-visible {
+  opacity: 1;
+}
+
+.contact-form-status-close svg {
+  height: 16px;
+  width: 16px;
 }
 
 .contact-form-status.is-success {

@@ -1,10 +1,10 @@
 'use client';
 
-import { ArrowRight, Loader2 } from 'lucide-react';
-import { type ReactNode, useActionState, useEffect, useRef } from 'react';
+import { ArrowRight, Loader2, X } from 'lucide-react';
+import { type ReactNode, useActionState, useEffect, useRef, useState } from 'react';
 
 import { submitContact } from './contact-actions';
-import { initialContactFormState } from './contact-form-state';
+import { type ContactFormState, initialContactFormState } from './contact-form-state';
 
 type ContactFormProps = {
   footerStart?: ReactNode;
@@ -13,12 +13,15 @@ type ContactFormProps = {
 export function ContactForm({ footerStart }: ContactFormProps) {
   const [state, formAction, isPending] = useActionState(submitContact, initialContactFormState);
   const formRef = useRef<HTMLFormElement>(null);
+  const [dismissedState, setDismissedState] = useState<ContactFormState | null>(null);
 
   useEffect(() => {
     if (state.status === 'success') {
       formRef.current?.reset();
     }
   }, [state.status]);
+
+  const isStatusVisible = state.status !== 'idle' && dismissedState !== state;
 
   return (
     <form action={formAction} className="contact-form" ref={formRef}>
@@ -68,15 +71,21 @@ export function ContactForm({ footerStart }: ContactFormProps) {
         />
       </label>
 
-      {state.status === 'success' && (
-        <p className="contact-form-status is-success" role="status">
-          {state.message}
-        </p>
-      )}
-      {state.status === 'error' && (
-        <p className="contact-form-status is-error" role="alert">
-          {state.message}
-        </p>
+      {isStatusVisible && (
+        <div
+          className={`contact-form-status ${state.status === 'success' ? 'is-success' : 'is-error'}`}
+          role={state.status === 'success' ? 'status' : 'alert'}
+        >
+          <p className="contact-form-status-message">{state.message}</p>
+          <button
+            aria-label="Dismiss message"
+            className="contact-form-status-close"
+            onClick={() => setDismissedState(state)}
+            type="button"
+          >
+            <X aria-hidden="true" />
+          </button>
+        </div>
       )}
 
       <div className="contact-form-footer">
