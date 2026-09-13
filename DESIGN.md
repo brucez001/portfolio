@@ -10,11 +10,12 @@ description: A polished personal portfolio for a Melbourne software developer wo
 
 This site should feel like a senior software developer's personal operating surface: calm, precise, technical, and personal without becoming decorative. It is not a startup landing page, not a game-like 3D portfolio, and not a generic SaaS hero.
 
-The strongest direction comes from the supplied HTML reference:
+The foundation is the supplied editorial HTML reference, evolved with the September 2026 liquid-starlight hero direction:
 
 - Dark-first canvas with a soft blue accent.
 - Editorial serif display type paired with a practical sans.
-- Thin borders, subtle glass navigation, restrained cards, and a dotted technical texture.
+- Thin borders, frosted pill controls, restrained cards, and a dotted technical texture.
+- A blue-silver, flowing orbital hero inspired by DeepSeek Harness: expressive atmosphere, quiet readable copy.
 - Light mode that feels warm and paper-like rather than pure white.
 - Project and experience sections that are easy to scan.
 
@@ -116,7 +117,7 @@ Use these public web fonts:
 
 | Role | Font | Size | Weight | Line height | Letter spacing | Use |
 | --- | --- | --- | --- | --- | --- | --- |
-| Hero display | Serif | `clamp(3rem, 6.5vw, 5rem)` | 400 | 1.08 | 0 | Main hero headline |
+| Hero display | Serif | `clamp(3.2rem, 5.8vw, 5.3rem)` | 400 | 1.09 | `-0.035em` | Main hero headline; smaller responsive scale on mobile |
 | Section title | Serif | `clamp(2rem, 4vw, 3rem)` | 400 | 1.2 | 0 | Section headings |
 | Card title | Serif | `1.3rem - 1.5rem` | 400 | 1.25 | 0 | Project/experience names |
 | Body | Sans | `0.95rem - 1rem` | 400 | 1.75-1.9 | 0 | Main copy |
@@ -128,8 +129,8 @@ Use these public web fonts:
 
 - Serif display type should be regular weight only.
 - Do not bold serif headings.
-- Keep letter spacing at `0` for readable headings and body.
-- Use uppercase tracking only for functional labels, nav items, buttons, and metadata.
+- Keep letter spacing at `0` for body and section headings; the large hero uses `-0.035em`.
+- Use uppercase tracking only for functional labels, nav items, and metadata. Buttons use sentence case and restrained tracking.
 - Body copy should feel relaxed and editorial, not dashboard-dense.
 
 ## 5. Layout Principles
@@ -154,7 +155,7 @@ Base unit: 4px.
 - Global content max width: `1100px`.
 - Wide media can expand only when it is the primary content.
 - Section padding: `7rem 3rem` desktop, `5rem 1.5rem` mobile.
-- Hero minimum height: about `88vh`, leaving a hint of following content on common viewports.
+- Hero: centered editorial copy within a centered orbital light field. Desktop uses up to 900px / one small viewport height, growing with content. Mobile keeps the same layered composition, with a wider circular orbit cropped at the edges rather than a separate illustration above the copy.
 - About: `280px / 1fr` grid on desktop, stacked on mobile.
 - Experience: `1fr / 1fr` grid on desktop, stacked on mobile.
 - Projects: vertical list of alternating two-column rows, stacked on mobile.
@@ -177,17 +178,19 @@ background-size: 28px 28px;
 
 The texture should remain subtle. It should never compete with text or project screenshots.
 
-### Hero Canvas
+### Hero Atmosphere — Liquid Starlight
 
-The hero may use a lightweight constellation canvas:
+The hero is the one expressive space-themed surface. Use a flowing blue-silver orbital light field, not generic blobs or a game scene. Keep light away from the reading plane. In light mode, translate the same form into pale blue ink on warm paper.
 
-- Dots and connecting lines only.
-- Accent color changes with theme.
-- Particle count capped by viewport area.
-- Must respect `prefers-reduced-motion`.
-- Must not block first meaningful paint or primary content rendering.
-
-Avoid WebGL/Three.js in the hero unless there is a clear performance budget and browser verification proves it is worth the cost.
+- Keep the original drifting particle stars and faint proximity connections behind the hero content, alongside the ring. Use the existing dark background, without added navy haze or static star patterns. The starfield shares the ring's animation clock, pause control, reduced-motion and visibility handling.
+- Native WebGL: one quarter-resolution flow-map pass and one atmosphere pass. No Three.js, downloaded textures, video, or new runtime dependency; two small GPU textures retain cursor history.
+- Keep the ring anchored at the center. Smooth fine-pointer position and velocity independently; stamp a swept cursor path into a persistent flow map, then use its direction and fading strength to deform and light the material. Do not substitute a point ripple, global parallax, or a detached spotlight. Touch scrolling stays native.
+- Render at no more than CSS resolution, capped at 1100 × 850 pixels; flow buffers use one quarter of each dimension. Target up to 60fps during fine-pointer movement, returning to 30fps at rest. Smoothing and trail decay must be time-based, not frame-count based.
+- Preserve the restored pre-background ring treatment and cursor flow: soft marbled glow, the original input smoothing, and a free-flowing cloud across the hero. Do not reapply the rejected tighter glow cutoff, capped displacement, or faster tracking without approval.
+- Stop the loop offscreen, in a hidden tab, when paused, and for reduced motion. Theme/size changes may redraw a static frame.
+- Provide an accessible pause/resume control; reduced motion gets a static composition.
+- Static CSS orbit fallback when WebGL is unavailable or lost (until reload); all meaningful content stays in server-rendered HTML.
+- Verify dark/light themes and desktop/mobile layout before accepting changes. Technical checks are not visual acceptance.
 
 ### Photography & Screenshots
 
@@ -221,7 +224,7 @@ Do not use a logo image for the primary brand mark unless it is redesigned to ma
 
 Circular icon button:
 
-- Size: 38px by 38px.
+- Size: 44px by 44px, using the shared control height.
 - Radius: 50%.
 - Border: `1px solid var(--border-hover)`.
 - Background: `var(--toggle-bg)`.
@@ -232,24 +235,16 @@ Persist theme to `localStorage` and initialize from saved preference, falling ba
 
 ### Buttons
 
-Primary CTA:
+Use the shared control tokens in `src/app/buttons.css`:
 
-- Inline flex, gap 8px.
-- Font: sans, `0.82rem`, 600, uppercase, `0.06em`.
-- Background: `var(--accent)`.
-- Text: `var(--bg)`.
-- Border: `1px solid var(--accent)`.
-- Radius: 6px.
-- Padding: `0.75rem 1.6rem`.
-- Hover: `var(--accent-secondary)`, translateY(-1px), subtle accent shadow.
-
-Secondary link button:
-
-- Background: `var(--bg-nav)`.
-- Border: `1px solid var(--border)`.
-- Radius: 6px.
-- Text: `var(--text-muted)`.
-- Hover: text to `var(--text-secondary)`, border to `var(--border-hover)`.
+- `--radius-control`: full pill radius. Icon-only controls remain circular.
+- `--control-height`: at least 44px. Use sentence-case sans text, medium weight, and compact icon spacing.
+- Primary: pearl surface with dark ink in dark mode; dark ink surface with light text in light mode.
+- Secondary: translucent theme-aware glass, thin border, subtle inset highlight, opaque fallback. Use glass on controls and navigation, not every content surface.
+- Hover: no more than 1px lift, restrained surface and border change. Use explicit transition properties.
+- Keyboard: visible accent outline with offset. Disabled buttons lose hover lift and preserve legibility.
+- Support `.button-primary`, `.button-secondary`, social links, and circular navigation controls consistently.
+- Mobile action pairs may wrap; no horizontal overflow or undersized touch targets.
 
 ### Cards
 
@@ -344,7 +339,7 @@ Respect `prefers-reduced-motion`:
 
 Touch targets:
 
-- Icon buttons should be at least 38px by 38px; 44px preferred where layout allows.
+- Icon buttons must be at least 44px by 44px.
 - Text buttons need enough horizontal padding for reliable taps.
 - Avoid tiny carousel dots as the only control on mobile; keep arrows or swipe support.
 
@@ -362,8 +357,8 @@ Touch targets:
 
 ### Don't
 
-- Do not keep the old purple/space/Three.js visual identity unless a specific element earns its place.
-- Do not use oversized marketing hero copy.
+- Keep the space identity in the liquid-starlight hero; do not reintroduce the heavy purple/Three.js identity.
+- Keep hero copy short, concrete, and editorial; no inflated marketing claims.
 - Do not use decorative gradient blobs, one-note purple palettes, or glass cards everywhere.
 - Do not make every section a card.
 - Do not turn the tech stack into a wall of floating logos.
@@ -374,7 +369,7 @@ Touch targets:
 
 When asking an AI coding agent to build or revise UI in this repo, use prompts like:
 
-> Use `DESIGN.md` as the visual source of truth. Build a dark-first Next.js portfolio section with DM Serif Display headings, Instrument Sans body, subtle blue accent, 8px-or-less radii, thin themed borders, and no decorative gradient blobs.
+> Use `DESIGN.md` as the visual source of truth. Build a dark-first Next.js portfolio section with DM Serif Display headings, Instrument Sans body, subtle blue accent, pill-shaped controls, restrained card radii, thin themed borders, and a liquid-starlight hero with a quiet reading plane.
 
 > Convert this component to follow the portfolio design system: server component by default, semantic headings, theme tokens from `DESIGN.md`, accessible controls, and responsive layout that does not overlap on mobile.
 

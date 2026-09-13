@@ -31,7 +31,7 @@ export const navLinks: NavLink[] = [
 
 export const socialLinks = [
   {
-    href: 'https://github.com/Bruce-zzhu',
+    href: 'https://github.com/brucez001',
     label: 'GitHub',
   },
   {
@@ -42,33 +42,33 @@ export const socialLinks = [
 
 export const highlights = [
   { label: 'Building', value: 'Web & mobile' },
-  { label: 'Designing', value: 'UI & UX' },
+  { label: 'Designing', value: 'Systems & interfaces' },
   { label: 'Exploring', value: 'AI models & tools' },
 ] as const;
 
 export const skills = [
-  'Agentic Engineering',
-  'SEO',
+  'Design Systems',
   'Product UX',
-  'Cloud',
   'Accessibility',
   'Cross-platform',
-  'Design Systems',
+  'Agentic Engineering',
+  'SEO',
+  'Cloud',
   'E-commerce',
 ] as const;
 
 export const services = [
   {
     title: 'Web Apps',
-    description: 'Scalable interfaces with modern React architecture, secure authentication, and reliable performance.',
+    description: 'Product interfaces in modern React: considered interaction, solid architecture, and performance treated as a design quality.',
   },
   {
     title: 'Mobile Apps',
-    description: 'Cross-platform product experiences for iOS and Android with native-feeling UI and smooth performance.',
+    description: 'Cross-platform iOS and Android experiences that feel native: smooth motion, right-sized touch targets, and careful edge cases.',
   },
   {
     title: 'Custom Websites',
-    description: 'Fast, beautiful and crawlable marketing and content sites with strong SEO foundations.',
+    description: 'Fast, crawlable marketing and content sites where typography, SEO, and Core Web Vitals get equal care.',
   },
 ] as const;
 

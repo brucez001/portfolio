@@ -1,0 +1,176 @@
+:root {
+  --radius-control: 999px;
+  --control-height: 44px;
+  --control-transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.15s var(--ease);
+}
+
+[data-theme="dark"] {
+  --btn-primary-bg: #f4f2ec;
+  --btn-primary-bg-hover: #ffffff;
+  --btn-primary-text: #14161b;
+  --btn-primary-border: rgba(255, 255, 255, 0.3);
+  --btn-primary-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --btn-primary-shadow-hover: 0 10px 26px rgba(0, 0, 0, 0.4);
+
+  --btn-secondary-bg: rgba(226, 230, 237, 0.08);
+  --btn-secondary-bg-hover: rgba(226, 230, 237, 0.14);
+  --btn-secondary-border: rgba(185, 205, 255, 0.22);
+  --btn-secondary-border-hover: rgba(185, 205, 255, 0.34);
+  --btn-secondary-highlight: rgba(255, 255, 255, 0.16);
+  --btn-secondary-shadow: 0 8px 26px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+  --btn-primary-bg: #1a1a2e;
+  --btn-primary-bg-hover: #262640;
+  --btn-primary-text: #f8f7f4;
+  --btn-primary-border: rgba(20, 20, 60, 0.4);
+  --btn-primary-shadow: 0 6px 20px rgba(20, 20, 60, 0.18);
+  --btn-primary-shadow-hover: 0 10px 26px rgba(20, 20, 60, 0.22);
+
+  --btn-secondary-bg: rgba(255, 255, 255, 0.5);
+  --btn-secondary-bg-hover: rgba(255, 255, 255, 0.68);
+  --btn-secondary-border: rgba(20, 20, 60, 0.16);
+  --btn-secondary-border-hover: rgba(20, 20, 60, 0.26);
+  --btn-secondary-highlight: rgba(255, 255, 255, 0.75);
+  --btn-secondary-shadow: 0 8px 26px rgba(20, 20, 60, 0.12);
+}
+
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  box-sizing: border-box;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  justify-content: center;
+  letter-spacing: 0.015em;
+  min-height: var(--control-height);
+  overflow: hidden;
+  padding: 0.75rem 1.7rem;
+  position: relative;
+  transition: var(--control-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button-ripple {
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.2;
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0);
+  will-change: opacity, transform;
+  animation: button-ripple 0.62s var(--ease) forwards;
+}
+
+@keyframes button-ripple {
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.button-primary {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-border);
+  box-shadow: var(--btn-primary-shadow);
+  color: var(--btn-primary-text);
+}
+
+.button-primary:hover,
+.button-primary:focus-visible {
+  background: var(--btn-primary-bg-hover);
+  box-shadow: var(--btn-primary-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.button-primary:active {
+  box-shadow: var(--btn-primary-shadow);
+  transform: translateY(0);
+}
+
+.button-secondary {
+  background: var(--btn-secondary-bg);
+  border-color: var(--btn-secondary-border);
+  box-shadow: inset 0 1px 0 var(--btn-secondary-highlight), var(--btn-secondary-shadow);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+
+.button-secondary:hover,
+.button-secondary:focus-visible {
+  background: var(--btn-secondary-bg-hover);
+  border-color: var(--btn-secondary-border-hover);
+  transform: translateY(-1px);
+}
+
+.button-secondary:active {
+  transform: translateY(0);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+  transform: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle,
+.menu-toggle {
+  border-radius: 50%;
+  height: var(--control-height);
+  transition: var(--control-transition);
+  width: var(--control-height);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible,
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .theme-toggle,
+  .menu-toggle {
+    transition: none;
+  }
+
+  .button-ripple {
+    display: none;
+  }
+
+  .button-primary:hover,
+  .button-primary:focus-visible,
+  .button-secondary:hover,
+  .button-secondary:focus-visible,
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible,
+  .menu-toggle:hover,
+  .menu-toggle:focus-visible {
+    transform: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .button-secondary { background: var(--bg-elevated); }
+}

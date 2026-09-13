@@ -7,7 +7,10 @@ import '@fontsource/instrument-sans/400.css';
 import '@fontsource/instrument-sans/500.css';
 import '@fontsource/instrument-sans/600.css';
 import { BackdropConstellation } from '@/app/components/BackdropConstellation';
+import { ButtonRipple } from '@/app/components/ButtonRipple';
 import './globals.css';
+import './buttons.css';
+import './hero.css';
 
 const siteDescription =
   'Building at the edge of curiosity, design, and software systems.';
@@ -27,6 +30,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [
     'Bruce Zhu',
+    'Design Engineer Melbourne',
     'Software Developer Melbourne',
     'Next.js Developer',
     'React Developer',
@@ -40,19 +44,19 @@ export const metadata: Metadata = {
     images: [openGraphImage],
     locale: 'en_AU',
     siteName: 'Bruce Zhu',
-    title: 'Bruce Zhu - Software Developer',
+    title: 'Bruce Zhu - Design Engineer',
     type: 'website',
     url: 'https://brucezhu.dev',
   },
   title: {
-    default: 'Bruce Zhu - Software Developer',
+    default: 'Bruce Zhu - Design Engineer',
     template: '%s - Bruce Zhu',
   },
   twitter: {
     card: 'summary_large_image',
     description: siteDescription,
     images: [openGraphImage],
-    title: 'Bruce Zhu - Software Developer',
+    title: 'Bruce Zhu - Design Engineer',
   },
 };
 
@@ -65,9 +69,9 @@ const personJsonLd = {
     addressLocality: 'Melbourne',
   },
   image: 'https://brucezhu.dev/assets/photo.png',
-  jobTitle: 'Software Developer',
+  jobTitle: 'Design Engineer',
   name: 'Bruce Zhu',
-  sameAs: ['https://github.com/Bruce-zzhu', 'https://www.linkedin.com/in/bruce-zhu-01/'],
+  sameAs: ['https://github.com/brucez001', 'https://www.linkedin.com/in/bruce-zhu-01/'],
   url: 'https://brucezhu.dev',
 };
 
@@ -111,6 +115,7 @@ export default function RootLayout({
       <body>
         <a className="skip-link" href="#main">Skip to main content</a>
         <BackdropConstellation />
+        <ButtonRipple />
         {children}
         {shouldLoadVercelTelemetry ? (
           <>

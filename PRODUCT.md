@@ -17,7 +17,7 @@ Context of use: usually a quick, often mobile, often skeptical visit. Most visit
 
 ## Product Purpose
 
-A personal portfolio for Bruce Zhu, a Melbourne software developer working across fintech, Web3, mobile, and supply-chain products. It exists to present his work, experience, and way of thinking with enough clarity and polish that a visitor trusts him with their next role, project, or collaboration.
+A personal portfolio for Bruce Zhu, a Melbourne design engineer working across fintech, Web3, mobile, and supply-chain products. It exists to present his work, experience, and way of thinking with enough clarity and polish that a visitor trusts him with their next role, project, or collaboration.
 
 Success looks like: a visitor understands within seconds who Bruce is and the calibre of his work, scans the projects and experience without friction, and leaves either convinced or in contact. The site itself is evidence: it should demonstrate the engineering discipline and product judgement it claims, on both desktop and mobile, fast and accessible.
 
@@ -33,7 +33,7 @@ A calm senior craftsperson. Quiet confidence over spectacle; the work speaks, th
 ## Anti-references
 
 - **Generic SaaS landing page**: no hero-metric templates, no gradient buzzword marketing, no identical icon-heading-text feature-card grids.
-- **Flashy 3D or game-like portfolio**: no WebGL spectacle, no heavy or attention-grabbing animation, no gimmicks standing in for substance. (The earlier purple / space / Three.js identity is explicitly retired.)
+- **Flashy 3D or game-like portfolio**: no WebGL spectacle, no heavy or attention-grabbing animation, no gimmicks standing in for substance. (The heavy purple / Three.js treatment is retired; a restrained, flowing space-themed hero is explicitly part of the current direction.)
 - **Overstuffed resume dump**: no wall of every past role, no floating tech-logo grids, no dense bullet lists. Curation and judgement over quantity.
 - **Trend-chasing over-design**: not loud for the sake of looking current.
 
@@ -48,6 +48,6 @@ A calm senior craftsperson. Quiet confidence over spectacle; the work speaks, th
 ## Accessibility & Inclusion
 
 - Target **WCAG 2.1 AA**, maintained in both the default dark theme and the complete light theme (contrast holds in both).
-- **Reduced motion** is first-class: `prefers-reduced-motion` disables the hero constellation and reveal transforms while keeping all content and theme switching functional. Content is never gated behind animation.
+- **Reduced motion** is first-class: `prefers-reduced-motion` renders a static hero atmosphere and disables reveal transforms while keeping all content and theme switching functional. Content is never gated behind animation.
 - **Keyboard and screen reader**: navigation anchors reachable, theme toggle and carousel controls labelled, mobile menu dismissible by link and Escape, a single `h1`, real section headings, meaningful alt text. No meaningful copy hidden inside canvas or animation-only layers.
 - Touch targets at least 38px (44px preferred); no tiny-dots-only controls on mobile.

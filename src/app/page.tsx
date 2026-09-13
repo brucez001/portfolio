@@ -6,7 +6,6 @@ import { ContactForm } from '@/app/components/ContactForm';
 import { CursorGlow } from '@/app/components/CursorGlow';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
 import { Navigation } from '@/app/components/Navigation';
-import { PageCompanion } from '@/app/components/PageCompanion';
 import { Reveal } from '@/app/components/Reveal';
 import { experiences, highlights, navLinks, projects, services, skills, socialLinks } from '@/app/data';
 
@@ -38,45 +37,46 @@ export default function Portfolio() {
 
       <main id="main">
         <section className="hero" id="home">
-          <HeroCanvas />
-          <div aria-hidden="true" className="hero-moon" />
-          <PageCompanion />
           <div className="hero-content">
-            <p className="hero-label">Turning ideas into functional things</p>
-            <h1 className="animated-headline" aria-label="I build complex products that feel simple">
-              <span className="headline-line">
-                <span className="headline-word delay-1">I</span>{' '}
-                <span className="headline-word delay-2">build</span>{' '}
-                <span className="headline-word delay-3">complex</span>
+            <p className="hero-label"><span aria-hidden="true" /> Bruce Zhu · Software engineer</p>
+            <h1 className="hero-headline" aria-label="Design with intent. Build with care.">
+              <span aria-hidden="true" className="headline-line">
+                <span className="headline-word delay-1">Design</span>{' '}
+                <span className="headline-word delay-2">with</span>{' '}
+                <span className="headline-word delay-3">intent</span>
               </span>
-              <span className="headline-line">
-                <span className="headline-word delay-4">products</span>{' '}
-                <span className="headline-word delay-5">that feel</span>{' '}
-                <em className="headline-word headline-accent delay-6">simple</em>
-              </span>
+              <em aria-hidden="true" className="headline-line">
+                <span className="headline-word delay-4">Build</span>{' '}
+                <span className="headline-word delay-5">with</span>{' '}
+                <span className="headline-word delay-6">care</span>
+              </em>
             </h1>
             <p className="hero-summary">
-              I love creating software that is fast, reliable, and actually pleasant to use - from product UI to
-              the systems behind them.
+              I design and build products that bring value, and feel good to use
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#about">
-                Get to Know Me
+                Get to know me
                 <ArrowDown aria-hidden="true" />
               </a>
-              <div className="social-buttons" aria-label="Social links">
-                {socialLinks.map((link) => {
-                  const Icon = socialIcons[link.label];
-                  return (
-                    <a href={link.href} key={link.href} rel="noopener noreferrer" target="_blank">
-                      <Icon aria-hidden="true" />
-                      {link.label}
-                    </a>
-                  );
-                })}
-              </div>
+              {socialLinks.map((link) => {
+                const Icon = socialIcons[link.label];
+                return (
+                  <a
+                    className="button button-secondary"
+                    href={link.href}
+                    key={link.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Icon aria-hidden="true" />
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
+          <HeroCanvas />
         </section>
 
         <section className="section" id="about">
@@ -96,14 +96,14 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="about-copy">
               <p>
-                Hi 👋 I&apos;m Bruce Zhu, a software developer based in Melbourne who loves building web and mobile apps. I&apos;m at my
-                best turning rough ideas into polished product experiences, shaping the details until it feels ready
-                to use.
+                Hi 👋 I&apos;m Bruce Zhu, a design engineer based in Melbourne. I work in both Figma and the component
+                code, and I prototype in the real stack rather than in mockups, because the real thing is the only
+                honest test of how something feels.
               </p>
               <p>
-                I also care deeply about design and user experience. I&apos;m passionate about designing product UI, thinking
-                through the user journey, and polishing the small details that make something feel intuitive instead of
-                just functional.
+                I care about the last 10%: easing curves, focus states, empty states, how a layout holds up on a small
+                phone or a slow connection. Not just &ldquo;does it work&rdquo; but &ldquo;does it feel right.&rdquo;
+                Performance and accessibility are part of that, not chores: a fast, reachable interface is better design.
               </p>
               <p>
                 I love seeing what I build create value for someone and make them go &ldquo;wow, that&apos;s nice.&rdquo;
