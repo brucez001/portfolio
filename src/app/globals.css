@@ -166,33 +166,49 @@ img {
 .site-nav {
   align-items: center;
   background: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  border-bottom: 1px solid transparent;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0);
   display: flex;
   inset: 0 0 auto;
+  isolation: isolate;
   justify-content: space-between;
   padding: 1rem 3rem;
   position: fixed;
-  transition:
-    background 0.35s var(--ease),
-    backdrop-filter 0.35s var(--ease),
-    -webkit-backdrop-filter 0.35s var(--ease),
-    border-color 0.35s var(--ease),
-    box-shadow 0.35s var(--ease),
-    padding 0.4s var(--ease),
-    var(--transition-theme);
+  transition: padding 0.4s var(--ease);
   z-index: 100;
 }
 
-.site-nav.is-scrolled {
+.site-nav::before {
   background: var(--nav-glass);
   -webkit-backdrop-filter: blur(40px) saturate(1.4);
   backdrop-filter: blur(40px) saturate(1.4);
-  border-bottom-color: var(--nav-glass-border);
+  border: 1px solid var(--nav-glass-border);
+  border-radius: 999px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  content: "";
+  inset: 0.35rem 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(-0.35rem) scaleX(0.985);
+  transform-origin: top center;
+  transition:
+    opacity 0.2s var(--ease),
+    transform 0.24s var(--ease),
+    var(--transition-theme);
+  z-index: 0;
+}
+
+.site-nav > * {
+  position: relative;
+  z-index: 1;
+}
+
+.site-nav.is-scrolled {
   padding-block: 0.75rem;
+}
+
+.site-nav.is-scrolled::before {
+  opacity: 1;
+  transform: translateY(0) scaleX(1);
 }
 
 .nav-brand {
@@ -963,6 +979,10 @@ a.project-media-frame:focus-visible {
 
   .site-nav.is-scrolled {
     padding-block: 0.65rem;
+  }
+
+  .site-nav::before {
+    inset: 0.3rem 0.75rem;
   }
 
   .nav-links {

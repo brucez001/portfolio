@@ -1,7 +1,7 @@
 import { ArrowDown } from 'lucide-react';
 import Image from 'next/image';
 import type { SVGProps } from 'react';
-import profilePhoto from '../../public/assets/photo.png';
+import profilePhoto from '../../public/assets/about-photo.webp';
 import { ContactForm } from '@/app/components/ContactForm';
 import { CursorGlow } from '@/app/components/CursorGlow';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
