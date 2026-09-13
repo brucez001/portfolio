@@ -314,17 +314,10 @@ img {
   width: 38px;
 }
 
-.theme-toggle:hover,
-.theme-toggle:focus-visible,
 .menu-toggle:hover,
 .menu-toggle:focus-visible {
   border-color: var(--accent);
   transform: scale(1.06);
-}
-
-.theme-toggle:hover,
-.theme-toggle:focus-visible {
-  background: var(--toggle-bg);
 }
 
 .theme-toggle svg,

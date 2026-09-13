@@ -45,13 +45,6 @@ export function Navigation({ links }: NavigationProps) {
     };
   }, [isMenuOpen]);
 
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    localStorage.setItem('theme', nextTheme);
-    setTheme(nextTheme);
-  };
-
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -70,14 +63,10 @@ export function Navigation({ links }: NavigationProps) {
             ))}
           </div>
 
-          <button
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="theme-toggle"
-            onClick={toggleTheme}
-            type="button"
-          >
+          {/* Theme switch is parked until the light theme ships. */}
+          <span aria-hidden="true" className="theme-toggle">
             {theme === 'dark' ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
-          </button>
+          </span>
 
           <button
             aria-expanded={isMenuOpen}

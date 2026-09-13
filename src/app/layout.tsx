@@ -76,25 +76,11 @@ const personJsonLd = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: 'dark light',
+  colorScheme: 'dark',
   initialScale: 1,
-  themeColor: [
-    { color: '#0c0e12', media: '(prefers-color-scheme: dark)' },
-    { color: '#f8f7f4', media: '(prefers-color-scheme: light)' },
-  ],
+  themeColor: '#0c0e12',
   width: 'device-width',
 };
-
-const themeScript = `
-(() => {
-  try {
-    const saved = localStorage.getItem('theme');
-    document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
-  } catch {
-    document.documentElement.dataset.theme = 'dark';
-  }
-})();
-`;
 
 const shouldLoadVercelTelemetry = process.env.VERCEL === '1';
 
@@ -104,9 +90,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="dark" lang="en-AU" suppressHydrationWarning>
+    <html data-theme="dark" lang="en-AU">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
           type="application/ld+json"
