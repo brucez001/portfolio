@@ -179,9 +179,14 @@ img {
   inset: 0 0 auto;
   isolation: isolate;
   justify-content: space-between;
+  margin-inline: auto;
+  max-width: 1280px;
   padding: 1rem 3rem;
   position: fixed;
-  transition: padding 0.4s var(--ease);
+  transition:
+    max-width 0.4s var(--ease),
+    padding 0.4s var(--ease);
+  width: calc(100% - 2rem);
   z-index: 100;
 }
 
@@ -193,7 +198,7 @@ img {
   border-radius: 999px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   content: "";
-  inset: 0.35rem 1.5rem;
+  inset: 0.35rem 0;
   opacity: 0;
   pointer-events: none;
   position: absolute;
@@ -212,6 +217,7 @@ img {
 }
 
 .site-nav.is-scrolled {
+  max-width: 1180px;
   padding-block: 0.75rem;
 }
 
@@ -984,7 +990,9 @@ a.project-media-frame:focus-visible {
 
 @media (max-width: 768px) {
   .site-nav {
-    padding: 0.8rem 1.5rem;
+    max-width: none;
+    padding: 0.8rem 0.75rem;
+    width: calc(100% - 1.5rem);
   }
 
   .site-nav.is-scrolled {
@@ -992,7 +1000,7 @@ a.project-media-frame:focus-visible {
   }
 
   .site-nav::before {
-    inset: 0.3rem 0.75rem;
+    inset: 0.3rem 0;
   }
 
   .nav-links {

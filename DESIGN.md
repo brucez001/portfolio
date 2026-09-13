@@ -209,11 +209,13 @@ The hero is the one expressive space-themed surface. Use a flowing blue-silver o
 
 Fixed top navigation:
 
+- Width: centered at `calc(100% - 2rem)`, transitioning smoothly from a `1280px` maximum at the top to `1180px` after scroll; mobile remains `calc(100% - 1.5rem)`.
 - Height: content-driven, around 64px at top.
 - Padding: `1rem 3rem`, shrinking to `0.75rem 3rem` after scroll.
-- Mobile padding: `0.8rem 1.5rem`, shrinking to `0.65rem 1.5rem`.
-- Background: `var(--nav-glass)` with `backdrop-filter: blur(24px) saturate(1.4)`.
-- Border: `1px solid var(--nav-glass-border)` on bottom.
+- Mobile padding: `0.8rem 0.75rem`, shrinking to `0.65rem 0.75rem`.
+- At the top, the navigation surface is transparent and slightly wider. After scroll, the centered frame contracts into a fully rounded glass pill.
+- Background after scroll: `var(--nav-glass)` with `backdrop-filter: blur(40px) saturate(1.4)`.
+- Border after scroll: `1px solid var(--nav-glass-border)` around the pill.
 - Brand: `BZ.` in serif, accent dot.
 - Desktop links: small uppercase sans labels.
 - Mobile: hamburger opens a full-screen themed overlay.
