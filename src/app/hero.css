@@ -336,7 +336,15 @@
   [data-theme="light"] .hero { min-height: max(780px, 100svh); }
   [data-theme="light"] .hero-content { padding: 7.5rem 1.5rem 24rem; }
   [data-theme="light"] .hero h1 { font-size: clamp(2rem, 10.2vw, 4.2rem); }
-  [data-theme="light"] .hero-earth-image { background-position: 40% bottom; }
+  /* A portrait viewport crops this landscape photograph to a narrow column, and
+     `cover` alone drops the seated figure — the human anchor of the frame — off
+     the left edge. Scaling past cover and anchoring the top lands him in the
+     clear band between the social buttons and the terrace. The hero's
+     `min-height: max(780px, 100svh)` keeps the scaled width covering. */
+  [data-theme="light"] .hero-earth-image {
+    background-position: 20% top;
+    background-size: auto 124%;
+  }
 
   .hero-earth-veil {
     background: linear-gradient(180deg,
