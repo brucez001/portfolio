@@ -93,7 +93,8 @@ export default function RootLayout({
   return (
     <html data-theme="dark" lang="en-AU" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){var t;try{t=localStorage.getItem('portfolio-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f8f7f4':'#0c0e12'})()` }} />
+        {/* Dark is the default; the system preference is ignored until the visitor explicitly picks a theme. */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t;try{t=localStorage.getItem('portfolio-theme')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f8f7f4':'#0c0e12'})()` }} />
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
           type="application/ld+json"
