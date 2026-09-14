@@ -699,7 +699,7 @@ img {
 }
 
 .project-card:focus-within .project-media-frame img {
-  transform: scale(1.045) translateY(-2px);
+  transform: scale(1.04);
 }
 
 .project-card:focus-within .project-info h3 {
@@ -719,7 +719,7 @@ img {
 
   .project-card:has(.project-media-link:hover) .project-media-frame img,
   .project-card:has(.project-title-link:hover) .project-media-frame img {
-    transform: scale(1.045) translateY(-2px);
+    transform: scale(1.04);
   }
 
   .project-card:has(.project-media-link:hover) .project-info h3,
@@ -756,31 +756,6 @@ img {
 .project-card:nth-child(4n + 2) .project-media,
 .project-card:nth-child(4n + 3) .project-media {
   aspect-ratio: 4 / 3;
-}
-
-.project-card.reveal .project-media-frame {
-  transform: translateY(18px) scale(0.985);
-  transition: transform 0.75s var(--ease) calc(var(--project-delay) + 70ms);
-}
-
-.project-card.reveal .project-media-frame::after {
-  background: var(--bg-elevated);
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  transform: scaleY(1);
-  transform-origin: bottom;
-  transition: transform 0.75s var(--ease) calc(var(--project-delay) + 70ms);
-  z-index: 2;
-}
-
-.project-card.reveal.is-visible .project-media-frame {
-  transform: translateY(0) scale(1);
-}
-
-.project-card.reveal.is-visible .project-media-frame::after {
-  transform: scaleY(0);
 }
 
 .project-info {
@@ -954,6 +929,9 @@ img {
 
 .contact-form-socials svg {
   height: 16px;
+  /* Optical centring: the labels have no descenders, so their ink sits above the
+     line-box centre that align-items uses. */
+  transform: translateY(-1px);
   width: 16px;
 }
 
@@ -1123,14 +1101,6 @@ img {
   .project-card.reveal {
     opacity: 1;
     transform: none;
-  }
-
-  .project-card.reveal .project-media-frame {
-    transform: none;
-  }
-
-  .project-card.reveal .project-media-frame::after {
-    display: none;
   }
 
   .project-card.reveal .project-info > * {
