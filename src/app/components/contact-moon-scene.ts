@@ -14,17 +14,61 @@ export type ContactMoonScene = {
   setVisible(visible: boolean): void;
 };
 
+export type ContactMoonVariant = 'earth' | 'moon';
+
 type Program = {
   attributes: Record<string, number>;
   program: WebGLProgram;
   uniforms: Record<string, WebGLUniformLocation | null>;
 };
 
-const TEXTURE_SRC = '/assets/moon-2k.jpg';
+type Surface = {
+  ambient: [number, number, number];
+  bump: number;
+  /** Mirrors the map so continents read the right way round; the tangent flips with it. */
+  mirrorU: boolean;
+  /** Fixed pose for reduced motion. */
+  restSpin: number;
+  roll: number;
+  saturation: number;
+  spin: number;
+  sun: number;
+  tilt: number;
+  tint: [number, number, number];
+};
+
+const SURFACES: Record<ContactMoonVariant, Surface> = {
+  earth: {
+    ambient: [0.18, 0.2, 0.24],
+    bump: 0.8,
+    mirrorU: true,
+    restSpin: -0.85,
+    roll: 0.1,
+    saturation: 1,
+    spin: -0.85,
+    sun: 1,
+    tilt: Math.PI / 18,
+    tint: [1, 1, 1],
+  },
+  moon: {
+    ambient: [0, 0, 0],
+    bump: 6,
+    mirrorU: false,
+    restSpin: 3,
+    roll: -0.32,
+    saturation: 0.12,
+    spin: 2.4,
+    sun: 0.42,
+    tilt: 0.18,
+    tint: [0.34, 0.36, 0.41],
+  },
+};
+
 const SPHERE_SEGMENTS = 96;
 const SPHERE_RINGS = 64;
 const DUST_COUNT = 1600;
 const LIGHT = normalize([-0.42, 0.36, 0.84]);
+const EARTH_ATMOSPHERE: [number, number, number] = [0.08, 0.52, 0.82];
 
 function normalize([x, y, z]: number[]): [number, number, number] {
   const length = Math.hypot(x, y, z) || 1;
@@ -42,7 +86,7 @@ function readAccent(): [number, number, number] {
   return accent ? hexToRgb(accent) : [0.42, 0.62, 1];
 }
 
-function buildSphere(): { indices: Uint16Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer> } {
+function buildSphere(mirrorU: boolean): { indices: Uint16Array<ArrayBuffer>; positions: Float32Array<ArrayBuffer>; uvs: Float32Array<ArrayBuffer> } {
   const vertexCount = (SPHERE_SEGMENTS + 1) * (SPHERE_RINGS + 1);
   const positions = new Float32Array(vertexCount * 3);
   const uvs = new Float32Array(vertexCount * 2);
@@ -57,7 +101,7 @@ function buildSphere(): { indices: Uint16Array<ArrayBuffer>; positions: Float32A
       positions[vertex * 3] = Math.sin(theta) * Math.cos(phi);
       positions[vertex * 3 + 1] = Math.cos(theta);
       positions[vertex * 3 + 2] = Math.sin(theta) * Math.sin(phi);
-      uvs[vertex * 2] = u;
+      uvs[vertex * 2] = mirrorU ? 1 - u : u;
       uvs[vertex * 2 + 1] = v;
       vertex++;
     }
@@ -87,7 +131,13 @@ function buildDustSeeds(): Float32Array<ArrayBuffer> {
   return seeds;
 }
 
-export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLElement): ContactMoonScene | null {
+export function createContactMoonScene(
+  canvas: HTMLCanvasElement,
+  stage: HTMLElement,
+  variant: ContactMoonVariant = 'moon',
+): ContactMoonScene | null {
+  const isEarth = variant === 'earth';
+  const surface = SURFACES[variant];
   const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power', premultipliedAlpha: true });
   if (!gl) return null;
 
@@ -143,14 +193,15 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
   const moonProgram = link(moonVertexShader, moonFragmentShader, ['aPos', 'aUv']);
   const rimProgram = link(rimVertexShader, rimFragmentShader, ['aPos']);
   const haloProgram = link(quadVertexShader, haloFragmentShader, ['aQuad']);
-  const dustProgram = link(dustVertexShader, dustFragmentShader, ['aSeed']);
-  const sphere = buildSphere();
+  const dustProgram = isEarth ? null : link(dustVertexShader, dustFragmentShader, ['aSeed']);
+  const sphere = buildSphere(surface.mirrorU);
   const positionBuffer = createBuffer(gl.ARRAY_BUFFER, sphere.positions);
   const uvBuffer = createBuffer(gl.ARRAY_BUFFER, sphere.uvs);
   const indexBuffer = createBuffer(gl.ELEMENT_ARRAY_BUFFER, sphere.indices);
   const quadBuffer = createBuffer(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]));
-  const dustBuffer = createBuffer(gl.ARRAY_BUFFER, buildDustSeeds());
-  if (!moonProgram || !rimProgram || !haloProgram || !dustProgram || !positionBuffer || !uvBuffer || !indexBuffer || !quadBuffer || !dustBuffer) {
+  const dustBuffer = isEarth ? null : createBuffer(gl.ARRAY_BUFFER, buildDustSeeds());
+  const dustReady = isEarth || (dustProgram && dustBuffer);
+  if (!moonProgram || !rimProgram || !haloProgram || !positionBuffer || !uvBuffer || !indexBuffer || !quadBuffer || !dustReady) {
     release();
     return null;
   }
@@ -170,12 +221,20 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    if (isEarth) {
+      const anisotropy = gl.getExtension('EXT_texture_filter_anisotropic');
+      if (anisotropy) {
+        const maximum = gl.getParameter(anisotropy.MAX_TEXTURE_MAX_ANISOTROPY_EXT) as number;
+        gl.texParameterf(gl.TEXTURE_2D, anisotropy.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(4, maximum));
+      }
+    }
     textureSize = [image.naturalWidth, image.naturalHeight];
     textureReady = true;
     entranceStart = 0;
     requestFrame();
   };
-  image.src = TEXTURE_SRC;
+  const canUseLargeTexture = gl.getParameter(gl.MAX_TEXTURE_SIZE) >= 4096 && stage.clientWidth >= 720;
+  image.src = isEarth ? `/assets/earth-${canUseLargeTexture ? '4k' : '2k'}.jpg` : '/assets/moon-2k.jpg';
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let disposed = false;
@@ -185,8 +244,8 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
   let height = 1;
   let dpr = 1;
   let entranceStart = 0;
-  let light = document.documentElement.dataset.theme === 'light';
-  let accent = readAccent();
+  const accent = readAccent();
+  const atmosphere = isEarth ? EARTH_ATMOSPHERE : accent;
   const clock = { last: 0, time: 0 };
 
   const resize = () => {
@@ -207,7 +266,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
       if (clock.last) clock.time += Math.min(0.1, (now - clock.last) / 1000);
       clock.last = now;
     }
-    const time = reducedMotion ? 3.7 : clock.time;
     let entrance = reducedMotion ? 1 : Math.min(1, (now - entranceStart) / 1800);
     entrance = 1 - Math.pow(1 - entrance, 3);
 
@@ -216,8 +274,7 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     const cx = width * dpr;
     const cy = (height + (1 - entrance) * radius * 0.3) * dpr;
     const r = radius * dpr;
-    const spin = (reducedMotion ? 0.6 : time * 0.02) + 2.4;
-    const lightTheme = light ? 1 : 0;
+    const spin = reducedMotion ? surface.restSpin : surface.spin + clock.time * 0.02;
 
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -231,8 +288,8 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     gl.uniform2f(haloProgram.uniforms.uCenter, cx, cy);
     gl.uniform1f(haloProgram.uniforms.uRadius, r);
     gl.uniform3f(haloProgram.uniforms.uLight, LIGHT[0], LIGHT[1], LIGHT[2]);
-    gl.uniform3f(haloProgram.uniforms.uAccent, accent[0], accent[1], accent[2]);
-    gl.uniform1f(haloProgram.uniforms.uLightTheme, lightTheme);
+    gl.uniform3f(haloProgram.uniforms.uAccent, atmosphere[0], atmosphere[1], atmosphere[2]);
+    gl.uniform1f(haloProgram.uniforms.uEarth, isEarth ? 1 : 0);
     gl.uniform1f(haloProgram.uniforms.uEntrance, entrance);
     gl.uniform1f(haloProgram.uniforms.uGain, 0.9);
     gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
@@ -241,23 +298,23 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     gl.disableVertexAttribArray(haloProgram.attributes.aQuad);
 
-    // Textured moon.
+    // Textured planet.
     gl.useProgram(moonProgram.program);
     gl.uniform2f(moonProgram.uniforms.uRes, canvas.width, canvas.height);
     gl.uniform2f(moonProgram.uniforms.uCenter, cx, cy);
     gl.uniform1f(moonProgram.uniforms.uRadius, r);
     gl.uniform1f(moonProgram.uniforms.uSpin, spin);
+    gl.uniform1f(moonProgram.uniforms.uTilt, surface.tilt);
+    gl.uniform1f(moonProgram.uniforms.uRoll, surface.roll);
+    gl.uniform1f(moonProgram.uniforms.uTangentSign, surface.mirrorU ? -1 : 1);
     gl.uniform2f(moonProgram.uniforms.uTexel, 1 / textureSize[0], 1 / textureSize[1]);
     gl.uniform3f(moonProgram.uniforms.uLight, LIGHT[0], LIGHT[1], LIGHT[2]);
-    if (light) {
-      gl.uniform3f(moonProgram.uniforms.uTint, 0.7, 0.68, 0.64);
-      gl.uniform3f(moonProgram.uniforms.uAmbient, 0.2, 0.2, 0.19);
-    } else {
-      gl.uniform3f(moonProgram.uniforms.uTint, 0.34, 0.36, 0.41);
-      gl.uniform3f(moonProgram.uniforms.uAmbient, 0, 0, 0);
-    }
-    gl.uniform1f(moonProgram.uniforms.uSun, 0.42);
-    gl.uniform1f(moonProgram.uniforms.uBump, 6);
+    gl.uniform3f(moonProgram.uniforms.uTint, ...surface.tint);
+    gl.uniform3f(moonProgram.uniforms.uAmbient, ...surface.ambient);
+    gl.uniform1f(moonProgram.uniforms.uSun, surface.sun);
+    gl.uniform1f(moonProgram.uniforms.uBump, surface.bump);
+    gl.uniform1f(moonProgram.uniforms.uSaturation, surface.saturation);
+    gl.uniform1f(moonProgram.uniforms.uEarth, isEarth ? 1 : 0);
     gl.uniform1f(moonProgram.uniforms.uEntrance, entrance);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -273,14 +330,16 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     gl.disableVertexAttribArray(moonProgram.attributes.aPos);
     gl.disableVertexAttribArray(moonProgram.attributes.aUv);
 
-    // Hairline accent rim, additive so it never paints over the page.
-    gl.blendFunc(gl.ONE, gl.ONE);
+    // The moon's rim is additive so it never paints over the page; Earth's atmosphere needs alpha to show on paper.
+    gl.blendFunc(gl.ONE, isEarth ? gl.ONE_MINUS_SRC_ALPHA : gl.ONE);
     gl.useProgram(rimProgram.program);
     gl.uniform2f(rimProgram.uniforms.uRes, canvas.width, canvas.height);
     gl.uniform2f(rimProgram.uniforms.uCenter, cx, cy);
     gl.uniform1f(rimProgram.uniforms.uRadius, r);
     gl.uniform1f(rimProgram.uniforms.uSpin, spin);
-    gl.uniform3f(rimProgram.uniforms.uAccent, accent[0], accent[1], accent[2]);
+    gl.uniform1f(rimProgram.uniforms.uTilt, surface.tilt);
+    gl.uniform1f(rimProgram.uniforms.uRoll, surface.roll);
+    gl.uniform3f(rimProgram.uniforms.uAccent, atmosphere[0], atmosphere[1], atmosphere[2]);
     gl.uniform3f(rimProgram.uniforms.uLight, LIGHT[0], LIGHT[1], LIGHT[2]);
     gl.uniform1f(rimProgram.uniforms.uGain, 1.1 * entrance);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -292,14 +351,13 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
     // Dust lifting off the page-facing limb.
-    if (!reducedMotion) {
+    if (dustProgram && dustBuffer && !reducedMotion) {
       gl.useProgram(dustProgram.program);
       gl.uniform2f(dustProgram.uniforms.uRes, canvas.width, canvas.height);
       gl.uniform2f(dustProgram.uniforms.uCenter, cx, cy);
       gl.uniform1f(dustProgram.uniforms.uRadius, r);
-      gl.uniform1f(dustProgram.uniforms.uTime, time);
+      gl.uniform1f(dustProgram.uniforms.uTime, clock.time);
       gl.uniform1f(dustProgram.uniforms.uDpr, dpr);
-      gl.uniform1f(dustProgram.uniforms.uLightTheme, lightTheme);
       gl.uniform3f(dustProgram.uniforms.uAccent, accent[0], accent[1], accent[2]);
       gl.uniform1f(dustProgram.uniforms.uEntrance, entrance);
       gl.bindBuffer(gl.ARRAY_BUFFER, dustBuffer);
@@ -322,15 +380,9 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
   };
 
   const onVisibilityChange = () => { if (!document.hidden) requestFrame(); };
-  const themeObserver = new MutationObserver(() => {
-    light = document.documentElement.dataset.theme === 'light';
-    accent = readAccent();
-    requestFrame();
-  });
   const resizeObserver = new ResizeObserver(resize);
 
   document.addEventListener('visibilitychange', onVisibilityChange);
-  themeObserver.observe(document.documentElement, { attributeFilter: ['data-theme'], attributes: true });
   resizeObserver.observe(stage);
   resize();
 
@@ -339,7 +391,6 @@ export function createContactMoonScene(canvas: HTMLCanvasElement, stage: HTMLEle
       disposed = true;
       if (frame) cancelAnimationFrame(frame);
       document.removeEventListener('visibilitychange', onVisibilityChange);
-      themeObserver.disconnect();
       resizeObserver.disconnect();
       image.onload = null;
       release();

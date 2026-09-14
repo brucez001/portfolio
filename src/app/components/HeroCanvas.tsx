@@ -144,7 +144,7 @@ export function HeroCanvas() {
         : light ? [248 / 255, 247 / 255, 244 / 255] : [12 / 255, 14 / 255, 18 / 255];
     };
     let background = readBackground();
-    const canAnimate = () => !motion.matches && visible && !document.hidden && !lost;
+    const canAnimate = () => !light && !motion.matches && visible && !document.hidden && !lost;
     const resetInput = () => {
       target.active = false;
       target.initialized = false;

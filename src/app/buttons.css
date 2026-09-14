@@ -22,19 +22,19 @@
 }
 
 [data-theme="light"] {
-  --btn-primary-bg: #1a1a2e;
-  --btn-primary-bg-hover: #262640;
+  --btn-primary-bg: #203e52;
+  --btn-primary-bg-hover: #172d3d;
   --btn-primary-text: #f8f7f4;
-  --btn-primary-border: rgba(20, 20, 60, 0.4);
-  --btn-primary-shadow: 0 6px 20px rgba(20, 20, 60, 0.18);
-  --btn-primary-shadow-hover: 0 10px 26px rgba(20, 20, 60, 0.22);
+  --btn-primary-border: rgba(32, 62, 82, 0.3);
+  --btn-primary-shadow: 0 4px 12px rgba(32, 62, 82, 0.12);
+  --btn-primary-shadow-hover: 0 6px 16px rgba(32, 62, 82, 0.16);
 
   --btn-secondary-bg: rgba(255, 255, 255, 0.5);
   --btn-secondary-bg-hover: rgba(255, 255, 255, 0.68);
   --btn-secondary-border: rgba(20, 20, 60, 0.16);
   --btn-secondary-border-hover: rgba(20, 20, 60, 0.26);
   --btn-secondary-highlight: rgba(255, 255, 255, 0.75);
-  --btn-secondary-shadow: 0 8px 26px rgba(20, 20, 60, 0.12);
+  --btn-secondary-shadow: 0 3px 10px rgba(32, 62, 82, 0.05);
 }
 
 .button {

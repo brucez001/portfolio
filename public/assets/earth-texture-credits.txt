@@ -1,0 +1,17 @@
+Earth texture credits
+
+Earth day map and cloud map by Solar System Scope:
+https://www.solarsystemscope.com/textures/
+
+Original files:
+https://www.solarsystemscope.com/textures/download/8k_earth_daymap.jpg
+https://www.solarsystemscope.com/textures/download/8k_earth_clouds.jpg
+
+Licensed under Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+
+Modifications for this portfolio: cloud opacity adjusted and composited with
+the day map; resized from 8192 x 4096 to 4096 x 2048 and 2048 x 1024;
+JPEG compression applied. Lighting and atmosphere are rendered separately.
+
+Derived files: earth-4k.jpg, earth-2k.jpg.

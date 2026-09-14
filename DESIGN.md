@@ -16,7 +16,7 @@ The foundation is the supplied editorial HTML reference, evolved with the Septem
 - Editorial serif display type paired with a practical sans.
 - Thin borders, frosted pill controls, restrained cards, and a dotted technical texture.
 - A blue-silver, flowing orbital hero inspired by DeepSeek Harness: expressive atmosphere, quiet readable copy.
-- Light mode that feels warm and paper-like rather than pure white.
+- Light mode opens on a sunlit coastal landscape, then settles into warm paper sections.
 - Project and experience sections that are easy to scan.
 
 Design tone blend:
@@ -73,27 +73,27 @@ Use CSS custom properties so theme switching is simple and consistent.
 | Token | Hex / Value | Role |
 | --- | --- | --- |
 | `--bg` | `#f8f7f4` | Warm paper canvas |
-| `--bg-elevated` | `#efede8` | Soft section and input background |
+| `--bg-elevated` | `#edf2f5` | Soft section and input background |
 | `--bg-card` | `#ffffff` | Project cards, carousel cards |
 | `--bg-nav` | `rgba(248, 247, 244, 0.88)` | Solid nav fallback |
 | `--nav-glass` | `rgba(248, 247, 244, 0.35)` | Fixed glass nav |
 | `--nav-glass-border` | `rgba(30, 40, 80, 0.06)` | Nav divider |
 | `--bg-mobile` | `rgba(248, 247, 244, 0.97)` | Mobile menu overlay |
-| `--text-primary` | `#1a1a2e` | Main text and headings |
-| `--text-secondary` | `#4a4e69` | Body copy |
-| `--text-muted` | `#8b8fa3` | Labels, metadata, placeholders |
-| `--accent` | `#2d5bd7` | Primary action, links, active indicators |
-| `--accent-secondary` | `#1e45b0` | Hover/pressed accent |
-| `--accent-dim` | `rgba(45, 91, 215, 0.07)` | Tag and wash backgrounds |
-| `--accent-dim-hover` | `rgba(45, 91, 215, 0.13)` | Hover glow/wash |
-| `--border` | `rgba(20, 20, 60, 0.09)` | Default hairline |
-| `--border-hover` | `rgba(20, 20, 60, 0.16)` | Hover hairline |
-| `--selection-bg` | `#2d5bd7` | Text selection |
+| `--text-primary` | `#172d3d` | Main text and headings |
+| `--text-secondary` | `#4d6473` | Body copy |
+| `--text-muted` | `#607484` | Labels, metadata, placeholders |
+| `--accent` | `#315f7d` | Primary action, links, active indicators |
+| `--accent-secondary` | `#203e52` | Hover/pressed accent |
+| `--accent-dim` | `rgba(71, 117, 148, 0.08)` | Tag and wash backgrounds |
+| `--accent-dim-hover` | `rgba(71, 117, 148, 0.14)` | Hover glow/wash |
+| `--border` | `rgba(49, 95, 125, 0.14)` | Default hairline |
+| `--border-hover` | `rgba(49, 95, 125, 0.30)` | Hover hairline |
+| `--selection-bg` | `#315f7d` | Text selection |
 | `--selection-text` | `#ffffff` | Text on selection |
-| `--toggle-bg` | `#e8e5de` | Theme toggle background |
-| `--toggle-icon` | `#2d5bd7` | Theme toggle icon |
-| `--card-shadow` | `0 8px 30px rgba(20, 20, 60, 0.07)` | Hover card elevation |
-| `--dot-color` | `rgba(20, 20, 60, 0.04)` | Background dot texture |
+| `--toggle-bg` | `#e7eef2` | Theme toggle background |
+| `--toggle-icon` | `#315f7d` | Theme toggle icon |
+| `--card-shadow` | `0 8px 24px rgba(38, 69, 90, 0.06)` | Hover card elevation |
+| `--dot-color` | `rgba(49, 95, 125, 0.025)` | Background dot texture |
 
 ### Color Rules
 
@@ -180,7 +180,7 @@ The texture should remain subtle. It should never compete with text or project s
 
 ### Hero Atmosphere — Liquid Starlight
 
-The hero is the one expressive space-themed surface. Use a flowing blue-silver orbital light field, not generic blobs or a game scene. Keep light away from the reading plane. In light mode, translate the same form into pale blue ink on warm paper.
+The dark hero is the expressive space-themed surface. Use a flowing blue-silver orbital light field, not generic blobs or a game scene. Keep light away from the reading plane. The light hero replaces the orbit with the coastal photograph described below.
 
 - Keep the original drifting particle stars and faint proximity connections behind the hero content, alongside the ring. Use the existing dark background, without added navy haze or static star patterns. The starfield shares the ring's animation clock, pause control, reduced-motion and visibility handling.
 - Native WebGL: one quarter-resolution flow-map pass and one atmosphere pass. No Three.js, downloaded textures, video, or new runtime dependency; two small GPU textures retain cursor history.
@@ -191,6 +191,26 @@ The hero is the one expressive space-themed surface. Use a flowing blue-silver o
 - Provide an accessible pause/resume control; reduced motion gets a static composition.
 - Static CSS orbit fallback when WebGL is unavailable or lost (until reload); all meaningful content stays in server-rendered HTML.
 - Verify dark/light themes and desktop/mobile layout before accepting changes. Technical checks are not visual acceptance.
+
+### Light Hero — Coastal Photograph
+
+- Use `public/assets/hero-earth.webp`, the coastal pavilion image from the [Design Earth Light Theme session](https://chatgpt.com/share/6aa754cc-9148-83ec-bbe4-b977c3dc53a1). Preserve its architecture, bay, bridge, distant city, and open horizon.
+- Inspired by [Matrix](https://matrix.build/), sunlight is a separate CSS animation over the still image: soft rays from the left, drifting cloud shadows, and a wash of reflected light on the water. Animate only transforms and opacity; no video or runtime dependency.
+- The photograph is a dark surface inside the light theme. A veil deepens the sky toward the top so white copy has a stable reading plane, while the water, city and terrace stay in daylight and fade into the warm page background. The headline carries a shallow shadow, the accent inverts to `--accent-on-photo`, and the secondary buttons use the dark theme's glass.
+- The unscrolled nav floats on the same photograph and retargets its tokens (brand dot, underline, toggle icon, focus ring) to the white-on-photo treatment; the frosted pill restores the paper palette on scroll.
+- Mobile uses a 40% horizontal crop, preserving the terrace and water beneath the copy. Let the hero grow with content.
+- Stop the sunlight animation offscreen, in hidden tabs, in dark mode, and for reduced motion. Stop the dark hero render loop while light mode is active.
+- Measured at 1440×900 and 390×844: hero copy 5.5–7.8:1, label 5.5:1, nav 6.0:1. The secondary buttons fall to 3.9:1 at the bright end of the water-light animation; unresolved.
+
+### Light Sections — Coastal Blue on Warm Paper
+
+- Carry the coastal blue into section labels, company names, service headings, highlight rules, tags, and form controls. Use blue sparingly against the warm paper canvas.
+- Hide the constellation stars in light mode and stop their animation work while hidden. The cursor glow stays active in both themes.
+- Service cards use a pale blue surface. Project cards use a single pale blue surface, an unbordered image frame, white tech tags, a fine blue-gray border, and a restrained shadow. Hover/focus strengthens the border and shadow without lifting the card.
+- The contact section transitions to a pale blue background with a frosted form (matching the dark theme's glass) so Earth shows through, an opaque fallback when `backdrop-filter` is unsupported, and blue keyboard focus outlines. The send button carries the hero's white CTA so the two ends of the page match.
+- The contact Earth replaces the moon: green/tan terrain, deep oceans with a restrained glint, baked-in clouds, and a thin blue atmospheric edge. Start with Asia facing the viewer, tilted toward the Northern Hemisphere. Share the moon's cropped sphere and quiet rotation, with gentler relief and no particles. Keep the dark moon unchanged; render either planet statically for reduced motion.
+- Earth surface: `public/assets/earth-4k.jpg` (4096 × 2048) composited from native 8K day and cloud maps; `earth-2k.jpg` for stages under 720px or GPUs limited below 4K. Source: Solar System Scope, CC BY 4.0; attribution and modifications are in `public/assets/earth-texture-credits.txt`. Reuse the moon's WebGL renderer.
+- Light-specific component rules live in `src/app/light-theme.css`; light hero rules live in `src/app/hero.css`.
 
 ### Photography & Screenshots
 
@@ -226,6 +246,7 @@ Do not use a logo image for the primary brand mark unless it is redesigned to ma
 
 Circular icon button:
 
+- Show the current theme: sun in light mode, moon in dark mode. The accessible label describes the switch action.
 - Size: 44px by 44px, using the shared control height.
 - Radius: 50%.
 - Border: `1px solid var(--border-hover)`.
@@ -233,7 +254,7 @@ Circular icon button:
 - Icon color: `var(--toggle-icon)`.
 - Hover: small scale and accent border.
 
-Persist theme to `localStorage` and initialize from saved preference, falling back to system preference.
+Persist the theme to `localStorage` under `portfolio-theme`; initialize before first paint from the saved choice, then system preference.
 
 ### Buttons
 
@@ -312,6 +333,7 @@ Motion should be quiet:
 - Duration: 0.7s.
 - Easing: `cubic-bezier(0.25, 0.46, 0.45, 0.94)`.
 - Theme transitions: background, color, border-color, shadow over 0.45s.
+- Theme switch: the new theme is revealed by a circle growing out of the toggle (View Transitions API, 0.5s, `--ease`), with the sun/moon icons handing over in a short rotate-through crossfade. Browsers without view transitions keep the 0.45s property transitions; reduced motion switches instantly.
 - Hover lift: max 4px for project cards and 1px for standard cards/buttons.
 
 Respect `prefers-reduced-motion`:

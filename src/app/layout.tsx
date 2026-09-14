@@ -10,6 +10,7 @@ import { BackdropConstellation } from '@/app/components/BackdropConstellation';
 import { ButtonRipple } from '@/app/components/ButtonRipple';
 import './globals.css';
 import './buttons.css';
+import './light-theme.css';
 import './hero.css';
 
 const siteDescription =
@@ -76,7 +77,7 @@ const personJsonLd = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
+  colorScheme: 'dark light',
   initialScale: 1,
   themeColor: '#0c0e12',
   width: 'device-width',
@@ -90,8 +91,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="dark" lang="en-AU">
+    <html data-theme="dark" lang="en-AU" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t;try{t=localStorage.getItem('portfolio-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f8f7f4':'#0c0e12'})()` }} />
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
           type="application/ld+json"

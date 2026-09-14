@@ -1,0 +1,150 @@
+/* Light theme: coastal blue as a small, consistent signal on warm paper. */
+[data-theme="light"] .backdrop-constellation { display: none; }
+
+[data-theme="light"] .site-nav::before {
+  box-shadow: 0 4px 18px rgba(38, 69, 90, .07), inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+/* Unscrolled, the nav floats on the hero photograph and borrows its white-on-photo
+   treatment. The frosted pill (scrolled) and the mobile menu sheet return the ink
+   to the paper palette. */
+[data-theme="light"] .site-nav:not(.is-scrolled):not(.is-menu-open) {
+  --accent: var(--accent-on-photo);
+  --toggle-icon: #ffffff;
+  --toggle-bg: rgba(255, 255, 255, .18);
+  --border-hover: rgba(255, 255, 255, .4);
+}
+
+[data-theme="light"] .site-nav:not(.is-scrolled):not(.is-menu-open) .nav-brand,
+[data-theme="light"] .site-nav:not(.is-scrolled):not(.is-menu-open) .nav-links a {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(10, 26, 40, .6);
+}
+
+/* The hero and the send button share one white CTA, bookending the page. */
+[data-theme="light"] .hero,
+[data-theme="light"] .contact-form {
+  --btn-primary-bg: #ffffff;
+  --btn-primary-bg-hover: #ffffff;
+  --btn-primary-text: #14161b;
+  --btn-primary-border: rgba(255, 255, 255, .5);
+  --btn-primary-shadow: 0 6px 20px rgba(12, 28, 42, .28);
+  --btn-primary-shadow-hover: 0 10px 26px rgba(12, 28, 42, .34);
+}
+
+[data-theme="light"] .section-label,
+[data-theme="light"] .highlight-grid dt,
+[data-theme="light"] .service-item h3,
+[data-theme="light"] .contact-form label span {
+  color: var(--accent);
+}
+
+/* A brighter step of --accent, not a separate hue. */
+[data-theme="light"] .timeline-company { color: #2a6a92; }
+
+[data-theme="light"] .about-photo {
+  border-color: rgba(49, 95, 125, .18);
+  box-shadow: 0 8px 24px rgba(38, 69, 90, .07);
+}
+
+[data-theme="light"] .about-photo::after { background: none; }
+
+[data-theme="light"] .highlight-grid div {
+  border-top-color: rgba(49, 95, 125, .3);
+}
+
+[data-theme="light"] .skills-list span {
+  background: #edf2f5;
+  border-color: rgba(49, 95, 125, .1);
+}
+
+[data-theme="light"] .skills-list span:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+[data-theme="light"] .service-item {
+  background: #f0f4f6;
+  border-color: rgba(49, 95, 125, .14);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7);
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+/* The card carries the pale blue surface itself so the cursor glow stays visible. */
+[data-theme="light"] .project-card {
+  background: #edf2f5;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: rgba(49, 95, 125, .15);
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(38, 69, 90, .035);
+}
+
+[data-theme="light"] .project-media-frame { border-radius: 6px; }
+
+[data-theme="light"] .project-tags span {
+  background: #ffffff;
+  border-color: rgba(49, 95, 125, .08);
+}
+
+[data-theme="light"] .project-card:focus-within {
+  border-color: var(--border-hover);
+  box-shadow: var(--card-shadow);
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="light"] .service-item:hover {
+    background: #eaf1f5;
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 14px rgba(38, 69, 90, .04);
+  }
+
+  [data-theme="light"] .project-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--card-shadow);
+    transform: none;
+  }
+}
+
+/* The closing section echoes the bay in daylight; the form stays frosted so
+   Earth shows through. */
+[data-theme="light"] .contact-stage {
+  background: linear-gradient(180deg, #f8f7f4, #eaf1f5 42%, #e5eef3);
+}
+
+[data-theme="light"] .contact-form {
+  background: var(--form-glass);
+  backdrop-filter: var(--form-glass-filter);
+  -webkit-backdrop-filter: var(--form-glass-filter);
+  border: 1px solid rgba(49, 95, 125, .18);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 28px rgba(38, 69, 90, .06),
+    inset 0 1px 0 var(--form-glass-highlight);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-theme="light"] .contact-form {
+    background: var(--bg-elevated);
+  }
+}
+
+[data-theme="light"] .contact-form:focus-within { border-color: var(--border-hover); }
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form textarea {
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+[data-theme="light"] .contact-form input:focus-visible,
+[data-theme="light"] .contact-form textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+[data-theme="light"] .contact-form-status.is-error {
+  background: #f8e9e7;
+  color: #9d3028;
+}

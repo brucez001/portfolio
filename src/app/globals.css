@@ -27,6 +27,7 @@
   --accent: #6b9eff;
   --accent-dim: rgba(107, 158, 255, 0.1);
   --accent-dim-hover: rgba(107, 158, 255, 0.18);
+  --glow-tint: rgba(107, 158, 255, 0.18);
   --border: rgba(140, 160, 200, 0.07);
   --border-hover: rgba(140, 160, 200, 0.14);
   --selection-bg: #6b9eff;
@@ -48,24 +49,28 @@
 [data-theme="light"] {
   color-scheme: light;
   --bg: #f8f7f4;
-  --bg-elevated: #efede8;
-  --nav-glass: rgba(248, 247, 244, 0.62);
+  --bg-elevated: #edf2f5;
+  /* Dense enough to keep the nav ink readable when scrolled over the hero photo. */
+  --nav-glass: rgba(248, 247, 244, 0.86);
   --nav-glass-border: rgba(30, 40, 80, 0.12);
   --bg-mobile: rgba(248, 247, 244, 0.97);
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4e69;
-  --text-muted: #62677a;
-  --accent: #2d5bd7;
-  --accent-dim: rgba(45, 91, 215, 0.07);
-  --accent-dim-hover: rgba(45, 91, 215, 0.13);
-  --border: rgba(20, 20, 60, 0.09);
-  --border-hover: rgba(20, 20, 60, 0.16);
-  --selection-bg: #2d5bd7;
+  --text-primary: #172d3d;
+  --text-secondary: #4d6473;
+  --text-muted: #607484;
+  --accent: #315f7d;
+  --accent-dim: rgba(71, 117, 148, 0.08);
+  --accent-dim-hover: rgba(71, 117, 148, 0.14);
+  /* --accent lifted for the hero photograph, the light theme's one dark surface. */
+  --accent-on-photo: #b0daf7;
+  --glow-tint: rgba(168, 214, 255, 0.3);
+  --border: rgba(49, 95, 125, 0.14);
+  --border-hover: rgba(49, 95, 125, 0.3);
+  --selection-bg: #315f7d;
   --selection-text: #ffffff;
-  --toggle-bg: #e8e5de;
-  --toggle-icon: #2d5bd7;
-  --card-shadow: 0 8px 30px rgba(20, 20, 60, 0.07);
-  --dot-color: rgba(20, 20, 60, 0.04);
+  --toggle-bg: #e7eef2;
+  --toggle-icon: #315f7d;
+  --card-shadow: 0 8px 24px rgba(38, 69, 90, 0.06);
+  --dot-color: rgba(49, 95, 125, 0.025);
   --card-glass: rgba(255, 255, 255, 0.25);
   --card-glass-border: rgba(30, 40, 80, 0.14);
   --card-glass-shadow: 0 12px 40px rgba(20, 20, 60, 0.1);
@@ -234,6 +239,9 @@ img {
   font-size: 1.75rem;
   letter-spacing: 0.02em;
   line-height: 1;
+  transition:
+    color 0.3s var(--ease),
+    text-shadow 0.3s var(--ease);
 }
 
 .nav-brand span {
@@ -261,7 +269,9 @@ img {
   letter-spacing: 0.08em;
   position: relative;
   text-transform: uppercase;
-  transition: color 0.3s var(--ease);
+  transition:
+    color 0.3s var(--ease),
+    text-shadow 0.3s var(--ease);
 }
 
 .nav-links a::after {
@@ -309,6 +319,11 @@ img {
   width: 38px;
 }
 
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--toggle-bg);
+}
+
 .menu-toggle {
   border-radius: 6px;
   display: none;
@@ -326,6 +341,51 @@ img {
 .menu-toggle svg {
   height: 21px;
   width: 21px;
+}
+
+/* Sun and moon share one cell and hand over with a short rotate-through crossfade. */
+.theme-toggle-icons {
+  display: grid;
+  place-items: center;
+}
+
+.theme-toggle-icons > svg {
+  grid-area: 1 / 1;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.theme-toggle-icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.9);
+}
+
+[data-theme="light"] .theme-toggle-icon-sun {
+  opacity: 1;
+  transform: none;
+}
+
+[data-theme="light"] .theme-toggle-icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.9);
+}
+
+/* Theme reveal (see Navigation.tsx): the new page is clipped to a circle
+   animated from script, so the default crossfade is disabled. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+/* The revealed page must already be in its final colours for a crisp clip edge. */
+[data-theme-switching] *,
+[data-theme-switching] *::before,
+[data-theme-switching] *::after {
+  transition-duration: 0s !important;
 }
 
 .mobile-menu {
@@ -817,16 +877,6 @@ img {
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
-.project-card:focus-within .project-tags span {
-  background: var(--accent-dim-hover);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .project-card:hover .project-tags span {
-    background: var(--accent-dim-hover);
-  }
-}
-
 .contact-stage {
   overflow: hidden;
   position: relative;
@@ -1229,7 +1279,7 @@ img {
 }
 
 .glow-layer {
-  background: radial-gradient(closest-side, var(--accent-dim-hover), transparent 70%);
+  background: radial-gradient(closest-side, var(--glow-tint), transparent 70%);
   border-radius: 50%;
   height: 480px;
   left: -240px;

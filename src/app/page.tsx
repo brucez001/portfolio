@@ -6,6 +6,7 @@ import { ContactForm } from '@/app/components/ContactForm';
 import { ContactMoon } from '@/app/components/ContactMoon';
 import { CursorGlow } from '@/app/components/CursorGlow';
 import { HeroCanvas } from '@/app/components/HeroCanvas';
+import { HeroSunlight } from '@/app/components/HeroSunlight';
 import { Navigation } from '@/app/components/Navigation';
 import { Reveal } from '@/app/components/Reveal';
 import { experiences, highlights, navLinks, projects, services, skills, socialLinks } from '@/app/data';
@@ -80,6 +81,7 @@ export default function Portfolio() {
             </div>
           </div>
           <HeroCanvas />
+          <HeroSunlight />
         </section>
 
         <section className="section" id="about">

@@ -11,8 +11,8 @@ type Star = {
   y: number;
 };
 
-const getAccent = (theme: string | undefined) =>
-  theme === 'light' ? { r: 45, g: 91, b: 215 } : { r: 107, g: 158, b: 255 };
+// Dark-theme accent; the constellation is hidden in the light theme.
+const ACCENT_RGB = '107,158,255';
 
 export function BackdropConstellation() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -35,6 +35,7 @@ export function BackdropConstellation() {
   }, []);
 
   useEffect(() => {
+    if (!isPastHero) return;
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
     if (!canvas || !context) return;
@@ -71,8 +72,7 @@ export function BackdropConstellation() {
 
     const draw = () => {
       context.clearRect(0, 0, width, height);
-      const accent = getAccent(document.documentElement.dataset.theme);
-      const colorRgb = `${accent.r},${accent.g},${accent.b}`;
+      if (document.documentElement.dataset.theme === 'light' || document.hidden) return;
       const maxDistance = 150;
       const animating = !reducedMotionQuery.matches;
 
@@ -99,7 +99,7 @@ export function BackdropConstellation() {
 
         context.beginPath();
         context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        context.fillStyle = `rgba(${colorRgb},0.38)`;
+        context.fillStyle = `rgba(${ACCENT_RGB},0.38)`;
         context.fill();
 
         for (let next = index + 1; next < stars.length; next += 1) {
@@ -113,7 +113,7 @@ export function BackdropConstellation() {
             context.beginPath();
             context.moveTo(star.x, star.y);
             context.lineTo(target.x, target.y);
-            context.strokeStyle = `rgba(${colorRgb},${alpha})`;
+            context.strokeStyle = `rgba(${ACCENT_RGB},${alpha})`;
             context.lineWidth = 0.6;
             context.stroke();
           }
@@ -134,15 +134,20 @@ export function BackdropConstellation() {
 
     reset();
 
+    const themeObserver = new MutationObserver(reset);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    document.addEventListener('visibilitychange', reset);
     window.addEventListener('resize', reset);
     reducedMotionQuery.addEventListener('change', reset);
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      themeObserver.disconnect();
+      document.removeEventListener('visibilitychange', reset);
       window.removeEventListener('resize', reset);
       reducedMotionQuery.removeEventListener('change', reset);
     };
-  }, []);
+  }, [isPastHero]);
 
   return (
     <canvas
