@@ -158,7 +158,7 @@ Base unit: 4px.
 - Hero: centered editorial copy within a centered orbital light field. Desktop uses up to 900px / one small viewport height, growing with content. Mobile keeps the same layered composition, with a wider circular orbit cropped at the edges rather than a separate illustration above the copy.
 - About: `280px / 1fr` grid on desktop, stacked on mobile.
 - Experience: `1fr / 1fr` grid on desktop, stacked on mobile.
-- Projects: vertical list of alternating two-column rows, stacked on mobile.
+- Projects: an asymmetric 12-column editorial card composition, stacked on mobile.
 - Contact: two-column content/form split, stacked on mobile.
 
 ### Whitespace Philosophy
@@ -278,15 +278,18 @@ The carousel is a compact product-like control, not a flashy slider.
 - No autoplay unless explicitly requested.
 - Keyboard accessible controls.
 
-### Project Rows
+### Project Cards
 
-Projects should be a vertical list, not a masonry grid.
+Projects use a structured editorial composition rather than identical cards or free-form masonry.
 
-- Desktop: two-column row, screenshot and content.
-- Alternate image/content order on even rows.
-- Mobile: image first, then content.
-- Image aspect ratio: 4/3.
-- Tags: small accent-dim capsules, 4px radius.
+- Desktop: alternating `7 / 5` and `5 / 7` column pairs within the global grid.
+- Mobile: one-column cards with the same content order and no horizontal overflow.
+- Image aspect ratio: wider cards use `16 / 10`; compact cards use `4 / 3`.
+- Card chrome: no index label or top rule; 8px screenshot radius.
+- Reveal: stagger each card's media and copy, wiping screenshots into view without delaying readability.
+- Hover: a quiet lift, image drift, cursor glow, and external-link nudge. No tilt or continuous animation.
+- Linking: only the screenshot and the project title are clickable; the card body is inert. The title carries the single tab stop and the external-link arrow.
+- Tags: small accent-dim capsules.
 
 ### Forms
 
@@ -309,7 +312,7 @@ Motion should be quiet:
 - Duration: 0.7s.
 - Easing: `cubic-bezier(0.25, 0.46, 0.45, 0.94)`.
 - Theme transitions: background, color, border-color, shadow over 0.45s.
-- Hover lift: max 1px for cards/buttons.
+- Hover lift: max 4px for project cards and 1px for standard cards/buttons.
 
 Respect `prefers-reduced-motion`:
 
@@ -335,8 +338,8 @@ Respect `prefers-reduced-motion`:
 | Breakpoint | Width | Behavior |
 | --- | --- | --- |
 | Mobile | `< 768px` | Hamburger nav, stacked sections, single-column projects, form fields stacked |
-| Tablet | `768px - 1024px` | Some two-column layouts may remain, reduce gaps and card padding |
-| Desktop | `> 1024px` | Full nav, two-column about/experience/contact, alternating project rows |
+| Tablet | `768px - 1024px` | Project cards stack; reduce gaps and card padding |
+| Desktop | `> 1024px` | Full nav, two-column about/experience/contact, asymmetric project card pairs |
 | Wide | `> 1440px` | Keep content capped near 1100px; do not stretch text lines |
 
 Touch targets:

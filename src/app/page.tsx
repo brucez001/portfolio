@@ -1,6 +1,6 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import type { SVGProps } from 'react';
+import type { CSSProperties, SVGProps } from 'react';
 import profilePhoto from '../../public/assets/about-photo.webp';
 import { ContactForm } from '@/app/components/ContactForm';
 import { ContactMoon } from '@/app/components/ContactMoon';
@@ -172,62 +172,84 @@ export default function Portfolio() {
             <h2 className="section-title">Selected projects</h2>
           </Reveal>
           <div className="projects-list">
-            {projects.map((project) => (
-              <Reveal className="project-row" glow key={project.name}>
-                <span aria-hidden="true" className="glow-layer" />
-                <div className="project-media">
-                  {project.link ? (
-                    <a
-                      aria-label={`Open ${project.name} (opens in new tab)`}
-                      className="project-media-frame"
-                      href={project.link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Image
-                        alt={project.imageAlt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 550px"
-                        src={project.imageSrc}
-                        style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
-                      />
-                    </a>
-                  ) : (
-                    <div className="project-media-frame">
-                      <Image
-                        alt={project.imageAlt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 550px"
-                        src={project.imageSrc}
-                        style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
-                      />
-                    </div>
-                  )}
+            {projects.map((project, index) => {
+              const titleId = `project-${index + 1}-title`;
+              const media = (
+                <div className="project-media-frame">
+                  <Image
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1024px) calc(100vw - 6rem), (max-width: 1100px) 55vw, 650px"
+                    src={project.imageSrc}
+                    style={project.imagePosition ? { objectPosition: project.imagePosition } : undefined}
+                  />
                 </div>
-                <div className="project-info">
-                  <h3>
+              );
+              const content = (
+                <>
+                  <div className="project-media">
                     {project.link ? (
                       <a
-                        className="project-title-link"
+                        aria-hidden="true"
+                        className="project-media-link"
                         href={project.link}
                         rel="noopener noreferrer"
+                        tabIndex={-1}
                         target="_blank"
                       >
-                        {project.name}
+                        {media}
                       </a>
                     ) : (
-                      project.name
+                      media
                     )}
-                  </h3>
-                  <p>{project.description}</p>
-                  <div className="project-tags" aria-label={`${project.name} technologies`}>
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                  <div className="project-info">
+                    <h3 id={titleId}>
+                      {project.link ? (
+                        <a
+                          aria-label={`Open ${project.name} (opens in new tab)`}
+                          className="project-title-link"
+                          href={project.link}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          {project.name}
+                          <ArrowUpRight aria-hidden="true" className="project-link-icon" />
+                        </a>
+                      ) : (
+                        project.name
+                      )}
+                    </h3>
+                    <p>{project.description}</p>
+                    <div
+                      aria-label={`${project.name} technologies`}
+                      className="project-tags"
+                      role="list"
+                    >
+                      {project.tags.map((tag) => (
+                        <span key={tag} role="listitem">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              );
+
+              return (
+                <Reveal
+                  ariaLabelledby={titleId}
+                  as="article"
+                  className="project-card"
+                  glow
+                  key={project.name}
+                  style={{ '--project-order': index } as CSSProperties}
+                >
+                  <span aria-hidden="true" className="glow-layer" />
+                  <div className="project-card-content">{content}</div>
+                </Reveal>
+              );
+            })}
           </div>
         </section>
       </main>

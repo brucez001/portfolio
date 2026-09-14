@@ -43,14 +43,14 @@
   border-radius: var(--radius-control);
   box-sizing: border-box;
   display: inline-flex;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 600;
   gap: 0.5rem;
   justify-content: center;
   letter-spacing: 0.015em;
   min-height: var(--control-height);
   overflow: hidden;
-  padding: 0.75rem 1.7rem;
+  padding: 0.75rem 1.55rem;
   position: relative;
   transition: var(--control-transition);
   -webkit-tap-highlight-color: transparent;
