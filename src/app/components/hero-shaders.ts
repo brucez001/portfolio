@@ -60,7 +60,6 @@ uniform float time;
 uniform float entrance;
 uniform float ripple;
 uniform float rippleGain;
-uniform float lightTheme;
 uniform vec2 center;
 uniform vec2 ringSize;
 uniform vec2 readingPlane;
@@ -88,7 +87,7 @@ float fbm(vec2 p) {
   return value;
 }
 
-vec3 cloudMaterial(vec2 point, vec2 direction, float influence, float time, float light) {
+vec3 cloudMaterial(vec2 point, vec2 direction, float influence, float time) {
   vec2 q = point * 11. - direction * influence * 3.;
   vec2 fold = vec2(noise(q * .55 + vec2(time * .09, 0.)),
     noise(q * .55 + vec2(5.7, -time * .07)));
@@ -97,11 +96,8 @@ vec3 cloudMaterial(vec2 point, vec2 direction, float influence, float time, floa
     + noise(q * 1.9 + vec2(3.1, -time * .04)) * .3;
   float density = clamp((body - .18) / .64, 0., 1.);
 
-  vec3 shadow = mix(vec3(.018, .035, .070), vec3(.91, .93, .95), light);
-  vec3 bodyColor = mix(vec3(.095, .245, .440), vec3(.42, .59, .73), light);
-  vec3 crest = mix(vec3(.30, .49, .68), vec3(.13, .30, .49), light);
-  vec3 material = mix(shadow, bodyColor, smoothstep(.14, .64, density));
-  return mix(material, crest, smoothstep(.70, .94, density) * .35);
+  vec3 material = mix(vec3(.018, .035, .070), vec3(.095, .245, .440), smoothstep(.14, .64, density));
+  return mix(material, vec3(.30, .49, .68), smoothstep(.70, .94, density) * .35);
 }
 
 void main() {
@@ -170,14 +166,11 @@ void main() {
   vec2 grainPixel = mod(gl_FragCoord.xy, 64.);
   float grain = hash(grainPixel) - hash(grainPixel + 19.19);
   color += grain * (2. / 255.) * smoothstep(0., .06, max(color.r, max(color.g, color.b)));
-  float alpha = clamp(max(color.r, max(color.g, color.b)), 0., .9);
-  vec3 darkRing = background + color * (1. - background);
-  vec3 lightRing = background * mix(vec3(1.), vec3(.18, .34, .62), alpha * .55);
-  vec3 composed = mix(darkRing, lightRing, lightTheme);
+  vec3 composed = background + color * (1. - background);
   float coverage = smoothstep(.015, .35, influence) * .34
     * mix(.16, 1., reading) * vignette * edge;
   if (coverage > 0.) {
-    vec3 material = cloudMaterial(screen, direction, influence, t, lightTheme);
+    vec3 material = cloudMaterial(screen, direction, influence, t);
     material += grain / 255.;
     composed = mix(composed, material, coverage);
   }

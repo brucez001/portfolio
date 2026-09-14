@@ -11,12 +11,14 @@ type Particle = {
 type Pointer = { x: number; y: number };
 
 export type HeroStarfield = {
-  render(delta: number, light: boolean, pointer: Pointer | null): void;
+  render(delta: number, pointer: Pointer | null): void;
   resize(width: number, height: number): void;
 };
 
 const CONNECTION_DISTANCE = 130;
 const ATTRACTION_DISTANCE = 180;
+const ACCENT_RGB = '107,158,255';
+const MUTED_RGB = '77,85,102';
 
 function createParticle(width: number, height: number): Particle {
   return {
@@ -50,12 +52,10 @@ export function createHeroStarfield(canvas: HTMLCanvasElement): HeroStarfield | 
     particles = Array.from({ length: count }, () => createParticle(width, height));
   };
 
-  const render = (delta: number, light: boolean, pointer: Pointer | null): void => {
+  const render = (delta: number, pointer: Pointer | null): void => {
     context.clearRect(0, 0, width, height);
     if (width <= 0 || height <= 0 || particles.length === 0) return;
 
-    const accent = light ? '45,91,215' : '107,158,255';
-    const muted = light ? '139,143,163' : '77,85,102';
     const frameScale = Math.max(0, Math.min(delta, 0.1)) * 60;
     const damping = Math.pow(0.997, frameScale);
     time += 0.001 * frameScale;
@@ -91,7 +91,7 @@ export function createHeroStarfield(canvas: HTMLCanvasElement): HeroStarfield | 
 
       context.beginPath();
       context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      context.fillStyle = particle.bright ? `rgba(${accent},0.8)` : `rgba(${muted},0.35)`;
+      context.fillStyle = particle.bright ? `rgba(${ACCENT_RGB},0.8)` : `rgba(${MUTED_RGB},0.35)`;
       context.fill();
 
       for (let other = index + 1; other < particles.length; other += 1) {
@@ -101,7 +101,7 @@ export function createHeroStarfield(canvas: HTMLCanvasElement): HeroStarfield | 
           context.beginPath();
           context.moveTo(particle.x, particle.y);
           context.lineTo(target.x, target.y);
-          context.strokeStyle = `rgba(${accent},${(1 - distance / CONNECTION_DISTANCE) * 0.12})`;
+          context.strokeStyle = `rgba(${ACCENT_RGB},${(1 - distance / CONNECTION_DISTANCE) * 0.12})`;
           context.lineWidth = 0.6;
           context.stroke();
         }

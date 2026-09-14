@@ -64,7 +64,6 @@ export function HeroCanvas() {
       entrance: gl.getUniformLocation(atmosphereProgram, 'entrance'),
       ripple: gl.getUniformLocation(atmosphereProgram, 'ripple'),
       rippleGain: gl.getUniformLocation(atmosphereProgram, 'rippleGain'),
-      lightTheme: gl.getUniformLocation(atmosphereProgram, 'lightTheme'),
       flowmap: gl.getUniformLocation(atmosphereProgram, 'flowmap'),
       center: gl.getUniformLocation(atmosphereProgram, 'center'),
       ringSize: gl.getUniformLocation(atmosphereProgram, 'ringSize'),
@@ -136,15 +135,16 @@ export function HeroCanvas() {
     let flowWidth = 1;
     let flowHeight = 1;
     let bounds = hero.getBoundingClientRect();
-    let light = document.documentElement.dataset.theme === 'light';
+    // The atmosphere is display: none in the light theme, so nothing is drawn there.
+    let hidden = document.documentElement.dataset.theme === 'light';
     const readBackground = () => {
       const hex = window.getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
       return /^#[\da-f]{6}$/i.test(hex)
         ? [1, 3, 5].map((offset) => parseInt(hex.slice(offset, offset + 2), 16) / 255)
-        : light ? [248 / 255, 247 / 255, 244 / 255] : [12 / 255, 14 / 255, 18 / 255];
+        : [12 / 255, 14 / 255, 18 / 255];
     };
     let background = readBackground();
-    const canAnimate = () => !light && !motion.matches && visible && !document.hidden && !lost;
+    const canAnimate = () => !hidden && !motion.matches && visible && !document.hidden && !lost;
     const resetInput = () => {
       target.active = false;
       target.initialized = false;
@@ -176,14 +176,13 @@ export function HeroCanvas() {
       gl.uniform1f(atmosphere.entrance, progress);
       gl.uniform1f(atmosphere.ripple, Math.min(1, rippleElapsed / rippleDuration));
       gl.uniform1f(atmosphere.rippleGain, rippleGain);
-      gl.uniform1f(atmosphere.lightTheme, light ? 1 : 0);
       gl.uniform2f(atmosphere.center, .5, .53);
       const ringRadius = Math.min(350, bounds.height * .28, bounds.width * .34) / bounds.height;
       const radius = .004 + (ringRadius - .004) * expansion;
       gl.uniform2f(atmosphere.ringSize, radius, radius);
       gl.uniform2f(atmosphere.readingPlane, Math.min(350, bounds.width * .36) / bounds.height, .23);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      stars?.render(delta, light, target.active ? {
+      stars?.render(delta, target.active ? {
         x: pointer.x * bounds.width,
         y: (1 - pointer.y) * bounds.height,
       } : null);
@@ -242,7 +241,7 @@ export function HeroCanvas() {
       cancelAnimationFrame(frame);
       frame = 0;
       lastTime = performance.now();
-      if (lost) return;
+      if (lost || hidden) return;
       if ((window.devicePixelRatio || 1) !== pixelRatio) { densityChanged(); return; }
       if (!canAnimate()) resetInput();
       if (motion.matches) {
@@ -343,7 +342,7 @@ export function HeroCanvas() {
     });
     intersection.observe(hero);
     const themeObserver = new MutationObserver(() => {
-      light = document.documentElement.dataset.theme === 'light';
+      hidden = document.documentElement.dataset.theme === 'light';
       background = readBackground();
       wake();
     });
