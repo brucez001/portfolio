@@ -50,8 +50,8 @@
   color-scheme: light;
   --bg: #f8f7f4;
   --bg-elevated: #edf2f5;
-  /* Dense enough to keep the nav ink readable when scrolled over the hero photo. */
-  --nav-glass: rgba(248, 247, 244, 0.86);
+  /* Matches the dark theme's translucency so the pill reads as frosted glass. */
+  --nav-glass: rgba(248, 247, 244, 0.62);
   --nav-glass-border: rgba(30, 40, 80, 0.12);
   --bg-mobile: rgba(248, 247, 244, 0.97);
   --text-primary: #172d3d;
