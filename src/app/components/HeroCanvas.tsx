@@ -342,8 +342,16 @@ export function HeroCanvas() {
     });
     intersection.observe(hero);
     const themeObserver = new MutationObserver(() => {
+      const wasHidden = hidden;
       hidden = document.documentElement.dataset.theme === 'light';
       background = readBackground();
+      if (wasHidden && !hidden) {
+        // A page that loaded in the light theme never played the entrance. The
+        // theme reveal already carries the switch, so do not start the
+        // centre-out expansion on top of it.
+        entranceElapsed = entranceDuration;
+        rippleElapsed = rippleDuration;
+      }
       wake();
     });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
