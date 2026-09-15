@@ -13,7 +13,7 @@ export type Experience = {
 export type Project = {
   description: string;
   imageAlt: string;
-  imagePosition?: 'center' | 'top left';
+  imagePosition?: 'center' | 'top left' | 'top right';
   imageSrc: string;
   link?: string;
   name: string;
@@ -97,7 +97,7 @@ export const experiences: Experience[] = [
 export const projects: Project[] = [
   {
     description:
-      'Online storefront for a home bakery with product browsing, ordering, and secure checkout — built for fast loads and strong SEO.',
+      'Online storefront for a home bakery with product browsing, ordering, and secure checkout. Built for fast loads and strong SEO.',
     imageAlt: 'Jinni Bakehouse online bakery storefront homepage',
     imageSrc: '/assets/projects/jinni/jinni_home.png',
     link: 'https://jinnibakehouse.com',
@@ -106,21 +106,22 @@ export const projects: Project[] = [
   },
   {
     description:
-      'Internal operations console for managing products, orders, customers, and content — with drag-and-drop ordering, rich-text editing, and role-based access.',
+      'Internal operations console for managing products, orders, customers, and promotions, with real-time updates and role-based access.',
     imageAlt: 'E-commerce admin console showing the orders management view',
     imagePosition: 'top left',
     imageSrc: '/assets/projects/jinni/jinni_admin.png',
     name: 'E-commerce Admin Console',
-    tags: ['Vite', 'PostgreSQL', 'TanStack', 'Admin'],
+    tags: ['Vite', 'PostgreSQL', 'TanStack'],
   },
   {
     description:
-      'Supply chain management platform with real-time asset tracking, inventory management, and integrated CRM for end-to-end traceability.',
-    imageAlt: 'Supply chain platform dashboard showing asset tracking and operations data',
-    imagePosition: 'top left',
-    imageSrc: '/assets/projects/itrazo/itrazo_adi.png',
-    name: 'Supply Chain Platform',
-    tags: ['React', 'AWS', 'Real-time', 'Maps'],
+      'Native, local-only slide-over web panel and notepad for macOS, keeping favourite sites and Markdown notes one hover or hotkey away.',
+    imageAlt: 'Ledge slide-over panel showing favourite websites and local notes on macOS',
+    imagePosition: 'top right',
+    imageSrc: '/assets/projects/ledge/ledge-panel.webp',
+    link: 'https://github.com/brucez001/ledge',
+    name: 'Ledge',
+    tags: ['Open-source', 'macOS', 'SwiftUI'],
   },
   {
     description:

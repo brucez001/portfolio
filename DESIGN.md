@@ -216,7 +216,7 @@ The dark hero is the expressive space-themed surface. Use a flowing blue-silver 
 
 - Use the existing `public/assets/photo.png` for the about image if it works with the new crop.
 - Use actual project screenshots where available:
-  - `public/assets/projects/itrazo/itrazo_adi.png`
+  - `public/assets/projects/ledge/ledge-panel.webp`
   - `public/assets/projects/fc/fc_login.png`
   - `public/assets/projects/coinjar/cj_learn.png`
 - Prefer real product screenshots over abstract placeholders.
