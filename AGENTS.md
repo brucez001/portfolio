@@ -4,7 +4,7 @@ This file guides AI coding agents working in this repository.
 
 ## Project
 
-Bruce Zhu's portfolio site. The current app is a Next.js App Router project using React, TypeScript, Tailwind CSS, Framer Motion, React Three Fiber, and Vercel analytics.
+Bruce Zhu's portfolio site. The current app is a Next.js App Router project using React, TypeScript, hand-written CSS (no utility framework), hand-written WebGL and CSS motion (no animation library), and Vercel analytics and speed insights.
 
 The active product direction is a full UI redesign based on the provided HTML reference: editorial serif/sans typography, restrained dark/light themes, subtle dotted texture, compact glass navigation, high performance, strong SEO, and polished responsive sections.
 
@@ -51,10 +51,9 @@ Run `npm run build` before claiming production readiness. Use browser verificati
 Use the project-scoped skills before relevant work:
 
 - `frontend-design`: before major UI redesign, component styling, layout, typography, and visual direction work.
-- `web-design-guidelines`: for UI, accessibility, and UX review of changed frontend files.
-- `vercel-react-best-practices`: when writing or reviewing React/Next performance-sensitive UI.
+- `better-ui`: for UI polish detail — concentric radii, optical alignment, surface depth, hit areas — and for accessibility and UX review of changed frontend files.
+- `animate`: when implementing DOM-level motion. Clear it through the Motion Gate in `DESIGN.md` section 8 first.
 - `accelint-nextjs-best-practices`: when changing Next.js App Router structure, metadata, server/client component boundaries, routing, or performance.
-- `accelint-ts-best-practices`: when adding or refactoring TypeScript types and component contracts.
 
 Prefer project-scoped skills only. Do not install user-global skills for this repo unless the user explicitly asks.
 

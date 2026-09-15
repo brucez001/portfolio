@@ -336,6 +336,29 @@ Motion should be quiet:
 - Theme switch: the new theme is revealed by a circle growing out of the toggle (View Transitions API, 0.5s, `--ease`), with the sun/moon icons handing over in a short rotate-through crossfade. Browsers without view transitions keep the 0.45s property transitions; reduced motion switches instantly.
 - Hover lift: max 4px for project cards and 1px for standard cards/buttons.
 
+### The Motion Gate
+
+Default to no animation. Before adding any new motion, it must survive all four questions in order. If it fails one, it does not ship.
+
+1. **Frequency — how often is this seen?**
+   - Keyboard-initiated actions (shortcuts, focus jumps): never animate. Repetition makes motion feel like lag.
+   - Tens of times a day (hover, frequent toggles): near-imperceptible only, or nothing.
+   - Occasional (theme switch, form states, section entrances): eligible, standard duration.
+   - Rare or first-time (first paint, success, empty states): eligible, and the only place a longer or more expressive beat is welcome.
+2. **Purpose — name it in one word.** Feedback, spatial consistency, state indication, preventing a jarring change, or explanation. "It looks cool" is not on the list; if the purpose can't be named, cut it.
+3. **Speed — does it fit the budget?** Press feedback 100–160ms; small popovers 125–200ms; dropdowns 150–250ms; larger surfaces 200–500ms. The hero atmosphere and theme reveal are deliberate exceptions. If a moment only works as a slow, showy animation, it fails.
+4. **Function — does motion help or hinder?** Content the visitor is reading or acting on does not move for style. Decoration belongs in atmosphere, never in the project and experience content.
+
+Further constraints on anything that passes:
+
+- Animate `transform` and `opacity` only. Never animate layout properties.
+- Extend the existing easing and duration vocabulary; do not introduce a parallel set of tokens.
+- Transitions over keyframes for interruptible state, so rapid triggers retarget smoothly instead of queueing.
+- Gate hover-dependent motion behind `@media (hover: hover) and (pointer: fine)`.
+- Enter and exit along the same path. A surface that arrives from one edge leaves by it.
+
+A short list of high-conviction motion beats a long one. Deciding against an animation is a good outcome, not a missed opportunity.
+
 Respect `prefers-reduced-motion`:
 
 - Disable particle animation or reduce it to static dots.
