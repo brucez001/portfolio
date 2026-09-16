@@ -194,7 +194,7 @@ The dark hero is the expressive space-themed surface. Use a flowing blue-silver 
 
 ### Light Hero — Coastal Photograph
 
-- Use `public/assets/hero-earth.webp`, the coastal pavilion image from the [Design Earth Light Theme session](https://chatgpt.com/share/6aa754cc-9148-83ec-bbe4-b977c3dc53a1). Preserve its architecture, bay, bridge, distant city, and open horizon.
+- Use `public/assets/hero-earth.webp`, the coastal pavilion image. Preserve its architecture, bay, bridge, distant city, and open horizon.
 - Inspired by [Matrix](https://matrix.build/), sunlight is a separate CSS animation over the still image: soft rays from the left, drifting cloud shadows, and a wash of reflected light on the water. Animate only transforms and opacity; no video or runtime dependency.
 - The photograph is a dark surface inside the light theme. A veil deepens the sky toward the top so white copy has a stable reading plane, while the water, city and terrace stay in daylight and fade into the warm page background. The headline carries a shallow shadow, the accent inverts to `--accent-on-photo`, and the secondary buttons use the dark theme's glass.
 - The unscrolled nav floats on the same photograph and retargets its tokens (brand dot, underline, toggle icon, focus ring) to the white-on-photo treatment; the frosted pill restores the paper palette on scroll.

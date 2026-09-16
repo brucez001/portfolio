@@ -24,6 +24,14 @@
 .DS_Store
 *.pem
 
+# editor and agent tooling config (machine-local)
+.vscode/
+.idea/
+.claude/
+.mcp.json
+CLAUDE.md
+.agents/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -28,13 +28,13 @@ Avoid: generic SaaS landing pages (hero-metric templates, buzzword marketing, id
 
 ## Repository Setup
 
-- Branch for the redesign: `codex-ui-redesign`.
+- Default branch: `main`. Use `codex/<topic>` branches for changes.
 - Package manager: npm.
 - Main app code: `src/app`.
 - Static assets: `public`.
 - Strategic source of truth (who/what/why): `PRODUCT.md`.
 - Visual design source of truth (how it looks): `DESIGN.md`.
-- Project-scoped agent skills: `.agents/skills`.
+- Project-scoped agent skills: `.agents/skills` (untracked; install locally from the sources listed in `skills-lock.json`).
 - Skill lockfile: `skills-lock.json`.
 
 ## Commands
