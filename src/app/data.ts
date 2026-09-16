@@ -13,7 +13,7 @@ export type Experience = {
 export type Project = {
   description: string;
   imageAlt: string;
-  imagePosition?: 'center' | 'top left' | 'top right';
+  imagePosition?: 'center' | 'top' | 'top left' | 'top right';
   imageSrc: string;
   link?: string;
   name: string;
@@ -115,7 +115,7 @@ export const projects: Project[] = [
   },
   {
     description:
-      'Native, local-only slide-over web panel and notepad for macOS, keeping favourite sites and Markdown notes one hover or hotkey away.',
+      'A slide-over web panel and notepad for macOS, keeping favourite sites and Markdown notes one hover or hotkey away. Free to download',
     imageAlt: 'Ledge slide-over panel showing favourite websites and local notes on macOS',
     imagePosition: 'top right',
     imageSrc: '/assets/projects/ledge/ledge-panel.webp',
@@ -130,5 +130,23 @@ export const projects: Project[] = [
     imageSrc: '/assets/projects/coinjar/cj_onoffchain.png',
     name: 'Blog Website',
     tags: ['Next.js', 'Strapi', 'CMS', 'SEO'],
+  },
+  {
+    description:
+      'My portfolio website designed and built from scratch, with custom visuals, dark and light themes, and interactive animations.',
+    imageAlt: 'Bruce Zhu portfolio hero shown in split dark and light themes',
+    imagePosition: 'top',
+    imageSrc: '/assets/projects/portfolio/theme-split-hero.webp',
+    link: 'https://github.com/brucez001/portfolio',
+    name: 'Portfolio Website',
+    tags: ['Next.js', 'TypeScript', 'WebGL'],
+  },
+  {
+    description:
+      'A simple mobile app with iPhone and Apple Watch widgets for checking your step count at a glance. Available in App Store soon.',
+    imageAlt: 'YEStep widgets on an iPhone beside an Apple Watch step complication',
+    imageSrc: '/assets/projects/yestep/phone-watch.webp',
+    name: 'YEStep',
+    tags: ['iOS', 'watchOS', 'Widget'],
   },
 ];
