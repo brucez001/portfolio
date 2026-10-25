@@ -144,9 +144,9 @@ export const projects: Project[] = [
   {
     description:
       'A simple mobile app with iPhone and Apple Watch widgets for checking your step count at a glance. Available in App Store soon.',
-    imageAlt: 'YEStep widgets on an iPhone beside an Apple Watch step complication',
+    imageAlt: 'StepView widgets on an iPhone beside an Apple Watch step complication',
     imageSrc: '/assets/projects/yestep/phone-watch.webp',
-    name: 'YEStep',
+    name: 'StepView',
     tags: ['iOS', 'watchOS', 'Widget'],
   },
 ];
